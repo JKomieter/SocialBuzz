@@ -1,0 +1,160 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+//build a model same as instagram with users, posts, comments, likes, follows, messages, notifications, reels and stories
+model User {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  firstName      String
+  lastName       String
+  username          String    @unique
+  email         String    @unique
+  bio          String?
+  isPrivate     Boolean?
+  hashedPassword      String
+  followingIds      String[]     @db.ObjectId
+  followersIds    String[]  @db.ObjectId
+  hasNotification    Boolean?
+  isCertified     Boolean?
+  collections     String[]    @db.ObjectId
+  sentRequests    String[]    @db.ObjectId
+  receivedRequests String[]    @db.ObjectId
+
+  posts         Post[]
+  notifications Notification[]
+  reels         Reel[]
+  stories       Story[]
+  comments      Comment[]
+
+  conversationIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationIds], references: [id])
+
+  seenMessageIds String[] @db.ObjectId
+  seenMessages Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
+}
+
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  likeIds String[] @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment Comment[]
+}
+
+model Comment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  likedIds String[] @db.ObjectId
+
+  userId String @db.ObjectId
+  postId String @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  reelId String @db.ObjectId
+  reel Reel @relation(fields: [reelId], references: [id], onDelete: Cascade)
+}
+
+model Reel {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  images String?
+  video String?
+  caption String?
+  tags String[] @db.ObjectId
+  music String?
+
+  seenIds String[] @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments Comment[]
+  likes String[] @db.ObjectId
+}
+
+model Conversation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt       DateTime @default(now())
+  lastMessageAt DateTime @default(now())
+  name String?
+  isGroup Boolean?
+  
+  messagesIds String[] @db.ObjectId
+  messages Message[]
+
+  userIds String[] @db.ObjectId
+  users User[] @relation(fields: [userIds], references: [id])
+}
+
+model Notification {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String 
+  userId String @db.ObjectId
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+model Story {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  image String?
+  video String?
+  caption String?
+  music String?
+
+  userId String @db.ObjectId
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  seenIds String[] @db.ObjectId
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String?
+  image String?
+  video String?
+  audio String?
+  isLiked Boolean?
+  createdAt DateTime @default(now())
+
+  seenIds String[] @db.ObjectId
+  seen User[] @relation("Seen", fields: [seenIds], references: [id])
+
+  conversationId String @db.ObjectId
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  senderId String @db.ObjectId
+}
+
+
+
+
+
+
+
+
+
+
+
