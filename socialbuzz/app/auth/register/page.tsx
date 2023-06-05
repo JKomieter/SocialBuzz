@@ -1,9 +1,9 @@
 "use client";
 import Input from "@/app/components/inputs/Input";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ImFacebook2 } from "react-icons/im";
 import axios from "axios"
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Button from "@/app/components/buttons/Button";
 import BoxTwo from "../BoxTwo";
@@ -15,8 +15,6 @@ const Register = () => {
     const [ username, setUsername ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
-
-    const session = useSession();
 
     const router = useRouter();
 
@@ -37,8 +35,9 @@ const Register = () => {
             .then(() => signIn('credentials', {
                 username,
                 password,
-                callbackUrl: '/home'
+                callbackUrl: "http://localhost:3000/"
             }))
+
         } catch (error) {
             console.log(error);
         } finally {

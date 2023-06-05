@@ -1,8 +1,9 @@
-import React from 'react'
+"use client"
+import React, { useEffect } from 'react'
 
 export default function Header() {
   return (
-    <div className='text-white'>
+    <div className=''>
         Header
     </div>
   )

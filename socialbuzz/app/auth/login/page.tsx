@@ -19,20 +19,16 @@ const Login = () => {
         // post request to login
         try {
             //sign in user after login
-            await signIn('credentials', {
+            await signIn("credentials", {
                 username,
-                password
-            });
+                password,
+                callbackUrl: "http://localhost:3000/"
+            })
 
-            console.log("credentials")
-
-            router.push('/home');
         } catch (error) {
-            console.log(error);
-        } finally {
-            setIsLoading(false);
+            console.log(error)
         }
-    }, [username, password, router]);
+    }, [username, password]);
 
 
     return (
@@ -42,7 +38,7 @@ const Login = () => {
             <div className="w-[350px] md:border-[0.7px] 
             border-neutral-300 p-5 flex items-center
             flex-col gap-5 border-[0px]">
-                <h1 className="text-3xl font-semibold mb-7">Social Buzz</h1>
+                <h1 className="text-3xl text-black font-semibold mb-7">Social Buzz</h1>
                 <Input value={username} onChange={(e) => setUsername(e.target.value)} 
                 type='text' placeholder='Username'/>
                 <Input value={password} onChange={(e) => setPassword(e.target.value)}

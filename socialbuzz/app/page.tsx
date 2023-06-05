@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Footer from './components/Footer'
-import SideBar from './components/SideBar'
-import Header from './components/Header'
+import Footer from './components/layout/Footer'
+import SideBar from './components/layout/SideBar'
+import CenterPage from './components/CenterPage'
 
 export default function Home() {
   return (
@@ -12,11 +12,11 @@ export default function Home() {
             <SideBar />
           </div>
           <div className="flex flex-col basis-7/9 h-full w-full">
-            <Header />
-              Posts
+            <CenterPage />
             <Footer />
           </div>
       </div>
     </main>
   )
 }
+

@@ -1,5 +1,3 @@
-
-
 interface InputProps {
     type?: string;
     placeholder?: string;
@@ -18,7 +16,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
     return (
         <input
-        className="w-full bg-neutral-100 rounded-md px-3 py-2 
+        className="w-full text-black bg-neutral-100 rounded-md px-3 py-2 
         focus:outline-none focus:ring-2 focus:ring-blue-500 
         transition duration-200"
         onChange={onChange} 

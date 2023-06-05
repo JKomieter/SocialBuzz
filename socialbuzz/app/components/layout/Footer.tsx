@@ -6,8 +6,6 @@ import { MdOutlineExplore } from "react-icons/md";
 import { HiOutlineFilm } from "react-icons/hi";
 import { TbMessageCircle } from "react-icons/tb";
 import { CgAddR } from "react-icons/cg";
-import { useSideBarStore } from "../hooks/useSideBar";
-import { useEffect } from "react";
 
 
 //the sidebar on the footer
@@ -23,19 +21,9 @@ const items = [
             href: "/search"
         },
         {
-            name: "Explore",
-            icon: MdOutlineExplore,
-            href: "/explore"
-        },
-        {
             name: "Reels",
             icon: HiOutlineFilm,
             href: "/reels"
-        },
-        {
-            name: "Messages",
-            icon: TbMessageCircle,
-            href: "/messages"
         },
         {
             name: "Notifications",
@@ -54,6 +42,7 @@ const Footer = () => {
     return (
         <div className="flex-row 
         justify-between fixed 
+        z-50
         bottom-0 gap-7 w-screen 
         items-center px-6 py-5 h-12 
         flex md:hidden border-t-neutral-500 
