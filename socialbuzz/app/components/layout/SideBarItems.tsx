@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { IconType } from "react-icons";
 
 import { useRouter } from "next/navigation";
+import useCreate from "@/app/hooks/useCreate";
 
 
 interface SideBarItemsProps {
@@ -21,9 +22,12 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
 }) => {
     const [ show, setShow ] = useState(false);
     const router = useRouter();
+    const create = useCreate();
 
     const handleClick = useCallback(() => {
         //navigate to href
+        if (href == "/create") return;
+        
         router.push(href as string)
     }, [href, router])
 
@@ -35,10 +39,19 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
         setShow(true);
     }, [show])
 
+    const openModal = useCallback(() => {
+        if (name !== "Create") {
+            return ;
+        }
+        create.onOpen();
+    }, [name, create])
+
     return (
         <>
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className="cursor-pointer rounded-full p-2 hover:bg-neutral-700">
+            className="cursor-pointer rounded-full p-2 hover:bg-neutral-700"
+            onClick={openModal}
+            >
             <Icon size={28} color="white" 
             onClick={handleClick}/>
             {!showFooter && show && <div className="absolute text-white 

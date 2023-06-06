@@ -6,6 +6,7 @@ interface ButtonProps {
     textColor?: string;
     children?: React.ReactNode;
     padding?: string;
+    width?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,10 +16,13 @@ const Button: React.FC<ButtonProps> = ({
     bgColor,
     textColor,
     children,
-    padding
+    padding,
+    width
 }) => {
     return (
-        <button style={{backgroundColor: bgColor, color: textColor, padding: padding}} className="w-full bg-blue-500
+        <button style={{backgroundColor: bgColor, color: textColor, 
+            padding: padding, width: width}} 
+        className="w-full bg-blue-500
         text-white font-semibold py-2 rounded-md
         hover:bg-blue-600 transition duration-200
         " onClick={onClick} disabled={disabled}>
