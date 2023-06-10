@@ -28,6 +28,7 @@ const Login = () => {
         } catch (error) {
             console.log(error)
         }
+        setIsLoading(false)
     }, [username, password]);
 
 

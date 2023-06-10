@@ -8,18 +8,20 @@ const MediaUploader: React.FC<MediaUploaderProps> = ({
     file,
  }) => {
     return (
-        <div key={file.size} className="w-full h-full rounded-b-lg">
+        <div key={file.size} className="w-full h-full rounded-b-lg resize-none">
             {file.type.startsWith("image") ? (
                 <Image
                 src={URL.createObjectURL(file)}
                 alt="Img"
                 width={100}
                 height={100}
-                style={{width: "100%", height: "90%", borderBottomLeftRadius: "8px", 
-                borderBottomRightRadius: "8px"}}
+                style={{width: "100%", height: "100%",  
+                borderRadius: "8px", objectFit: 'cover'}}
                 />
           ) : (
-            <video controls width="400" style={{height: "100%"}}>
+            <video controls style={{height: "100%",
+            borderRadius: "8px", objectFit: 'cover', width: "100%"}}
+            >
               <source src={URL.createObjectURL(file)} type={file.type} />
               Your browser does not support the video tag.
             </video>

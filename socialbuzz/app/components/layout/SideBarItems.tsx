@@ -49,7 +49,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
     return (
         <>
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className="cursor-pointer rounded-full p-2 hover:bg-neutral-700"
+            className="cursor-pointer rounded-lg p-2.5 hover:bg-neutral-700"
             onClick={openModal}
             >
             <Icon size={28} color="white" 
