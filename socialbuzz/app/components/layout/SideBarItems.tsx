@@ -54,13 +54,13 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
             >
             <Icon size={28} color="white" 
             onClick={handleClick}/>
-            {!showFooter && show && <div className="absolute text-white 
+            {/* {!showFooter && show && <div className="absolute text-white 
             w-auto z-50 bg-neutral-500
             transition-all text-sm
             p-2 rounded-[10px] after:-left-[20px] after:rounded-l-none
             after:top-1/2 ml-3">
                 {name}
-            </div>}
+            </div>} */}
         </div>
         </>
     )

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import UserHero from "../components/UserHero";
 import Highlights from "../components/Highlights";
 import Following from "../components/Following";
+import UserProfileNav from "../components/UserProfileNav";
+import Posts from "../components/Posts";
 
 
 interface UserProfilePageProps {
@@ -41,17 +43,14 @@ const UserProfilePage = () => {
     }
 
     return (
-        <div className="flex flex-col w-full h-full items-center px-8 py-8 gap-7">
+        <div className="flex flex-col w-full items-center px-3 py-8 gap-7 justify-center">
            <UserHero userProfilePic={user.profilePicture} username={user.username}
             lastName={user.lastName} followers={user.followers}
             following={user.following} bio={user.bio} />
             <Highlights />
-           <div  
-            className='w-screen md:hidden flex py-4 px-3 border-[#fff] border-y-[0.8px] flex-row justify-between'>
-                <p className='text-white font-normal'>{user.followers?.length || 0} Followers</p>
-                <p className='text-white font-normal'>{user.following?.length || 0} Following</p>
-                <p className='text-white font-normal'>0 Posts</p>
-            </div>
+            <UserProfileNav followers={user.followers?.length}
+            following={user.following?.length} posts={user.posts?.length}/>
+            <Posts posts={user.posts} />
         </div>
     );
 }

@@ -36,7 +36,7 @@ const SuggestedFollowers = () => {
     return (
         <div className="flex-col w-full flex gap-4">
         {
-            suggestedUsers.map((user) => (
+            suggestedUsers?.map((user) => (
                 <SuggestedUserItem
                     key={user.id}
                     firstName={user.firstName}

@@ -9,12 +9,14 @@ export async function GET(request: Request) {
             createdAt: 'desc'
         }
     });
+    // Todo : will fetch friends and followers differently
+    
 
     // Return the user data as the API response
     return NextResponse.json(allUsers);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: 'Could not get users' });
+    return NextResponse.json([]);
   }
 }
 

@@ -46,6 +46,13 @@ const Create = () => {
         setStep(1);
     }, [create, files])
 
+    const goBack = useCallback(() => {
+        // go back to the previous step
+        if (step === 2) {
+            setStep(1);
+        }
+    }, [step])
+
     //send post to the server to be saved
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -53,10 +60,14 @@ const Create = () => {
             setStep(2);
             return;
         }
-        // await axios.post('/api/posts', {
-        //     post,
-        //     caption
-        // })
+        try {
+            const newPost = await axios.post('/api/createPost', {
+                post,
+                caption
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const showInput = useMemo(() => {
@@ -88,8 +99,9 @@ const Create = () => {
                 </div>
                 <div className={`w-full max-h-[450px] min-h-[300px] md:h-full basis-8/9  
                     ${step === 1 ? 'md:w-[40%]' : 'md:w-[60%]'}
+                    transition-width duration-700 transition-all ease-in-out
                 `}>
-                    <Top files={files} handleSubmit={handleSubmit} step={step} />
+                    <Top files={files} handleSubmit={handleSubmit} step={step} goBack={goBack} />
                     <div className="w-full bg-neutral-800 rounded-lg h-full 
                      flex flex-row">
                         <div 

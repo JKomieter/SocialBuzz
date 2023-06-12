@@ -9,6 +9,13 @@ export async function POST(request: Request) {
         const user = await prisma.user.findUnique({
             where: {
                 username
+            },
+            include: {
+                posts: true,     
+                notifications: true, 
+                reels: true,         
+                stories: true,       
+                comments: true,     
             }
         })
 

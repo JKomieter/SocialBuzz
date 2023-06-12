@@ -40,13 +40,13 @@ const items = [
 
 const Footer = () => {
     return (
-        <div className="flex-row 
-        justify-between fixed 
-        z-50
-        bottom-0 gap-7 w-screen 
-        items-center px-6 py-5 h-12 
+        <div className="fixed 
+        justify-between flex-row 
+        z-[9999]
+        bottom-0 gap-7 w-full 
+        items-center px-3 py-5 h-12 
         flex md:hidden border-t-neutral-500 
-        border-t-[1px]
+        border-t-[1px] bg-black
         ">
             {
                 items.map((item) => (
