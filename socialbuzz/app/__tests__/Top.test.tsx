@@ -1,4 +1,4 @@
-import Top from "@/app/components/modals/Top";
+import Top from "@/app/components/modals/PostModal/Top";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, RenderResult } from "@testing-library/react";
 

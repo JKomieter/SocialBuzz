@@ -8,7 +8,7 @@ interface useCreateState {
 }
 
 const useCreate = create<useCreateState>((set) => ({
-    open: true,
+    open: false,
     onOpen: () => set({ open: true }),
     onClose: () => set({ open: false }),
 }));

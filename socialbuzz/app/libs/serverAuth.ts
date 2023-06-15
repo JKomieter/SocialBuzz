@@ -1,5 +1,5 @@
-import getSession from "./getSession";
-import prisma from "../libs/prismadb";
+import getSession from "../actions/getSession";
+import prisma from "./prismadb";
 
 const getCurrentUser = async () => {
     const session = await getSession();
@@ -19,7 +19,7 @@ const getCurrentUser = async () => {
         throw new Error('Not signed in')
     }
 
-    return currentUser;
+    return { currentUser };
 }
 
 export default getCurrentUser;

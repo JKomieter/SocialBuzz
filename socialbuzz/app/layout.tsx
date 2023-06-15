@@ -2,7 +2,7 @@ import Head from 'next/head'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import AuthContext from './context/AuthContext'
-import Create from './components/modals/Create'
+import Create from './components/modals/PostModal/Create'
 
 const inter = Inter({ subsets: ['latin'] })
 

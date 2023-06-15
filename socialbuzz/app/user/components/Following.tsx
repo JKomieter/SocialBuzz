@@ -5,6 +5,7 @@ interface FollowingProps {
     following: any[];
     borderTop: string;
     borderBottom: string;
+    posts?: any[];
 }
 
 
@@ -13,14 +14,21 @@ const Following: React.FC<FollowingProps> = ({
     followers,
     following,
     borderTop,
-    borderBottom
+    borderBottom,
+    posts: posts,
 }) => {
     return (
          <div style={{borderTop: borderTop, borderBottom: borderBottom, borderColor: "#fff"}} 
          className='md:w-full hidden md:flex flex-row justify-between'>
-            <p className='text-white font-semibold'>{followers?.length || 0} Followers</p>
-            <p className='text-white font-semibold'>{following?.length || 0} Following</p>
-            <p className='text-white font-semibold'>0 Posts</p>
+            <p className='text-white font-semibold'>{followers?.length || 0} 
+                <span className="font-normal"> Followers</span>
+            </p>
+            <p className='text-white font-semibold'>{following?.length || 0} 
+                <span className="font-normal"> Following</span>
+            </p>
+            <p className='text-white font-semibold'>{posts?.length || 0} 
+                <span className="font-normal"> Posts</span>
+            </p>
         </div>
     )
 }

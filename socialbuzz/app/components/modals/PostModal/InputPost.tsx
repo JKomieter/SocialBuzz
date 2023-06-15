@@ -1,6 +1,6 @@
 import { IoMdImages } from "react-icons/io";
-import MediaUploader from "../media/MediaUploader";
-import Button from "../buttons/Button";
+import MediaUploader from "../../media/MediaUploader";
+import Button from "../../buttons/Button";
 
 interface InputPostProps {
     files: File[];

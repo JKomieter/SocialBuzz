@@ -36,7 +36,7 @@ interface UserProfileNavProps {
     posts: number;
 }
 
-
+//this component controls the navigation bar on the user profile page
 const UserProfileNav: React.FC<UserProfileNavProps> = ({
     followers,
     following,
@@ -57,7 +57,7 @@ const UserProfileNav: React.FC<UserProfileNavProps> = ({
                 {
                     items.map((item) => (
                         <div key={item.name} className= {`flex flex-row 
-                        items-center gap-2 py-2 
+                        items-center gap-2 py-2 cursor-pointer hover:text-neutral-200
                          ${item.current && 'text-white border-t-[1px]'}`}>
                             <item.Icon size={18} className="text-neutral-500" />
                             <span className="text-neutral-500 text-sm hidden md:block">

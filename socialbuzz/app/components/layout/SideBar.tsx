@@ -15,7 +15,7 @@ const SideBar = () => {
     return (
         <div className="flex-col h-full w-full items-center
         py-4 px-3 gap-10 hidden md:flex
-          border-r-stone-500 border-r-[1px]">
+          border-r-stone-500 border-r-[1px] overflow-y-hidden ">
             <CgLinear size={30} color="white"/>
             <div className="flex w-full items-center flex-col gap-6">
                 {items.map((item) => (
