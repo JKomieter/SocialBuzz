@@ -1,11 +1,13 @@
 import Image from 'next/image';
-import { IoIosSettings } from 'react-icons/io';
 import Following from './Following';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import useCurrentUser from '@/app/actions/useCurrentUser';
+import FollowStat from './FollowStat';
+import axios from 'axios';
+import useChangeProfileImage from '@/app/hooks/useChangeProfileImage';
 
 interface UserHeroProps {
-  userProfilePic: string;
+  userProfileImage: string;
   username: string;
   lastName: string;
   followers: any[];
@@ -13,53 +15,84 @@ interface UserHeroProps {
   bio: string;
   posts?: any[];
   img?: string;
+  mutateFetchedUser: any;
+  userId: string;
 }
 
 const UserHero: React.FC<UserHeroProps> = ({
-    userProfilePic,
+    userProfileImage,
     username,
     lastName,
     followers,
     following,
     bio,
     posts,
-    img
+    img,
+    mutateFetchedUser,
+    userId
 }) => {
-    const { data: currentUser } = useCurrentUser();
-
-    const isCurrentUser = useMemo(async () => { 
-        // check if the current user is the same as the user
-        const isUser = await currentUser?.username === username;
+    const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
+    const userChangeProfile = useChangeProfileImage();
+    const isCurrentUser = useMemo(() => { 
+        // check if the current user is the same as the user 
+        // retrun true if so, false if not
+        const isUser = currentUser?.username === username;
         return isUser;
     }, [currentUser?.username, username])
 
-    console.log(isCurrentUser);
+    const checkIfFollowing = useMemo(() => {
+        // check if the current user is following the user
+        // return true if so, false if not
+        const isFollowing = followers?.some(userId =>  userId === currentUser?.id);
+        return isFollowing;
+    }, [currentUser?.id, followers])
 
+    const handleFollow = useCallback(async () => {
+        // handle follow
+        try {
+            await axios.post('/api/follow', {
+                userId
+            })
+            mutateCurrentUser();
+            mutateFetchedUser();
+        } catch (error) {
+            console.log(error)
+        }
+    }, [mutateCurrentUser, mutateFetchedUser, userId]);
+
+    const handleProfileChange = useCallback(() => {
+        // handle profile change
+        if (currentUser?.username === username) {
+            userChangeProfile.onOpen();
+        } else {
+            // open the profile pic to view
+            return;
+        }
+    }, [currentUser?.username, userChangeProfile, 
+        username]);
 
     return (
-        <div className="w-full md:w-[80%] flex flex-row gap-7 md:gap-[150px]">
-            <div className='lg:h-[150px] lg:w-[150px] 
-                    md:h-[110px] md:w-[110px]
-                    h-[90px] w-[90px]'>
-                <Image src={img as string || userProfilePic} alt='' width={100} height={100} className='lg:h-[140px] lg:w-[140px] 
-                    md:h-[100px] md:w-[100px]
-                    h-[80px] w-[80px]
-                 rounded-full relative'/>
+        <div className="w-full md:w-[80%] flex flex-row gap-7 md:gap-[100px]">
+            <div>
+                <Image src={
+                    img ? img : 
+                    userProfileImage ? userProfileImage : 
+                    '/images/default-profile.png'
+                } alt='' style={{borderRadius: '50%'}}
+                    width={200} height={200} className='lg:h-[150px] lg:w-[150px] 
+                    md:h-[120px] md:w-[120px]
+                    h-[90px] w-[90px]
+                    rounded-full relative'
+                onClick={handleProfileChange} />
             </div>
             <div className='flex w-[150px] md:w-full flex-col gap-5'>
                 <div className='flex md:flex-row items-center flex-col gap-3'>
                     <span className='font-medium text-lg text-white'>
                         {username}
                     </span>
-                    <div className='flex w-full flex-col md:flex-row gap-2'>
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                            Edit Profile
-                        </button>
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                            Ad Tools
-                        </button>
-                    </div>
-                    <span className='hidden md:flex'><IoIosSettings size={40}/></span>
+                    <FollowStat isCurrentUser={isCurrentUser}  
+                        checkIfFollowing={checkIfFollowing} 
+                        handleFollow={handleFollow} />
                 </div>
                 <div className='hidden md:flex'>
                     <Following followers={followers} following={following} posts={posts}

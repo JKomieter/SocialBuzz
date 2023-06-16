@@ -1,12 +1,22 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
+import getCurrentUser from '@/app/libs/serverAuth';
 
 export async function GET(request: Request) {
   try {
-    // Call your function to fetch user data from the database
+
+    const { currentUser } = await getCurrentUser();
+
+    // fetch users data from the database
+    // exclude the current user from the list
     const allUsers = await prisma.user.findMany({
         orderBy: {
             createdAt: 'desc'
+        },
+        where: {
+          NOT: {
+            email: currentUser?.email
+          }
         }
     });
     // Todo : will fetch friends and followers differently

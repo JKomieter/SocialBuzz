@@ -52,7 +52,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
             className="cursor-pointer rounded-lg p-2.5 hover:bg-neutral-700"
             onClick={openModal}
             >
-            <Icon size={28} color="white" 
+            <Icon size={26} color="white" 
             onClick={handleClick}/>
             {/* {!showFooter && show && <div className="absolute text-white 
             w-auto z-50 bg-neutral-500

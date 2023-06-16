@@ -7,7 +7,8 @@ const getCurrentUser = async () => {
     if (!session?.user?.email) {
         throw new Error('Not signed in')
     }
-    //get currently logged in user
+    // get currently logged in user
+    // using the session data 
 
     const currentUser = await prisma.user.findUnique({
         where: {

@@ -5,13 +5,15 @@ interface ModalProps{
     bodyContent: React.ReactElement;
     onClose: () => void;
     step?: number;
+    isJustifyCenter?: boolean;
 }
 
 //modal component for uploading profile image and creating posts
 const Modal: React.FC<ModalProps> = ({
     bodyContent,
     onClose,
-    step
+    step,
+    isJustifyCenter
 }) => {
     return (
          <div className="fixed z-50 flex outline-none 
@@ -26,6 +28,7 @@ const Modal: React.FC<ModalProps> = ({
                 </div>
                 <div className={`w-full max-h-[450px] min-h-[300px] md:h-full basis-8/9  
                     ${step === 1 ? 'md:w-[40%]' : 'md:w-[60%]'}
+                    ${isJustifyCenter ? 'flex justify-center' : ''}
                     transition-width duration-700 transition-all ease-in-out
                 `}>
                     {bodyContent}

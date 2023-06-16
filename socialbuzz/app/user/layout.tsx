@@ -1,5 +1,6 @@
 import Footer from "@/app/components/layout/Footer";
 import SideBar from "@/app/components/layout/SideBar";
+import ProfileChange from "../components/modals/ProfileImageModal/ProfileChange.tsx/ProfileChange";
 
 export default function RegisterLayout({
   children, 
@@ -8,6 +9,7 @@ export default function RegisterLayout({
 }) {
   return (
     <>
+      <ProfileChange />
       <div className="flex flex-row">
           <div className="max-w-[90px] min-w-[0]
           flex-col basis-2/9  hidden md:flex">

@@ -22,6 +22,7 @@ model User {
   email         String    @unique
   bio          String?
   isPrivate     Boolean?
+  profileImage   String?
   hashedPassword      String
   followingIds      String[]     @db.ObjectId
   followersIds    String[]  @db.ObjectId
