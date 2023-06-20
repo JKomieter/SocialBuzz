@@ -14,7 +14,6 @@ interface UserHeroProps {
   following: any[];
   bio: string;
   posts?: any[];
-  img?: string;
   mutateFetchedUser: any;
   userId: string;
 }
@@ -27,7 +26,6 @@ const UserHero: React.FC<UserHeroProps> = ({
     following,
     bio,
     posts,
-    img,
     mutateFetchedUser,
     userId
 }) => {
@@ -72,12 +70,12 @@ const UserHero: React.FC<UserHeroProps> = ({
         username]);
 
     return (
-        <div className="w-full md:w-[80%] flex flex-row gap-7 md:gap-[100px]">
-            <div>
+        <div className="w-full md:w-[80%] flex flex-row gap-3">
+            <div className="basis-1/3">
                 <Image src={
-                    img ? img : 
+                    userChangeProfile.profileImage ? userChangeProfile.profileImage : 
                     userProfileImage ? userProfileImage : 
-                    '/images/default-profile.png'
+                    '/images/personplaceholder.png'
                 } alt='' style={{borderRadius: '50%'}}
                     width={200} height={200} className='lg:h-[150px] lg:w-[150px] 
                     md:h-[120px] md:w-[120px]
@@ -85,7 +83,7 @@ const UserHero: React.FC<UserHeroProps> = ({
                     rounded-full relative'
                 onClick={handleProfileChange} />
             </div>
-            <div className='flex w-[150px] md:w-full flex-col gap-5'>
+            <div className='flex w-full flex-col gap-5'>
                 <div className='flex md:flex-row items-center flex-col gap-3'>
                     <span className='font-medium text-lg text-white'>
                         {username}

@@ -1,7 +1,4 @@
 "use client";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
 import SuggestedUserItem from "./items/SuggestedUserItem";
 import getAllUsers from "../actions/getAllUsers";
 
@@ -10,6 +7,7 @@ interface User {
     username: string;
     firstName: string;
     lastName: string;
+    profileImage: string;
 }
 
 // SuggestedFollowers component to display suggested users to follow
@@ -27,7 +25,8 @@ const SuggestedFollowers = () => {
                     lastName={user.lastName}
                     action="Follow" username={user?.username}
                     userId={user?.id}    
-                    mutateFetchedUsers={mutateFetchedUsers} />
+                    mutateFetchedUsers={mutateFetchedUsers} 
+                    profileImage={user.profileImage}/>
             ))
         }
         </div>

@@ -1,16 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-// import { useSession } from "next-auth/react";
 import SuggestedFollowers from "./SuggestedFollowers";
 import SuggestedUserItem from "./items/SuggestedUserItem";
 import useCurrentUser from "../actions/useCurrentUser";
 
-interface User {
-  id: string;
-  username: string;
-  firstName: string;
-  lastName: string;
-}
 
 const Suggestions = () => {
 
@@ -25,9 +16,19 @@ const Suggestions = () => {
             firstName={currentUser?.firstName}
             lastName={currentUser?.lastName}
             action="Switch" username={currentUser?.username} 
-            userId={currentUser?.id} />
+            userId={currentUser?.id} 
+            profileImage={currentUser.profileImage}/>
         )
       }
+      <span className="w-full mt-3 flex flex-row 
+      justify-between items-center font-semibold">
+        <p className="text-neutral-500 text-sm">
+          Suggestions For You
+        </p>
+        <p className="text-neutral-100 text-sm">
+          See All
+        </p>
+      </span>
       <SuggestedFollowers/>
     </div>
   );

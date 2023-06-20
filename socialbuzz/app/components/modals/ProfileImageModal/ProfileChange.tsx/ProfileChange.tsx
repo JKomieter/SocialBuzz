@@ -17,11 +17,11 @@ const ProfileChange = () => {
         // to be used in the user profile
         try {
             useChange.onChange(base64);
+            useChange.onClose();
             //send the image to the server
             await axios.post('/api/user/profileImage', {
                 profileImage: base64
             })
-            useChange.onClose();
             mutateCurrentUser();
         } catch (error) {
             console.log(error);
@@ -58,7 +58,9 @@ const ProfileChange = () => {
                 <span className="rounded-full w-[70px] h-[70px]">
                     {
                         currentUser?.profileImage ? (
-                                <Image src={currentUser?.profileImage} alt="" 
+                                <Image src={useChange.profileImage || 
+                                    currentUser?.profileImage || 
+                                    '/images/default-profile.png'} alt="" 
                                 className="rounded-full w-full h-full" 
                                 width={100} height={100} style={{objectFit: "cover"}} />
                         ) : (
@@ -91,7 +93,7 @@ const ProfileChange = () => {
                 Remove Current Photo
             </div>
             <div className="text-white font-normal border-t-[0.5px] border-neutral-500 p-3
-             w-full">
+             w-full" onClick={closeProfileModal}>
                 Cancel
             </div>
         </div>

@@ -48,10 +48,10 @@ const More = () => {
     if (!more.open) return null;
 
     return (
-        <div className="bg-neutral-800 text-neutral-200 
-            rounded-lg absolute z-[9999] w-[280px] h-[430px]
-            bottom-[34px] left-[46px] flex flex-col gap-3 
-            overflow-y-hidden">
+        <div className="bg-neutral-700 text-neutral-200 
+            rounded-[16px] absolute z-[9999] w-[280px] h-auto
+            bottom-[40px] left-[65px] flex flex-col gap-3 
+            overflow-y-hidden items-center">
             <div className="flex flex-col gap-2 w-full p-2">
                 {
                     Items.map((Item) => (
@@ -65,13 +65,13 @@ const More = () => {
                 }
             </div>
             <span className="w-full p-3 hover:bg-neutral-500 
-                border-t-[3px] border-neutral-400
-                transition duration-500 flex items-center cursor-pointer"
+             border-neutral-400
+                transition duration-500  cursor-pointer"
                 onClick={() => handleRoute('/switch')}>
                 Switch accounts
             </span>
-            <span className="w-full p-2 hover:bg-neutral-500 border-neutral-500
-                transition duration-500 flex items-center cursor-pointer"
+            <span className="w-full p-3 hover:bg-neutral-500 border-neutral-500
+                transition duration-500  cursor-pointer"
                 onClick={() => signOut}>
                 Log out
             </span>

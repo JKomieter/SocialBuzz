@@ -47,22 +47,15 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
     }, [name, create])
 
     return (
-        <>
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className="cursor-pointer rounded-lg p-2.5 hover:bg-neutral-700"
+            className="cursor-pointer rounded-lg p-3 hover:bg-neutral-700
+            flex items-center w-full "
             onClick={openModal}
-            >
-            <Icon size={26} color="white" 
+        >
+            <Icon size={28} color="#fff" 
             onClick={handleClick}/>
-            {/* {!showFooter && show && <div className="absolute text-white 
-            w-auto z-50 bg-neutral-500
-            transition-all text-sm
-            p-2 rounded-[10px] after:-left-[20px] after:rounded-l-none
-            after:top-1/2 ml-3">
-                {name}
-            </div>} */}
+            {/* <p className="capitalize lg:flex hidden text-md text-neutral-400">{name}</p> */}
         </div>
-        </>
     )
 }
 

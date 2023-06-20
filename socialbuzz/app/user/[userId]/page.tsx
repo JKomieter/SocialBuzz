@@ -4,7 +4,6 @@ import UserHero from "../components/UserHero";
 import Highlights from "../components/Highlights";
 import UserProfileNav from "../components/UserProfileNav";
 import Posts from "../components/Posts";
-import useChangeProfileImage from "@/app/hooks/useChangeProfileImage";
 import getUser from "@/app/actions/getUser";
 
 
@@ -12,7 +11,6 @@ import getUser from "@/app/actions/getUser";
 const UserProfilePage = () => { 
     const { userId  } = useParams();
     const { data: user, mutate } = getUser(userId as string);
-    const useProfile = useChangeProfileImage();
 
     if (!user) {
         return <div>Loading...</div>;
@@ -23,7 +21,7 @@ const UserProfilePage = () => {
            <UserHero userProfileImage={user.profileImage} username={user.username}
                 lastName={user.lastName} followers={user.followersIds} userId={userId}
                 following={user.followingIds} bio={user.bio} posts={user.posts}
-                img={useProfile.profileImage as string} mutateFetchedUser={mutate} />
+                mutateFetchedUser={mutate} />
             <Highlights />
             <UserProfileNav followers={user.followers?.length}
                 following={user.following?.length} posts={user.posts?.length} />

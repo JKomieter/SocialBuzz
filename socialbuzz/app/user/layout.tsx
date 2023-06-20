@@ -10,15 +10,9 @@ export default function RegisterLayout({
   return (
     <>
       <ProfileChange />
-      <div className="flex flex-row">
-          <div className="max-w-[90px] min-w-[0]
-          flex-col basis-2/9  hidden md:flex">
-            <SideBar />
-          </div>
-          <div className="flex flex-col basis-7/9 w-full">
-            {children}
-          </div>
-      </div>
+        <div className=" md:ml-[90px] md:w-[80%] flex justify-center">
+          {children}
+        </div>
       <Footer />
     </>
   );
