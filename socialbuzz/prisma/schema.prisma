@@ -33,7 +33,8 @@ model User {
   receivedRequests String[]    @db.ObjectId
 
   posts         Post[]
-  notifications Notification[]
+  sentNotifications  Notification[] @relation("Sender")
+  receivedNotifications  Notification[] @relation("Receiver")
   reels         Reel[]
   stories       Story[]
   comments      Comment[]
@@ -111,12 +112,16 @@ model Conversation {
 }
 
 model Notification {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  body String 
-  userId String @db.ObjectId
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  sender     User         @relation("Sender", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId   String @db.ObjectId
+  receiver   User         @relation("Receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId String  @db.ObjectId
+  postId     String?  @db.ObjectId
+  type       String
+  read       Boolean      @default(false)
+  createdAt  DateTime     @default(now())
+  commentBody String?
 }
 
 

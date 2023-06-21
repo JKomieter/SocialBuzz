@@ -1,5 +1,5 @@
 import prisma from "@/app/libs/prismadb";
-import { all } from "axios";
+import { createNotification } from "@/app/utils/createNotification";
 import { NextResponse } from "next/server";
 
 // request to like a post
@@ -15,21 +15,43 @@ export async function POST(req: Request) {
         if (!post) {
             return NextResponse.json({ error: "Post not found" })
         }
+        let updatedPost;
 
         const likeIdsSet = new Set(post?.likeIds);
         const currentUserAlreadyLiked = likeIdsSet.has(userId);
 
         if (currentUserAlreadyLiked) {
+            // we need to remove the like
+            // remove userId from likeIds array
+            // update likeIds array without userId
+            likeIdsSet.delete(userId);
+
+            // update post
+            const newLikeIds = Array.from(likeIdsSet);
+
+            updatedPost = await prisma.post.update({
+                where: { id: feedId },
+                data: {
+                    likeIds: [...newLikeIds]
+                }
+            })
+
             return NextResponse.json({ error: "You have already liked this post" })
         }
 
         // update post
-        const updatedPost = await prisma.post.update({
+        updatedPost = await prisma.post.update({
             where: { id: feedId },
             data: {
                 likeIds: [...post.likeIds, userId]
             }
         })
+
+        const notified = await createNotification(
+            userId as string,
+            post.userId,
+            'liked',
+        );
 
         return NextResponse.json(updatedPost);
 

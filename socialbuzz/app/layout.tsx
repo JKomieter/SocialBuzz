@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import AuthContext from './context/AuthContext'
 import Create from './components/modals/PostModal/Create'
 import SideBar from './components/layout/SideBar'
+import Notifications from './components/modals/notifications/Notifications'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthContext>
           <Create />
+          <Notifications />
             <div className="flex flex-row">
               <div className="h-screen fixed ">
                 <SideBar />

@@ -10,14 +10,15 @@ export interface FeedProps {
     isCommentable: boolean;
     createdAt: Date;
     userId: string;
-    likeIds: Record<any, string>;
-    comments: Record<any, string>;
+    likeIds: string[];
+    comments: string[];
     location: string;
 }
 
 // Component to display Feed
 const Feed = () => {
-    const { data: fetchedFeed, isLoading, mutate: mutateFeed } = getFeed();
+    const { data: fetchedFeed, isLoading, 
+        mutate: mutateFeed } = getFeed();
 
     return (
         <div className="w-full h-full px-12 py-5 flex justify-center">
@@ -29,7 +30,7 @@ const Feed = () => {
                         media={feed.media} isCommentable={feed.isCommentable}
                         createdAt={feed.createdAt} userId={feed.userId} 
                         likeIds={feed.likeIds} comments={feed.comments}
-                        location={feed.location} />
+                        location={feed.location} mutateFeed={mutateFeed}/>
                     ))
                 }
             </div>

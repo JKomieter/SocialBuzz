@@ -11,7 +11,7 @@ const Posts: React.FC<PostsProps> = ({
     return (
         <>
         {
-            posts.length > 0 ? (
+            posts?.length > 0 ? (
                 <div className="grid grid-cols-3 gap-2 w-full px-3">
                     {posts.map((post) => (
                         <div key={post.id} className="flex flex-col">

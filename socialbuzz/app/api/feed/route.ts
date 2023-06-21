@@ -39,11 +39,10 @@ export async function GET(req: Request) {
       },
     });
 
-    
 
     return NextResponse.json(posts);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Internal Server Error" });
+    return NextResponse.json([]);
   }
 }

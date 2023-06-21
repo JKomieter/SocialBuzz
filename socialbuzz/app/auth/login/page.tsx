@@ -22,7 +22,7 @@ const Login = () => {
             await signIn("credentials", {
                 username,
                 password,
-                callbackUrl: "http://localhost:3000/"
+                callbackUrl: "http://localhost:3000"
             })
 
         } catch (error) {

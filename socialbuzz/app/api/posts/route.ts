@@ -10,7 +10,7 @@ export async function GET(req: NextApiRequest) {
 
     let posts;
 
-    if (userId && currentUser.id) {
+    if (userId && currentUser) {
       // Return posts for a specific user
       posts = await prisma.post.findMany({
         where: {
@@ -21,10 +21,7 @@ export async function GET(req: NextApiRequest) {
       return NextResponse.json(posts);
     }
 
-    // Return posts for all users
-    posts = await prisma.post.findMany({});
-
-    return NextResponse.json(posts);
+    return NextResponse.json([]);
   } catch (error) {
 
     console.error(error);

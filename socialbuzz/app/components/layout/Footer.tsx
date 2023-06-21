@@ -1,6 +1,6 @@
 "use client";
 import { AiFillHome, AiOutlineHeart } from "react-icons/ai";
-import SideBarItems from "./SideBarItems";
+import SideBarItems from "../items/SideBarItems";
 import { FiSearch } from "react-icons/fi";
 import { MdOutlineExplore } from "react-icons/md";
 import { HiOutlineFilm } from "react-icons/hi";

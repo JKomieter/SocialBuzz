@@ -72,7 +72,7 @@ const More = () => {
             </span>
             <span className="w-full p-3 hover:bg-neutral-500 border-neutral-500
                 transition duration-500  cursor-pointer"
-                onClick={() => signOut}>
+                onClick={() => signOut()}>
                 Log out
             </span>
         </div>

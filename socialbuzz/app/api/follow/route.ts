@@ -1,5 +1,6 @@
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/libs/serverAuth";
+import { createNotification } from "@/app/utils/createNotification";
 import { NextResponse } from "next/server";
 
 
@@ -38,6 +39,10 @@ export async function POST(req: Request) {
                 }   
             }
         })
+
+        // create notification
+        const notified = await createNotification(
+            currentUser.id as string, userId as string, 'followed');
 
         return NextResponse.json(follower);
 

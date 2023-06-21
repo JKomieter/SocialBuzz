@@ -22,7 +22,7 @@ export async function GET(
             },
              include: {
                 posts: true,     
-                notifications: true, 
+                receivedNotifications: true, 
                 reels: true,         
                 stories: true,       
                 comments: true,     

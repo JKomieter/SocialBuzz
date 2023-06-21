@@ -1,11 +1,10 @@
 import getUser from "@/app/actions/getUser";
-import { FeedProps } from "../Feed";
 import Image from "next/image";
 import { BsBookmark, BsDot } from "react-icons/bs";
 import { useCallback, useMemo } from "react";
 import { formatDistanceToNowStrict } from "date-fns"
 import { RiMoreFill } from "react-icons/ri";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import useCurrentUser from "@/app/actions/useCurrentUser";
@@ -71,6 +70,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
         }
     }, [currentUser?.id, id, mutateCurrentUser, mutateFeed]);
 
+    console.log(fetchedUser)
+
     return (
         <div className="flex flex-col gap-3 w-full items-center">
             <div className="flex flex-row justify-between w-full items-center">
@@ -98,10 +99,15 @@ const FeedItem: React.FC<FeedItemProps> = ({
             <div className="flex flex-row w-full items-center justify-between">
                 <div className="flex flex-row gap-4 w-full 
                 items-center">
-                    <AiOutlineHeart size={28} color="#fff" fill={
-                        isLiked ? "red" : "#fff"
-                    } className="cursor-pointer" 
-                    onClick={handleLike} />
+                    {
+                        isLiked ? (
+                            <AiFillHeart size={28} color="red" className="cursor-pointer" 
+                            onClick={handleLike} />
+                            ) : (
+                            <AiOutlineHeart size={28} color="#fff" className="cursor-pointer" 
+                            onClick={handleLike} />
+                        )
+                    }
                     <TbMessageCircle2 size={28} color="#fff" className="cursor-pointer" />
                     <IoPaperPlaneOutline size={27} color="#fff" className="cursor-pointer" />
                 </div>

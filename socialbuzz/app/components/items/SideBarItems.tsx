@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 
 import { useRouter } from "next/navigation";
 import useCreate from "@/app/hooks/useCreate";
+import { useNotification } from "@/app/hooks/useNotification";
 
 
 interface SideBarItemsProps {
@@ -23,13 +24,22 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
     const [ show, setShow ] = useState(false);
     const router = useRouter();
     const create = useCreate();
+    const notification = useNotification();
 
     const handleClick = useCallback(() => {
-        //navigate to href
-        if (href == "/create") return;
+        // open the create modal
+        if (href === "/create") return;
+
+        // open the notification modal
+        if (href === "/notifications") {
+            notification.isOpen ? 
+            notification.onClose() : notification.onOpen();
+            return;
+        };
         
+        //navigate to href 
         router.push(href as string)
-    }, [href, router])
+    }, [href, notification, router])
 
     const handleHover = useCallback(() => {
         if (show == true) {
@@ -49,7 +59,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
     return (
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
             className="cursor-pointer rounded-lg p-3 hover:bg-neutral-700
-            flex items-center w-full "
+            flex items-center "
             onClick={openModal}
         >
             <Icon size={28} color="#fff" 
