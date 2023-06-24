@@ -12,6 +12,8 @@ interface SideBarItemsProps {
     icon: IconType;
     href: string;
     showFooter: boolean;
+    unRead: boolean;
+    mutateCount: any
 }
 
 
@@ -19,7 +21,9 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
     name, 
     icon: Icon, 
     href,
-    showFooter
+    showFooter,
+    unRead,
+    mutateCount
 }) => {
     const [ show, setShow ] = useState(false);
     const router = useRouter();
@@ -63,8 +67,11 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
             onClick={openModal}
         >
             <Icon size={28} color="#fff" 
-            onClick={handleClick}/>
-            {/* <p className="capitalize lg:flex hidden text-md text-neutral-400">{name}</p> */}
+            onClick={handleClick} className="text-red-500" />
+            {
+                name === "Notifications" && unRead && 
+                (<div className="absolute top-98 -right-7 w-2 h-2 bg-red-500 rounded-full"></div>)
+            }
         </div>
     )
 }

@@ -41,14 +41,18 @@ const Notifications = () => {
             borderLeft: "0.3px solid #333",
         }}
         >
-            <div className="flex flex-col gap-3 p-3 w-full items-center">
-                <p className="text-white text-2xl font-bold w-full">
+            <div className="flex flex-col gap-5 w-full items-center">
+                <p className="text-white text-2xl p-3 font-bold w-full mb-3">
                     Notifications
                 </p>
                 {
                     fetchedNotifications?.map((notification: NotificationsProps) => (
-                        <NotificationItem key={notification.id} 
-                        {...notification} />
+                        <NotificationItem key={notification.id}
+                        senderId={notification.senderId} receiverId={notification.receiverId}
+                        postId={notification.postId} type={notification.type}
+                        read={notification.read} createdAt={notification.createdAt}
+                        commentBody={notification.commentBody} id={notification.id}  
+                        mutateNotifications={mutateNotifications}/>
                     ))
                 }
             </div>

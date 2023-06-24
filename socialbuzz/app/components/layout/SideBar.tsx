@@ -10,16 +10,18 @@ import { CgAddR, CgLinear } from "react-icons/cg";
 
 import SideBarItems from "../items/SideBarItems";
 import useMore from "@/app/hooks/useMore";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import More from "@/app/components/modals/MoreModal/More";
 import useCurrentUser from "@/app/actions/useCurrentUser";
 
 import Image from "next/image";
+import countNotifications from "@/app/actions/countNotifications";
 
 //the sidebar on the side
 const SideBar = () => {
     const more = useMore();
     const { data: currentUser } = useCurrentUser()
+    const { data: count, mutate: mutateCount } = countNotifications()
 
     const handleMore = useCallback(() => {
         if (more.open) {
@@ -28,8 +30,14 @@ const SideBar = () => {
             more.onOpen();
         }
     }, [more]);
+    console.log(currentUser)
 
-    if (!currentUser) return null;
+    const unRead = useMemo(() => {
+        // true is there is still unread notifications
+        return count > 0
+    }, [count])
+
+    if (currentUser === undefined) return null;
 
     return (
         <div className="flex-col min-h-screen items-center
@@ -41,7 +49,8 @@ const SideBar = () => {
                 {items.map((item) => (
                     <SideBarItems href={item.href}
                     key={item.name} name={item.name}
-                    icon={item.icon} showFooter={true} />
+                    icon={item.icon} showFooter={true} 
+                    unRead={unRead} mutateCount={mutateCount}/>
                 ))}
                 <span className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1">
                     <Image src={currentUser?.profileImage ||

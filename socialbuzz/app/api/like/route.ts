@@ -1,3 +1,4 @@
+import getSession from "@/app/actions/getSession";
 import prisma from "@/app/libs/prismadb";
 import { createNotification } from "@/app/utils/createNotification";
 import { NextResponse } from "next/server";
@@ -5,6 +6,9 @@ import { NextResponse } from "next/server";
 // request to like a post
 export async function POST(req: Request) {
     try {
+        const session = await getSession();
+
+        if (!session) return NextResponse.redirect("/auth/login")
         const { feedId, userId } = await req.json();
 
         // check if user has already liked the post

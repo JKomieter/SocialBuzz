@@ -1,7 +1,9 @@
 import getUser from "@/app/actions/getUser";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import Image from "next/image";
 import { formatDistanceToNowStrict } from "date-fns";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 interface NotificationItemProps {
     id: string;
@@ -12,6 +14,7 @@ interface NotificationItemProps {
     read: boolean;
     createdAt: Date  
     commentBody: string;
+    mutateNotifications: any;
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
@@ -22,24 +25,28 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
     type,
     read,
     createdAt,
-    commentBody
+    commentBody,
+    mutateNotifications
 }) => {
     const { data: sender, mutate: mutateSender } = getUser(senderId)
+    const router = useRouter()
+    console.log(sender)
 
     const handleNotification = useMemo(() => {
         // control the notification message
         if (type === "liked") {
-            return `${sender?.username} liked your post`
+            return ` liked your post`
         }
 
-        if (type === "comment") {
-            return `commented on your post`
+        if (type === "commented") {
+            return ` commented on your post`
         }
 
-        if (type === "follow") {
-            return `followed you`
+        if (type === "followed") {
+            return ` followed you`
         }
-    }, [sender?.username, type])
+        
+    }, [type])
 
     const createdAtFormat = useMemo(() => {
         if (!createdAt) {
@@ -49,23 +56,43 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
         return formatDistanceToNowStrict(new Date(createdAt))
     }, [createdAt]);
 
+    const handleClick = useCallback(async () => {
+        // handle when user clicks on notification
+        if (type === "followed") {
+            router.push(`/user/${senderId}`)
+        }
+
+        if (type === "commented") {
+            router.push(`/post/${postId}`)
+        }
+
+        if (type === "liked") {
+            router.push(`/post/${postId}`)
+        }
+
+        await axios.post("/api/notification", {id})
+
+        mutateNotifications();
+    }, [id, mutateNotifications, postId, router, senderId, type])
+
     return (
-        <div className="w-full flex flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center 
+        p-3 hover:bg-neutral-500" onClick={handleClick}>
             <div className="w-full flex flex-row gap-2 items-center">
-                <span className="rounded-full h-11 w-11">
+                <span className="rounded-full h-10 w-10 overflow-hidden">
                     <Image src={
                     sender?.profileImage || "/images/personplaceholder.png"} 
-                    alt="" height={100} width={100} style={{objectFit: "cover"}}/>\
+                    alt="" height={100} width={100} style={{objectFit: "cover"}}/>
                 </span>
-                <div>
-                    <span className="font-semibold text-white">
-                        {sender.username}
+                <div className="text-sm">
+                    <span className="font-semibold text-white mr-1">
+                        {sender?.username}
                     </span> 
                     <span className="text-white ">
-                        {handleNotification}
+                        {handleNotification} . 
                     </span> 
-                    <span className="text-neutral-500">
-                        {createdAtFormat}
+                    <span className="text-neutral-500 text-xs">
+                        {" "+createdAtFormat}
                     </span>
                 </div>
             </div>
