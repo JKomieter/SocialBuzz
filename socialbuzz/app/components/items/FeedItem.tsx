@@ -9,6 +9,9 @@ import { TbMessageCircle2 } from "react-icons/tb";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import useCurrentUser from "@/app/actions/useCurrentUser";
 import axios from "axios";
+import { useState } from "react";
+import Input from "../inputs/Input";
+
 
 interface FeedItemProps {
     id: string;
@@ -40,6 +43,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
     const { data: fetchedUser, mutate: mutateUser } = getUser(userId as string);
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
 
+    const [ comment, setComment ] = useState("")
+
     const isLiked = useMemo(() => {
         // check if the current user liked the post
         if (!currentUser) return;
@@ -70,14 +75,31 @@ const FeedItem: React.FC<FeedItemProps> = ({
         }
     }, [currentUser?.id, id, mutateCurrentUser, mutateFeed]);
 
-    console.log(fetchedUser)
+    const handleSubmit = useCallback(async () => {
+        // handle comment
+        try {
+            await axios.post('/api/comment', {
+                feedId: id,
+                userId: currentUser?.id,
+                comment
+            })
+
+            setComment("");
+            mutateFeed();
+            mutateCurrentUser();
+        } catch (error) {
+            console.log(error)
+        }
+    }, [comment, currentUser?.id, id, mutateCurrentUser, mutateFeed])
+
+
 
     return (
         <div className="flex flex-col gap-3 w-full items-center">
             <div className="flex flex-row justify-between w-full items-center">
                 <div className="flex flex-row gap-1 w-full items-center">
                     <span className="rounded-full h-12 w-12 p-[3px] border-[1px]"
-                    style={{backgroundImage: "linear-gradient(to bottom right, teal, coral)"}}>
+                        style={{backgroundImage: "linear-gradient(to bottom right, teal, coral)"}}>
                         <Image src={fetchedUser?.profileImage || "/images/personplaceholder.png"} 
                         alt="/images/personplaceholder.png" width={100}
                         className="rounded-full w-full h-full object-cover cursor-pointer"
@@ -92,13 +114,13 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 <RiMoreFill size={25} color="#fff" />
             </div>
             <div className="w-full max-h-[500px] overflow-hidden" 
-            style={{border: "solid gray", borderWidth: "0.2px"}}>
+                style={{border: "solid gray", borderWidth: "0.2px"}}>
                 <Image src={media} alt={media} width={500} height={200} 
                 style={{width: "100%", height: "100%", objectFit: "cover"}}/>
             </div>
             <div className="flex flex-row w-full items-center justify-between">
                 <div className="flex flex-row gap-4 w-full 
-                items-center">
+                    items-center">
                     {
                         isLiked ? (
                             <AiFillHeart size={28} color="red" className="cursor-pointer" 
@@ -120,6 +142,29 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 <span className="lowercase font-semibold">{fetchedUser?.username}</span> 
                 <span className="font-normal"> {caption}</span>
             </div>
+           {
+            comments.length > 0 && (
+                <p className="text-sm text-neutral-600 w-full">
+                    View all {comments.length} comments
+                </p>
+            )
+           }
+            <div className="flex flex-row w-full items-center">
+                <input type="text" placeholder="Add a comment..."
+                    className="w-full text-white text-sm 
+                    bg-transparent outline-none"
+                    value={comment} onChange={(e) => setComment(e.target.value)}
+                />
+                {
+                    comment.length > 0 && (
+                        <span className="text-blue-500 text-sm font-semibold cursor-pointer"
+                            onClick={handleSubmit}>
+                            Post
+                        </span>
+                    )
+                }
+            </div>
+            <hr className="w-full text-neutral-600 h-[0.2px] font-thin" />
         </div>
     )
 }

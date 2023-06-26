@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { IconType } from "react-icons";
 
 import { useRouter } from "next/navigation";
@@ -60,20 +60,24 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
         create.onOpen();
     }, [name, create])
 
+
     return (
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
             className="cursor-pointer rounded-lg p-3 hover:bg-neutral-700
-            flex items-center "
+            flex items-center " 
             onClick={openModal}
         >
             <Icon size={28} color="#fff" 
             onClick={handleClick} className="text-red-500" />
             {
                 name === "Notifications" && unRead && 
-                (<div className="absolute top-98 -right-7 w-2 h-2 bg-red-500 rounded-full"></div>)
+                (<div className="absolute top-96.4 right-[27px] 
+                    w-3 h-3 bg-red-600 rounded-full"></div>)
             }
         </div>
     )
 }
+
+
 
 export default SideBarItems;

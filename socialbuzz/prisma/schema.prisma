@@ -75,8 +75,8 @@ model Comment {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  reelId String @db.ObjectId
-  reel Reel @relation(fields: [reelId], references: [id], onDelete: Cascade)
+  reelId String? @db.ObjectId
+  reel Reel? @relation(fields: [reelId], references: [id], onDelete: Cascade)
 }
 
 model Reel {

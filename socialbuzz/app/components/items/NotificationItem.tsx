@@ -62,11 +62,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             router.push(`/user/${senderId}`)
         }
 
-        if (type === "commented") {
-            router.push(`/post/${postId}`)
-        }
-
-        if (type === "liked") {
+        if (type === "commented" || type === "liked") {
             router.push(`/post/${postId}`)
         }
 
@@ -77,7 +73,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 
     return (
         <div className="w-full flex flex-row justify-between items-center 
-        p-3 hover:bg-neutral-500" onClick={handleClick}>
+        p-3 hover:bg-neutral-700 cursor-pointer" onClick={handleClick}>
             <div className="w-full flex flex-row gap-2 items-center">
                 <span className="rounded-full h-10 w-10 overflow-hidden">
                     <Image src={
@@ -92,7 +88,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                         {handleNotification} . 
                     </span> 
                     <span className="text-neutral-500 text-xs">
-                        {" "+createdAtFormat}
+                        {" " + createdAtFormat}
                     </span>
                 </div>
             </div>

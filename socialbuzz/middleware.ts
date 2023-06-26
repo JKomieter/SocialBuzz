@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     const session = await getSession();
     const token = await getToken({req: request})
 
-    console.log(`Session ${session?.user} ${token?.email}`)
+    // console.log(`Session ${session?.user} ${token?.email}`)
 
     // if ((!token) && request.nextUrl.pathname !== "/auth/login") {
     //     const url = request.nextUrl.clone()

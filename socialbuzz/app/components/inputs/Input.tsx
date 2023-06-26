@@ -4,6 +4,8 @@ interface InputProps {
     disabled?: boolean;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    bgColor?: string;
+    textColor?: string;
 }
 
 
@@ -13,6 +15,8 @@ const Input: React.FC<InputProps> = ({
     disabled,
     value,
     onChange,
+    bgColor,
+    textColor
 }) => {
     return (
         <input
@@ -22,6 +26,7 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange} 
         value={value} disabled={disabled} 
         type={type} placeholder={placeholder}
+        style={{backgroundColor: bgColor, color: textColor}}
         />
     )
 }
