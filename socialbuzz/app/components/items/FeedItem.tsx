@@ -11,6 +11,8 @@ import useCurrentUser from "@/app/actions/useCurrentUser";
 import axios from "axios";
 import { useState } from "react";
 import Input from "../inputs/Input";
+import FeedMedia from "../media/FeedMedia";
+import FeedButtons from "../buttons/FeedButtons";
 
 
 interface FeedItemProps {
@@ -101,9 +103,9 @@ const FeedItem: React.FC<FeedItemProps> = ({
                     <span className="rounded-full h-12 w-12 p-[3px] border-[1px]"
                         style={{backgroundImage: "linear-gradient(to bottom right, teal, coral)"}}>
                         <Image src={fetchedUser?.profileImage || "/images/personplaceholder.png"} 
-                        alt="/images/personplaceholder.png" width={100}
-                        className="rounded-full w-full h-full object-cover cursor-pointer"
-                        height={100} style={{objectFit: "cover"}} />
+                            alt="/images/personplaceholder.png" width={100}
+                            className="rounded-full w-full h-full object-cover cursor-pointer"
+                            height={100} style={{objectFit: "cover"}} />
                     </span>
                     <p className="text-md font-medium lowercase cursor-pointer">{fetchedUser?.username}</p>
                     <BsDot size={20} color="gray"/>
@@ -113,28 +115,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 </div>
                 <RiMoreFill size={25} color="#fff" />
             </div>
-            <div className="w-full max-h-[500px] overflow-hidden" 
-                style={{border: "solid gray", borderWidth: "0.2px"}}>
-                <Image src={media} alt={media} width={500} height={200} 
-                style={{width: "100%", height: "100%", objectFit: "cover"}}/>
-            </div>
-            <div className="flex flex-row w-full items-center justify-between">
-                <div className="flex flex-row gap-4 w-full 
-                    items-center">
-                    {
-                        isLiked ? (
-                            <AiFillHeart size={28} color="red" className="cursor-pointer" 
-                            onClick={handleLike} />
-                            ) : (
-                            <AiOutlineHeart size={28} color="#fff" className="cursor-pointer" 
-                            onClick={handleLike} />
-                        )
-                    }
-                    <TbMessageCircle2 size={28} color="#fff" className="cursor-pointer" />
-                    <IoPaperPlaneOutline size={27} color="#fff" className="cursor-pointer" />
-                </div>
-                <BsBookmark size={28} color="#fff" className="cursor-pointer" />
-            </div>
+            <FeedMedia media={media} />
+            <FeedButtons handleLike={handleLike} isLiked={isLiked as boolean} />
             <span className="text-white font-semibold text-sm w-full">
                 {likeIds.length || 0} likes
             </span>
@@ -164,7 +146,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
                     )
                 }
             </div>
-            <hr className="w-full text-neutral-600 h-[0.2px] font-thin" />
+            <hr className="w-full md-flex hidden text-neutral-600 h-[0.2px] font-thin" />
         </div>
     )
 }

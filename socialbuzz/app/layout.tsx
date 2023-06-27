@@ -5,6 +5,7 @@ import AuthContext from './context/AuthContext'
 import Create from './components/modals/PostModal/Create'
 import SideBar from './components/layout/SideBar'
 import Notifications from './components/modals/notifications/Notifications'
+import StoryModal from './components/modals/StoryModal/StoryModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <AuthContext>
           <Create />
           <Notifications />
+          <StoryModal />
             <div className="flex flex-row">
               <div className="h-screen fixed ">
                 <SideBar />

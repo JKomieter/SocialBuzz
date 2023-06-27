@@ -84,7 +84,7 @@ const Create = () => {
             'video': [],
             'image': [],
         }
-     });
+    });
 
     const bodyContent = (
         <>
