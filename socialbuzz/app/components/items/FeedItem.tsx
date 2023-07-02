@@ -146,7 +146,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
                     )
                 }
             </div>
-            <hr className="w-full md-flex hidden text-neutral-600 h-[0.2px] font-thin" />
+            <hr className="w-full md:flex hidden text-neutral-600 h-[0.2px] font-thin" />
         </div>
     )
 }

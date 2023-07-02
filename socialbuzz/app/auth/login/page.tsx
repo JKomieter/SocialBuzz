@@ -41,10 +41,10 @@ const Login = () => {
             flex-col gap-5 border-[0px]">
                 <h1 className="text-3xl text-black font-semibold mb-7">Social Buzz</h1>
                 <Input value={username} onChange={(e) => setUsername(e.target.value)} 
-                type='text' placeholder='Username'/>
+                type='text' placeholder='Username' disabled={isLoading}/>
                 <Input value={password} onChange={(e) => setPassword(e.target.value)}
-                 type='password' placeholder='Password'/>
-                <Button onClick={handleLogin} text='Log In'/>
+                 type='password' placeholder='Password' disabled={isLoading}/>
+                <Button onClick={handleLogin} text='Log In' disabled={isLoading}/>
                 <div className="w-full
                 flex items-center justify-center gap-2 py-2">
                     <div className="w-full h-[0.7px] bg-neutral-300"></div>
@@ -56,10 +56,10 @@ const Login = () => {
                 disabled={isLoading}>
                     <ImFacebook2 className="text-xl"/>
                 </Button>
-                <span className="text-neutral-500
+                <span className="text-neutral-500 
                 cursor-pointer text-sm font-normal">Forgot password?</span>
             </div>
-            <BoxTwo textOne="Don't have an account?" textTwo="Sign up" routerLink="/auth/register"/>
+            <BoxTwo textOne="Don't have an account?" textTwo="Sign up" routerLink="/auth/register" disabled={isLoading}/>
         </div>
     )
 }

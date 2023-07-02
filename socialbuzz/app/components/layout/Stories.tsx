@@ -1,14 +1,37 @@
 "use client"
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+
 import React, { useCallback, useState } from 'react'
-import Image from 'next/image';
-import { useDropzone } from "react-dropzone";
 import useStoryModal from '@/app/hooks/useStory';
 import useCurrentUser from '@/app/actions/useCurrentUser';
+import UserStory from './UserStory';
+import useStories from '@/app/actions/useStories';
+import Carousel from './Carousel';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+interface Story {
+  id: string;
+  image: string;
+  user: {
+    id: string;
+  },
+  seenIds: string[];
+  video: string;
+}
+
+interface SliderProps {
+  slickPrev: () => void;
+  slickNext: () => void;
+}
 
 const Stories = () => {
-  const [ files, setFiles ] = useState<File[]>([]);
+  
   const { setStory, shouldOpen } = useStoryModal();
   const { data: currentUser } = useCurrentUser();
+  const { data: stories, mutate: mutateStories } = useStories();
+  const [sliderRef, setSliderRef] = useState<SliderProps | null>(null)
 
   const handleChange = useCallback((base64: string) => {
       // set the story to the base64 string
@@ -16,45 +39,35 @@ const Stories = () => {
       setStory(base64);
       shouldOpen(true);
       
-      console.log(`Post: ${base64}`)
-    }, [setStory, shouldOpen]);
+  }, [setStory, shouldOpen]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-        //upload the file to the server
-        setFiles(acceptedFiles)
-        const file = acceptedFiles[0];
-        const reader = new FileReader();
-        //convert file into base64
-
-        reader.onload = (event: any) => {
-            handleChange(event.target.result);
-        }
-        reader.readAsDataURL(file)
-    }, [handleChange]);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
-      onDrop,
-      'accept': {
-          'video': [],
-          'image': [],
-      }
-  });
-
+  const sliderSettings = {
+    arrows: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    infinite: false,
+  }
 
   return (
-    <div className='py-5  w-full px-8'>
-        <div {...getRootProps()}
-           className=' bg-neutral-700 flex items-end justify-center
-            rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden'>
-              <input {...getInputProps()} />
-              <Image src={currentUser?.profileImage || "/images/personplaceholder.png"} 
-              alt="Story" width={100} height={100} style={{objectFit: "cover"}}/>
-              <span className='font-semibold
-                absolute rounded-full w-6 h-6 bg-blue-600 text-white p-[0.7px]
-                border-2 border-black flex justify-center ml-6 items-center'>
-                  +
-              </span>
-        </div>
+    <div className='flex flex-row items-center gap-1 px-5 py-4'>
+      <span className='rounded-full p-1.5 bg-neutral-200 cursor-pointer
+      flex justify-center items-center w-5 h-5' onClick={sliderRef?.slickPrev}>
+        <FaChevronLeft size={23} color='black' />
+      </span>
+      <Slider {...sliderSettings} ref={setSliderRef} 
+      className='w-full flex flex-row gap-2 items-center justify-start'>
+          <UserStory handleChange={handleChange} currentUser={currentUser}/>
+          {
+            stories?.map((story: Story) => (
+              <Carousel key={story.id} image={story.image} id={story.id}
+              mutateStories={mutateStories} video={story.video}/>
+            ))
+          }
+      </Slider>
+      <span className='rounded-full p-1.5 bg-neutral-200 cursor-pointer
+      flex justify-center items-center w-5 h-5' onClick={sliderRef?.slickNext}>
+        <FaChevronRight size={23} color='black' />
+      </span>
     </div>
   )
 }

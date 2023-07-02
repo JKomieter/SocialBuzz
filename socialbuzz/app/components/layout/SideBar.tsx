@@ -20,7 +20,7 @@ import countNotifications from "@/app/actions/countNotifications";
 //the sidebar on the side
 const SideBar = () => {
     const more = useMore();
-    const { data: currentUser } = useCurrentUser()
+    const { data: currentUser } = useCurrentUser();
     const { data: count, mutate: mutateCount } = countNotifications()
 
     const handleMore = useCallback(() => {
@@ -30,14 +30,14 @@ const SideBar = () => {
             more.onOpen();
         }
     }, [more]);
-    console.log(currentUser)
 
     const unRead = useMemo(() => {
         // true is there is still unread notifications
         return count > 0
     }, [count])
+    console.log(`CurrentUser ${currentUser}`)
 
-    if (currentUser === undefined) return null;
+    if (currentUser?.error) return false;
 
     return (
         <div className="flex-col min-h-screen items-center

@@ -6,6 +6,8 @@ import { MdOutlineExplore } from "react-icons/md";
 import { HiOutlineFilm } from "react-icons/hi";
 import { TbMessageCircle } from "react-icons/tb";
 import { CgAddR } from "react-icons/cg";
+import Image from "next/image";
+import useCurrentUser from "@/app/actions/useCurrentUser";
 
 
 //the sidebar on the footer
@@ -26,11 +28,6 @@ const items = [
             href: "/reels"
         },
         {
-            name: "Notifications",
-            icon: AiOutlineHeart,
-            href: "/notifications"
-        },
-        {
             name: "Create",
             icon: CgAddR,
             href: "/create"
@@ -39,6 +36,8 @@ const items = [
 
 
 const Footer = () => {
+    const { data: currentUser } = useCurrentUser();
+
     return (
         <div className="fixed 
         justify-between flex-row 
@@ -55,6 +54,12 @@ const Footer = () => {
                     icon={item.icon} showFooter={false}/>
                 ))
             }
+            <span className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1">
+                <Image src={currentUser?.profileImage ||
+                '/images/personplaceholder.png'} alt=""
+                style={{objectFit: "cover"}} width={100} 
+                height={100} />
+            </span>
         </div>
     )
 }

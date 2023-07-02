@@ -12,8 +12,8 @@ interface SideBarItemsProps {
     icon: IconType;
     href: string;
     showFooter: boolean;
-    unRead: boolean;
-    mutateCount: any
+    unRead?: boolean;
+    mutateCount?: any;
 }
 
 
@@ -63,8 +63,8 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
 
     return (
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className="cursor-pointer rounded-lg p-3 hover:bg-neutral-700
-            flex items-center " 
+            className="cursor-pointer rounded-lg p-3 hover:bg-slate-800 
+            flex items-center transition duration-500" 
             onClick={openModal}
         >
             <Icon size={28} color="#fff" 

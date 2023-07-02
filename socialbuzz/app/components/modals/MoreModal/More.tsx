@@ -48,9 +48,9 @@ const More = () => {
     if (!more.open) return null;
 
     return (
-        <div className="bg-neutral-700 text-neutral-200 
+        <div className="bg-neutral-800 text-neutral-200 
             rounded-[16px] absolute z-[9999] w-[280px] h-auto
-            bottom-[40px] left-[65px] flex flex-col gap-3 
+            bottom-[47px] left-[75px] flex flex-col gap-3 
             overflow-y-hidden items-center">
             <div className="flex flex-col gap-2 w-full p-2">
                 {
