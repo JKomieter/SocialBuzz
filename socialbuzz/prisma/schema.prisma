@@ -48,7 +48,8 @@ model User {
 
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  media String?
+  image String?
+  video String?
   caption String?
   location String?
   isCommentable Boolean?

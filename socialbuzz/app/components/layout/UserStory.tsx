@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { BackGround } from "./Carousel";
 
 interface UserStoryProps {
     handleChange: (base64: string) => void;
@@ -34,18 +35,31 @@ const UserStory: React.FC<UserStoryProps> = ({
         }
     });
 
+    const showBorder = useMemo(() => {
+        // show colored border if the user has stories
+        if (currentUser?.stories?.length) {
+            return BackGround;
+        }
+    },[currentUser?.stories?.length])
+
     return (
-        <div {...getRootProps()}
-           className=' bg-neutral-700 flex items-end justify-center
-            rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden md:mr-0 mr-2'>
-              <input {...getInputProps()} />
-              <Image src={currentUser?.profileImage || "/images/personplaceholder.png"} 
-              alt="Story" width={100} height={100} style={{objectFit: "cover"}}/>
-              <span className='font-semibold
-                absolute rounded-full w-6 h-6 bg-blue-600 text-white p-[0.7px]
-                border-2 border-black flex justify-center ml-6 items-center'>
-                  +
-              </span>
+        <div className="flex flex-col items-center justify-center gap-2">
+            <div {...getRootProps()}
+            className=' bg-neutral-700 flex items-end justify-center
+            rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden md:mr-0 mr-4'
+            style={{background: showBorder}}>
+                <input {...getInputProps()} />
+                <Image src={currentUser?.profileImage || "/images/personplaceholder.png"} 
+                alt="Story" width={100} height={100} style={{objectFit: "cover",}}/>
+                <span className='font-semibold
+                    absolute rounded-full w-6 h-6 bg-blue-600 text-white p-[0.7px]
+                    border-2 border-black flex justify-center ml-6 items-center'>
+                    +
+                </span>
+            </div>
+            <p className="text-sm text-neutral-300">
+                {currentUser?.username}
+            </p>
         </div>
     )
 }

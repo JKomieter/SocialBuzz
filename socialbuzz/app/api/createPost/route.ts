@@ -1,15 +1,17 @@
 import getSession from "@/app/actions/getSession";
 import prisma from "@/app/libs/prismadb";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
-export async function POST(request: Request) {
-    const session = await getSession()
+export async function POST(request: NextRequest) {
+    const session = await getSession();
 
-    const { post, caption } = await request.json()
+    const { post, caption, type } = await request.json();
 
     if (!session) {
-        return NextResponse.redirect("/auth/login")
+        const url = request.nextUrl.clone();
+        url.pathname = "/auth/login";
+        return NextResponse.rewrite(url);
     }
 
     try {
@@ -17,23 +19,41 @@ export async function POST(request: Request) {
             where: {
                 email: session?.user?.email as string
             }
-        })
+        });
 
         if (!user) {
-            return NextResponse.redirect("/auth/login")
+            const url = request.nextUrl.clone();
+            url.pathname = "/auth/login";
+            return NextResponse.rewrite(url);
         }
 
-        const newPost = await prisma.post.create({
-            data: {
-                media: post,
-                caption: caption as string,
-                userId: user.id
-            }
-        })
+        let newPost;
+        // check type of media to be stored
+        if (type === "image") {
+            newPost = await prisma.post.create({
+                data: {
+                    image: post as string,
+                    caption: caption as string,
+                    userId: user.id,
+                }
+            })
+        };
+
+        if (type === "video") {
+            newPost = await prisma.post.create({
+                data: {
+                    video: post as string,
+                    caption: caption as string,
+                    userId: user.id,
+                }
+            });
+        };
+
 
         return NextResponse.json(newPost);
         
     } catch (error) {
-        return NextResponse.redirect("/auth/login")
+        console.log(error);
+        return NextResponse.json(error);
     }
 }

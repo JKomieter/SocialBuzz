@@ -38,11 +38,11 @@ const Create = () => {
     }, [handleChange]);
 
     const closePost = useCallback(() => {
-        // close the create post modal and clear the files
+        // clear the files and close post modal
         create.onClose();
         files.splice(0, files.length);
         setStep(1);
-    }, [create, files])
+    }, [create, files]);
 
     const goBack = useCallback(() => {
         // go back to the previous step
@@ -59,10 +59,16 @@ const Create = () => {
             return;
         }
         try {
+            create.onClose();
+            // check type of media
+            let type;
+            post.startsWith("data:image") ?
+            type = "image" : type = "video"
             //send post to the server
             await axios.post('/api/createPost', {
                 post,
-                caption
+                caption,
+                type
             });
             //close the modal
             closePost();
@@ -71,6 +77,8 @@ const Create = () => {
             console.log(error);
         }
     }
+
+    
 
     const showInput = useMemo(() => {
         // permits user from adding multiple images or videos

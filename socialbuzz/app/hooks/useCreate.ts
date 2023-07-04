@@ -12,6 +12,6 @@ const useCreate = create<useCreateState>((set) => ({
     onOpen: () => set({ open: true }),
     onClose: () => set({ open: false }),
 }));
-
+    
 
 export default useCreate;

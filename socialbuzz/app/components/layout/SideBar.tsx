@@ -59,7 +59,7 @@ const SideBar = () => {
                     height={100} />
                 </span>
                 <div className="cursor-pointer rounded-lg 
-                p-3 hover:bg-neutral-700 mt-2 flex flex-row
+                p-3 hover:bg-slate-800 mt-2 flex flex-row
                 items-center  ">
                     <AiOutlineMenu size={28} onClick={handleMore} />
                     {/* <p className="capitalize text-md lg:flex hidden text-neutral-400">More</p> */}

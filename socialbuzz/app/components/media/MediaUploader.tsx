@@ -8,7 +8,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = ({
     file,
  }) => {
     return (
-        <div key={file.size} className="w-full h-full rounded-b-lg resize-none">
+        <div key={file.size} className="w-full h-full rounded-b-lg resize-none" data-testid="media">
             {file.type.startsWith("image") ? (
                 <Image
                 src={URL.createObjectURL(file)}

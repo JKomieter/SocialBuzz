@@ -73,7 +73,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 
     return (
         <div className="w-full flex flex-row justify-between items-center 
-        p-3 hover:bg-neutral-700 cursor-pointer" onClick={handleClick}>
+        p-3 hover:bg-slate-800 cursor-pointer" onClick={handleClick}>
             <div className="w-full flex flex-row gap-2 items-center">
                 <span className="rounded-full h-10 w-10 overflow-hidden">
                     <Image src={

@@ -36,7 +36,7 @@ const StoryModal = () => {
                 <StoryMedia media={story} />
                 <div className="flex mt-2 gap-4 flex-row justify-between items-center w-full md:w-[60%]">
                     <div className="rounded-3xl p-2 flex flex-row justify-center
-                        bg-neutral-600 items-center gap-2 cursor-pointer">
+                        bg-neutral-800 items-center gap-2 cursor-pointer">
                         <span className="rounded-full p-[2px] w-6 h-6 border-1 border-white">
                             <Image src={currentUser?.profileImage || "/images/personplaceholder.png"}
                                 alt="Story" width={50} height={50} 
@@ -46,7 +46,7 @@ const StoryModal = () => {
                             Your Story
                         </p>
                     </div>
-                    <div className="rounded-3xl p-2 flex flex-row  bg-neutral-600
+                    <div className="rounded-3xl p-2 flex flex-row  bg-neutral-800
                         justify-center items-center gap-2 cursor-pointer">
                         <GiAlliedStar size={25} color="green" />
                         <p className="text-sm font-normal">

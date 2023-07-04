@@ -1,23 +1,28 @@
 import Image from "next/image";
 import { SlCamera } from "react-icons/sl";
+import Post from "./Post";
 
 interface PostsProps {
     posts: any[];
 }
 
+interface Post {
+    id: string;
+    image: string;
+    video: string;
+}
+
 const Posts: React.FC<PostsProps> = ({
     posts
 }) => {
+
     return (
         <>
         {
             posts?.length > 0 ? (
                 <div className="grid grid-cols-3 gap-2 w-full px-3">
-                    {posts.map((post) => (
-                        <div key={post.id} className="flex flex-col">
-                            <Image src={post.media} alt={post.caption} className="w-full h-full"
-                            width={100} height={50} style={{objectFit: "cover"}} />
-                        </div>
+                    {posts.map((post: Post) => (
+                        <Post image={post.image} video={post.video} key={post.id} id={post.id}/>
                     ))}
                 </div>
             ) : (

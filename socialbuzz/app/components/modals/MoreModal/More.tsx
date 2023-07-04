@@ -55,7 +55,7 @@ const More = () => {
             <div className="flex flex-col gap-2 w-full p-2">
                 {
                     Items.map((Item) => (
-                        <div key={Item.href} className="w-full p-3 hover:bg-neutral-500 gap-2
+                        <div key={Item.href} className="w-full p-3 hover:bg-slate-800 gap-2
                             transition duration-500 flex items-center rounded-lg cursor-pointer" 
                             onClick={() => handleRoute(Item.href)}>
                             <Item.icon size={21} color="#fff" />

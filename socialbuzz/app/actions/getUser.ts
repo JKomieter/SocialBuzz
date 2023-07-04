@@ -5,6 +5,7 @@ import { fetcher } from '../utils/fetcher';
 const getUser = (userId: string) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { data, error, isLoading, mutate } = useSWR(`/api/user/${userId}`, fetcher);
+    
     return {
         data,
         error,

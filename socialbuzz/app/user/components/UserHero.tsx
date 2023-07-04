@@ -31,6 +31,7 @@ const UserHero: React.FC<UserHeroProps> = ({
 }) => {
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
     const userChangeProfile = useChangeProfileImage();
+    
     const isCurrentUser = useMemo(() => { 
         // check if the current user is the same as the user 
         // retrun true if so, false if not

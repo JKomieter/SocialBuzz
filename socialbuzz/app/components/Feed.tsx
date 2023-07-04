@@ -5,7 +5,8 @@ import FeedItem from "./items/FeedItem";
 
 export interface FeedProps {
     id: string;
-    media: string;
+    image: string;
+    video: string;
     caption: string;
     isCommentable: boolean;
     createdAt: Date;
@@ -27,10 +28,11 @@ const Feed = () => {
                 {
                     fetchedFeed?.map((feed: FeedProps) => (
                         <FeedItem key={feed.id} id={feed.id} caption={feed.caption}
-                        media={feed.media} isCommentable={feed.isCommentable}
-                        createdAt={feed.createdAt} userId={feed.userId} 
+                        image={feed.image} isCommentable={feed.isCommentable}
+                        createdAt={feed.createdAt} userId={feed.userId} video={feed.video}
                         likeIds={feed.likeIds} comments={feed.comments}
-                        location={feed.location} mutateFeed={mutateFeed}/>
+                        location={feed.location} mutateFeed={mutateFeed}
+                        />
                     ))
                 }
             </div>

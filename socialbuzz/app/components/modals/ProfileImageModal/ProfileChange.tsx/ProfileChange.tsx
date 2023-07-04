@@ -19,7 +19,7 @@ const ProfileChange = () => {
             useChange.onChange(base64);
             useChange.onClose();
             //send the image to the server
-            await axios.post('/api/user/profileImage', {
+            await axios.post('/api/profileImage', {
                 profileImage: base64
             })
             mutateCurrentUser();
@@ -52,7 +52,7 @@ const ProfileChange = () => {
     });
 
     const bodyContent = (
-        <div className="w-full md:w-[60%] bg-neutral-700 rounded-[16px] h-auto
+        <div className="w-full md:w-[60%] bg-neutral-800 rounded-[16px] h-auto
             flex flex-col items-center text-center">
             <div className="w-full p-3 flex flex-col gap-1 justify-center items-center">
                 <span className="rounded-full w-[70px] h-[70px]">

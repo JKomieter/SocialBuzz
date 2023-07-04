@@ -17,10 +17,10 @@ export async function GET(req: Request) {
     })
       
     // all users that currentUser follows
-    const followingIds = following?.followingIds || [];
+    const followingIds = following?.followingIds as Array<string>;
 
     // posts from them
-    const posts = await prisma.post.findMany({
+    const feed = await prisma.post.findMany({
       where: {
         userId: {
           in: [...followingIds, currentUser.id],
@@ -40,7 +40,7 @@ export async function GET(req: Request) {
     });
 
 
-    return NextResponse.json(posts);
+    return NextResponse.json(feed || []);
   } catch (error) {
     console.error(error);
     return NextResponse.json([]);

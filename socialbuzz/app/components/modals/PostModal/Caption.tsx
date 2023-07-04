@@ -1,9 +1,7 @@
-import { User } from "@prisma/client";
-import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useRef, useState } from "react";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
+import useCurrentUser from "@/app/actions/useCurrentUser";
 
 interface CaptionProps {
     caption: string;
@@ -17,27 +15,10 @@ const Caption: React.FC<CaptionProps> = ({
     setCaption,
     step,
 }) => {
-    const session = useSession()
-    const [ currentUser, setCurrentUser ] = useState<User | null>(null);
     const [ showEmoji, setShowEmoji ] = useState<boolean>(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-    useEffect(() => {
-        if (session) {
-            try {
-                const fetchUserData = async () => {
-                    const response = await axios.post('/api/user', {
-                        email: session?.data?.user?.email
-                    });
-                    const user = response.data;
-                    setCurrentUser(user);
-                }
-                fetchUserData();
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }, [session])
+    const { data: currentUser } = useCurrentUser()
+    
 
     const handleEmojiSelect = (emoji: any) => {
         // this function makes sure to add emoji to the textarea

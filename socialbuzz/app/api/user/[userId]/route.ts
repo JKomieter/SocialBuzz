@@ -2,23 +2,17 @@ import prisma from "@/app/libs/prismadb";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
-// the params that we will get from the url
-interface IParams {
-    userId: string;
-}
+
 
 //get specific user
-export async function GET(
-    request: Request,
-    { params }: { params: IParams }
-) {
-
+export async function GET(req: NextApiRequest, { params }) {
     try {
-        const { userId } = params;
+        const { userId } = params;  
+        console.log(`userId: ${userId}`);      
 
         const user = await prisma.user.findUnique({
             where: {
-                id: userId
+                id: userId as string,
             },
              include: {
                 posts: true,     

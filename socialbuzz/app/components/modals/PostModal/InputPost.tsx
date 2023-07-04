@@ -15,7 +15,7 @@ const InputPost: React.FC<InputPostProps> = ({
     return (
         files.length === 0 ? (
                 <div className="flex flex-col w-full h-full justify-center items-center gap-5">
-                    <IoMdImages size={50} color="#fff"/>
+                    <IoMdImages size={50} color="#fff" data-testid="image-icon" />
                     <p className="text-center text-white text-lg font-normal">
                         Drag photos or videos here
                     </p>
@@ -23,10 +23,10 @@ const InputPost: React.FC<InputPostProps> = ({
                     onClick={() => {}} width="60%"/>
                 </div>
             ) : (
-                <div className="w-full h-full resize-none ">
+                <div className="w-full h-full resize-none " >
                     {
                         files.map((file) => (
-                            <MediaUploader key={file.size} file={file}/>
+                            <MediaUploader key={file.size} file={file} />
                         ))
                     }
                 </div>

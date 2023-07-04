@@ -16,6 +16,8 @@ interface Story {
   image: string;
   user: {
     id: string;
+    username: string;
+    profileImage: string;
   },
   seenIds: string[];
   video: string;
@@ -48,6 +50,7 @@ const Stories = () => {
     infinite: false,
   }
 
+
   return (
     <div className='flex flex-row items-center gap-1 px-5 py-4'>
       <span className='rounded-full p-1.5 bg-neutral-200 cursor-pointer
@@ -55,12 +58,13 @@ const Stories = () => {
         <FaChevronLeft size={23} color='black' />
       </span>
       <Slider {...sliderSettings} ref={setSliderRef} 
-      className='w-full flex flex-row gap-2 items-center justify-start'>
-          <UserStory handleChange={handleChange} currentUser={currentUser}/>
+      className='w-full flex flex-row gap-2 items-center justify-start '>
+          <UserStory handleChange={handleChange} currentUser={currentUser} />
           {
             stories?.map((story: Story) => (
               <Carousel key={story.id} image={story.image} id={story.id}
-              mutateStories={mutateStories} video={story.video}/>
+              mutateStories={mutateStories} video={story.video} userId={story.user.id}
+              username ={story.user.username} profileImage={story.user.profileImage}/>
             ))
           }
       </Slider>

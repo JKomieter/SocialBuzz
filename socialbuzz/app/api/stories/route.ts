@@ -1,3 +1,4 @@
+import { deleteExpiredReels } from "@/app/actions/deleteExpiredReels";
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/libs/serverAuth";
 import { NextResponse } from "next/server";
@@ -26,6 +27,9 @@ export async function GET(req: Request) {
                 createdAt: "desc"
             }
         });
+
+        // delete stories that are older than 24 hours
+        deleteExpiredReels();
 
         return NextResponse.json(stories || []);
 

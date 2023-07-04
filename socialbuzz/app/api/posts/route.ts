@@ -1,27 +1,21 @@
 import prisma from "@/app/libs/prismadb";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import getCurrentUser from "@/app/libs/serverAuth";
-import { NextApiRequest } from "next";
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   try {
     const { currentUser } = await getCurrentUser();
-    const { userId } = req.query;
 
-    let posts;
-
-    if (userId && currentUser) {
-      // Return posts for a specific user
-      posts = await prisma.post.findMany({
-        where: {
-          userId: userId as string,
-        },
-      });
-
-      return NextResponse.json(posts);
+    if (!currentUser?.email) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/auth/login";
+      return NextResponse.rewrite(url);
     }
 
-    return NextResponse.json([]);
+    const posts = await prisma.post.findMany({});
+
+    return NextResponse.json(posts);
+
   } catch (error) {
 
     console.error(error);
