@@ -11,14 +11,38 @@ export async function POST(req: Request) {
 
         // TODO: story could either be image or video
         // handle that here
-        const newStory = await prisma.story.create({
-            data: {
-                image: story,
-                userId: currentUser.id,
-            }
-        })
+        let newStory;
+        
+        if (type === "image") {
+            newStory = await prisma.story.create({
+                data: {
+                    image: story,
+                    user: {
+                        connect: {
+                            id: currentUser.id
+                        }
+                    },
+                }
+            })
+        }
 
-        console.log(newStory);
+        if (type === "video") {
+            newStory = await prisma.story.create({
+                data: {
+                    video: story,
+                    user: {
+                        connect: {
+                            id: currentUser.id
+                        }
+                    }
+                }
+            })
+        }
+
+        await prisma.user.update({
+            where: { id: currentUser.id },
+            data: { storyCount: { increment: 1 } },
+        });
 
         return NextResponse.json(newStory);
     } catch (error) {

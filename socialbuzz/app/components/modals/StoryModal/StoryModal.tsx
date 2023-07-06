@@ -18,9 +18,13 @@ const StoryModal = () => {
     // post story to db
     try {
         shouldOpen(false)
+        let type;
+        story.startsWith("data:image") ? 
+        type = "image" : type = "video";
+
         await axios.post('/api/story', {
             story,
-            type: "image"
+            type
         })
 
         mutateCurrentUser()

@@ -4,7 +4,7 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-screen h-screen bg-neutral-800">
+    <div className="bg-neutral-800">
         {children}
     </div>
   );

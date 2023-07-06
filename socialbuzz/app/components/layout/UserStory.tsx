@@ -52,8 +52,8 @@ const UserStory: React.FC<UserStoryProps> = ({
                 <Image src={currentUser?.profileImage || "/images/personplaceholder.png"} 
                 alt="Story" width={100} height={100} style={{objectFit: "cover",}}/>
                 <span className='font-semibold
-                    absolute rounded-full w-6 h-6 bg-blue-600 text-white p-[0.7px]
-                    border-2 border-black flex justify-center ml-6 items-center'>
+                absolute rounded-full w-6 h-6 bg-blue-600 text-white p-[0.7px]
+                border-2 border-black flex justify-center ml-6 items-center'>
                     +
                 </span>
             </div>

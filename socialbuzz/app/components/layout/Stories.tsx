@@ -11,16 +11,10 @@ import useStories from '@/app/actions/useStories';
 import Carousel from './Carousel';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-interface Story {
+interface Friend {
   id: string;
-  image: string;
-  user: {
-    id: string;
-    username: string;
-    profileImage: string;
-  },
-  seenIds: string[];
-  video: string;
+  username: string;
+  profileImage: string;
 }
 
 interface SliderProps {
@@ -32,7 +26,7 @@ const Stories = () => {
   
   const { setStory, shouldOpen } = useStoryModal();
   const { data: currentUser } = useCurrentUser();
-  const { data: stories, mutate: mutateStories } = useStories();
+  const { data: friendsWithStories, mutate: mutateStories } = useStories();
   const [sliderRef, setSliderRef] = useState<SliderProps | null>(null)
 
   const handleChange = useCallback((base64: string) => {
@@ -61,10 +55,10 @@ const Stories = () => {
       className='w-full flex flex-row gap-2 items-center justify-start '>
           <UserStory handleChange={handleChange} currentUser={currentUser} />
           {
-            stories?.map((story: Story) => (
-              <Carousel key={story.id} image={story.image} id={story.id}
-              mutateStories={mutateStories} video={story.video} userId={story.user.id}
-              username ={story.user.username} profileImage={story.user.profileImage}/>
+            friendsWithStories?.map((friend: Friend) => (
+              <Carousel key={friend.id} id={friend.id}
+              mutateStories={mutateStories}
+              username ={friend.username} profileImage={friend.profileImage}/>
             ))
           }
       </Slider>
