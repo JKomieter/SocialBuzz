@@ -37,8 +37,6 @@ export async function GET(req: Request) {
         // delete stories that are older than 24 hours
         deleteExpiredStories();
 
-        console.log(Array.isArray(friendsWithStories));
-
         return NextResponse.json(friendsWithStories || []);
 
     } catch (error) {

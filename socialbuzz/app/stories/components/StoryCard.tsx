@@ -1,6 +1,12 @@
+import StoryItem from "@/app/components/items/StoryItem";
+import { Story } from "@/app/stories/components/StoryPage";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+
 interface StoryCardProps {
     id: string;
-    stories: Record<string, any>[];
+    stories: Story[];
     username: string;
     mutateFetchedUsers: () => void;
     profileImage: string;
@@ -10,13 +16,27 @@ interface StoryCardProps {
 const StoryCard: React.FC<StoryCardProps> = ({ 
     stories, id, username, 
     mutateFetchedUsers, profileImage }) => {
-    console.log(username)
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
     return (
-        <div className="rounded-2xl bg-neutral-500
-         text-white max-w-[200px] min-w-[60px] 
-         max-h-[450px] min-h-[300px]">
-            {username}
-        </div>
+        <Slider {...settings} className="w-full h-full rounded-2xl
+        bg-neutral-500">
+            {
+                stories?.length > 0 && stories?.map((story: Story) => (
+                    <StoryItem  key={story.id} createdAt={story.createdAt} 
+                    caption={story.caption} music={story.music}
+                    seenIds={story.seenIds} image={story.image}
+                    video={story.video} id={story.id} />
+                ))
+            }
+        </Slider>
     )
 }
 
