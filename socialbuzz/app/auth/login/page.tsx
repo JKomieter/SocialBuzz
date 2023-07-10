@@ -19,6 +19,7 @@ const Login = () => {
         // post request to login
         try {
             //sign in user after login
+            if (!(username && password)) return;
             await signIn("credentials", {
                 username,
                 password,

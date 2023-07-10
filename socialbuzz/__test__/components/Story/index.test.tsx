@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import Carousel from '../../../app/components/layout/Carousel';
 import UserStory from '../../../app/components/layout/UserStory';
 import "@testing-library/jest-dom/extend-expect";
+import StoryItem from '../../../app/components/items/StoryItem';
+import exp from 'constants';
 
 
 describe('Carousel', () => {
@@ -22,5 +24,21 @@ describe('Carousel', () => {
         const handleChange = jest.fn();
         render(<UserStory handleChange={handleChange} />);
         expect(handleChange).toHaveBeenCalledTimes(0);
+    });
+
+    it("should render image when it is not null", () => {
+        render(<StoryItem image='/images/personplaceholder.png'
+        id={''} createdAt={''}  />)
+
+        const image = screen.queryByAltText('Loading...');
+        expect(image).toBeInTheDocument();
+    });
+
+    it("should render video when it is not null", () => {
+        render(<StoryItem id={''} createdAt={''} 
+        video={'/images/personplaceholder.png'} />)
+
+        const video = screen.queryByTestId('vid');
+        expect(video).toBeInTheDocument();
     });
 });

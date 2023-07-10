@@ -15,7 +15,9 @@ const StoryPage = () => {
     const [ currentStoryIndex, setCurrentStoryIndex ] = useState<Number>(0);
     
     const bodyContent = (
-        <StoryView users={fetchedUsers} mutateFetchedUsers={mutateFetchedUsers} />
+        <StoryView users={fetchedUsers} 
+        mutateFetchedUsers={mutateFetchedUsers}
+        userId={userId} />
     )
 
 
@@ -35,11 +37,11 @@ export interface User {
 export interface Story {
     id: string;
     createdAt: string;
-    image: string;
-    video: string;
-    caption: string;
-    music: string;
-    seenIds: string[];
+    image?: string;
+    video?: string;
+    caption?: string;
+    music?: string;
+    seenIds?: string[];
 }
 
 export default StoryPage;

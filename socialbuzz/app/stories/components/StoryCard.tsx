@@ -18,7 +18,6 @@ const StoryCard: React.FC<StoryCardProps> = ({
     mutateFetchedUsers, profileImage }) => {
 
     const settings = {
-      dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -26,8 +25,7 @@ const StoryCard: React.FC<StoryCardProps> = ({
     };
 
     return (
-        <Slider {...settings} className="w-full h-full rounded-2xl
-        bg-neutral-500">
+        <Slider {...settings} className="rounded-2xl w-full h-full object-cover">
             {
                 stories?.length > 0 && stories?.map((story: Story) => (
                     <StoryItem  key={story.id} createdAt={story.createdAt} 

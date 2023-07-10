@@ -22,8 +22,6 @@ interface NotificationsProps {
 const Notifications = () => {
     const notification = useNotification()
     const { data: fetchedNotifications, mutate: mutateNotifications } = getNotifications()
-    
-    console.log(fetchedNotifications);
 
     return (
         <motion.div

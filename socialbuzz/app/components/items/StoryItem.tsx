@@ -8,21 +8,21 @@ const StoryItem: React.FC<Story> = ({
  }) => {
     const isImage = useMemo(() => {
         // return true if image is not null
-        return image !== null;
+        return typeof image === "string";
     }, [image])
 
     return (
         <div className="w-full h-full">
         {
             isImage ? (
-                <Image src={image} alt="Loading..."
-                objectFit="fill"
+                <Image src={image as string} alt="Loading..."
+                width={200} height={300} 
                 style={{width: "100%", height: "100%",
-                objectFit: "cover"}} />
+                objectFit: "cover", borderRadius: "16px"}} />
             ) : (
                 <video src={video} autoPlay loop
-                style={{width: "100%", height: "100%",
-                objectFit: "cover"}} />
+                className="w-full h-full rounded-2xl
+                object-cover" data-testid="vid" />
             )
         }
         </div>

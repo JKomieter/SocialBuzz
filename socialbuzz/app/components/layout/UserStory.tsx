@@ -37,7 +37,7 @@ const UserStory: React.FC<UserStoryProps> = ({
 
     const showBorder = useMemo(() => {
         // show colored border if the user has stories
-        if (currentUser?.stories?.length) {
+        if (currentUser?.stories?.length > 0) {
             return BackGround;
         }
     },[currentUser?.stories?.length])
@@ -45,7 +45,7 @@ const UserStory: React.FC<UserStoryProps> = ({
     return (
         <div className="flex flex-col items-center justify-center gap-2">
             <div {...getRootProps()}
-            className=' bg-neutral-700 flex items-end justify-center
+            className=' bg-neutral-700 flex items-end justify-center p-1
             rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden md:mr-0 mr-4'
             style={{background: showBorder}}>
                 <input {...getInputProps()} />
