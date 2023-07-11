@@ -4,9 +4,14 @@ import { IoPlay } from "react-icons/io5";
 interface VideoProps {
     video: string;
     radius?: string;
+    showVidIcon?: boolean;
 }
 
-const Video: React.FC<VideoProps> = ({ video, radius }) => {
+const Video: React.FC<VideoProps> = ({ 
+    video, 
+    radius,
+    showVidIcon,
+}) => {
     const [ onPlay, setOnPlay ] = useState(false);
 
     const handlePlayPause = useCallback(() => {
@@ -29,9 +34,11 @@ const Video: React.FC<VideoProps> = ({ video, radius }) => {
         <div className="flex justify-center items-center h-full" onClick={handlePlayPause}>
             <video src={video} controls={false} className="w-full h-full" data-testid="video" 
             style={{objectFit: "cover", borderRadius: radius}}  />
-            <span className={`${showPlay}`}>
-                <IoPlay size={40} color="white" />
-            </span>
+            {
+                showVidIcon && <span className={`${showPlay}`}>
+                    <IoPlay size={40} color="white" />
+                </span>
+            }
         </div>
     )
 }

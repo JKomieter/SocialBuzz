@@ -28,7 +28,7 @@ const FeedMedia: React.FC<FeedMediaProps> = ({ image, radius, video }) => {
                         style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: radius}}
                         onLoadingComplete={(image) => image.classList.remove("opacity-0")}/>
                     ) : (
-                        <Video video={video} />
+                        <Video video={video} showVidIcon/>
                     )
                 }
         </div>

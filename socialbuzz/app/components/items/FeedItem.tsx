@@ -9,6 +9,7 @@ import { useState } from "react";
 import FeedMedia from "../media/FeedMedia";
 import FeedButtons from "../buttons/FeedButtons";
 import { BsDot } from "react-icons/bs";
+import FeedComment from "../comment/FeedComment";
 
 
 interface FeedItemProps {
@@ -130,22 +131,10 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 </p>
             )
            }
-            <div className="flex flex-row w-full items-center">
-                <input type="text" placeholder="Add a comment..."
-                    className="w-full text-white text-sm 
-                    bg-transparent outline-none"
-                    value={comment} onChange={(e) => setComment(e.target.value)}
-                />
-                {
-                    comment.length > 0 && (
-                        <span className="text-blue-500 text-sm font-semibold cursor-pointer"
-                            onClick={handleSubmit}>
-                            Post
-                        </span>
-                    )
-                }
-            </div>
-            <hr className="w-full md:flex hidden text-neutral-600 h-[0.2px] font-thin" />
+            <FeedComment comment={comment} 
+            handleSubmit={handleSubmit}
+            setComment={(e) => setComment(e)} />
+            <hr className="w-full md:flex hidden text-neutral-600 h-[0.1px] font-thin" />
         </div>
     )
 }

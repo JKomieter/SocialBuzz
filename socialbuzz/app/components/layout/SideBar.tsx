@@ -10,10 +10,10 @@ import { CgAddR, CgLinear } from "react-icons/cg";
 
 import SideBarItems from "../items/SideBarItems";
 import useMore from "@/app/hooks/useMore";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import More from "@/app/components/modals/MoreModal/More";
 import useCurrentUser from "@/app/actions/useCurrentUser";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import countNotifications from "@/app/actions/countNotifications";
 
@@ -22,8 +22,10 @@ const SideBar = () => {
     const more = useMore();
     const { data: currentUser } = useCurrentUser();
     const { data: count, mutate: mutateCount } = countNotifications()
+    const router = useRouter()
 
     const handleMore = useCallback(() => {
+        //handle the closing and opening of the more modal
         if (more.open) {
             more.onClose();
         } else {
@@ -37,12 +39,18 @@ const SideBar = () => {
     }, [count])
     console.log(`CurrentUser ${currentUser}`)
 
-    if (currentUser?.error) return false;
+    useEffect(() => {
+        if (currentUser?.error) {
+            return router.push("/auth/login")
+        }
+    }, [currentUser?.error, router])
+
+    if(currentUser?.error) return false;
 
     return (
         <div className="flex-col min-h-screen items-center
         py-4 px-5 hidden md:flex gap-3 
-          border-r-stone-500 border-r-[0.5px] 
+          border-r-stone-500 border-r-[0.2px] 
         ">
             <CgLinear size={30} color="white" style={{marginBottom: "20px"}} />
             <div className="flex w-full items-center flex-col gap-2 h-full">

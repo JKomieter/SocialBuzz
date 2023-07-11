@@ -1,9 +1,8 @@
 "use client";
-import { AiFillHome } from "react-icons/ai";
 import SideBarItems from "../items/SideBarItems";
 import { FiSearch } from "react-icons/fi";
 import { HiOutlineFilm } from "react-icons/hi";
-import { CgAddR } from "react-icons/cg";
+import { CgAddR, CgHome } from "react-icons/cg";
 import Image from "next/image";
 import useCurrentUser from "@/app/actions/useCurrentUser";
 
@@ -12,7 +11,7 @@ import useCurrentUser from "@/app/actions/useCurrentUser";
 const items = [
     {
             name: "Home",
-            icon: AiFillHome,
+            icon: CgHome,
             href: "/"
         },
         {
