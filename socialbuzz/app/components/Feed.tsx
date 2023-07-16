@@ -1,6 +1,7 @@
 "use client";
 import getFeed from "../actions/getFeed";
 import FeedItem from "./items/FeedItem";
+import LoadFeed from "./loading/LoadFeed";
 
 
 export interface FeedProps {
@@ -20,6 +21,8 @@ export interface FeedProps {
 const Feed = () => {
     const { data: fetchedFeed, isLoading, 
         mutate: mutateFeed } = getFeed();
+
+    if (isLoading) return <LoadFeed />;
 
     return (
         <div className="w-full h-full px-12 py-5 flex justify-center">

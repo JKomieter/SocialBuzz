@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import AvatarFrame from "../avatar/AvatarFrame";
 
 interface CarouselProps {
     id: string;
@@ -17,10 +18,7 @@ const Carousel: React.FC<CarouselProps> = ({
     profileImage,
 }) => {
     const router = useRouter()
-    const style = {
-        padding: "2px",
-        background: BackGround,
-    }
+    
 
     const showStoryView = useCallback(() => {
         router.push(`/stories/${username}/${id}`)
@@ -29,14 +27,11 @@ const Carousel: React.FC<CarouselProps> = ({
 
     return (
         <div className="flex flex-col items-center justify-center gap-2">
-            <div className="rounded-full w-14 h-14 md:w-16 md:mr-0 mr-4
-            md:h-16 overflow-hidden flex justify-center items-center "
-            style={style} onClick={showStoryView}>
-                <Image src={profileImage || "/images/personplaceholder.png"} 
-                    alt="/images/personplaceholder.png" width={90}
-                    className="rounded-full object-cover w-full h-full cursor-pointer"
-                    height={90} style={{objectFit: "cover", borderRadius: "50%"}} />
-            </div>
+            <AvatarFrame 
+            profileImage={profileImage} 
+            handleOnClick={showStoryView}
+            size="w-14 h-14 md:w-16 md:mr-0 mr-4
+            md:h-16" />
             <p className=" text-sm text-neutral-300">{username}</p>
         </div>
     )

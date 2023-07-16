@@ -2,13 +2,14 @@ import prisma from "@/app/libs/prismadb";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
-
+interface IParams {
+    userId: string;
+}
 
 //get specific user
-export async function GET(req: NextApiRequest, { params }) {
+export async function GET(req: NextApiRequest, { params }: {params: IParams}) {
     try {
-        const { userId } = params;  
-        console.log(`userId: ${userId}`);      
+        const { userId } = params;       
 
         const user = await prisma.user.findUnique({
             where: {
@@ -25,7 +26,7 @@ export async function GET(req: NextApiRequest, { params }) {
 
         if (!user) {
             return NextResponse.json({message: 'User not found'});
-        }
+        }     
 
         return NextResponse.json(user);
     } catch (error) {

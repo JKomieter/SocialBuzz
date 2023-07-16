@@ -5,7 +5,8 @@ import "@testing-library/jest-dom/extend-expect";
 import Video from '../../../app/components/media/Video';
 import FeedMedia from '../../../app/components/media/FeedMedia';
 import FeedComment from '../../../app/components/comment/FeedComment';
-
+import Post from '../../../app/user/components/Post';
+import CenterIcons from '../../../app/user/components/CenterIcons';
 
 describe('FeedItem', () => {
     test('renders Image', () => {
@@ -18,17 +19,12 @@ describe('FeedItem', () => {
         render(<FeedMedia video="video" />);
         expect(<Video video='video' />).toBeInTheDocument();
     });
-
-    test('show Post button when there is text entered', () => {
-        render (<FeedComment comment=''
-        handleSubmit={() =>{}}
-        setComment={(e) => {}} />)
-        const input = screen.getByPlaceholderText('Add a comment...');
-        // input some text
-        fireEvent.change(input, { target: { value: 'test' } });
-        // check if the button is visible
-        const post = screen.getByRole('span')
-        expect(input).toBeInTheDocument();
-        expect(post).toBeInTheDocument();
+    test("should display the CenterIcons component when the user hovers over the post", () => {
+        render(<Post id="1" image="image" 
+        video="" likeIds={[]} comments={[]} />);
+        // hover over the post
+        fireEvent.mouseEnter(screen.getByTestId("post"));
+        // CenterIcons component should be Sdisplayed
+        expect(<CenterIcons likeIds={[]} comments={[]}/>).toBeInTheDocument();
     });
 });

@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
     return (
          <div className="fixed z-50 flex outline-none 
-            items-center bg-black bg-opacity-40 gap-5
+            items-center bg-black bg-opacity-20 gap-5
             flex-col h-screen w-screen text-white p-8
             ">
                 <div className="flex items-end w-full px-2 basis-1/9">

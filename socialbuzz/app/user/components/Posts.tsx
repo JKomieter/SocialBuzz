@@ -6,7 +6,7 @@ interface PostsProps {
     posts: any[];
 }
 
-export interface Post {
+export interface PostProps {
     id: string;
     image: string;
     video: string;
@@ -23,7 +23,7 @@ const Posts: React.FC<PostsProps> = ({
         {
             posts?.length > 0 ? (
                 <div className="grid grid-cols-3 gap-2 w-full px-3">
-                    {posts.map((post: Post) => (
+                    {posts.map((post: PostProps) => (
                         <Post image={post.image} 
                         video={post.video} 
                         key={post.id} id={post.id}

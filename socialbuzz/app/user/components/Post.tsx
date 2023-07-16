@@ -1,26 +1,56 @@
 import Video from "@/app/components/media/Video";
 import Image from "next/image";
-import { useMemo } from "react";
-import { Post } from "./Posts";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { PostProps } from "./Posts";
 import CenterIcons from "./CenterIcons";
+import usePostInfo from "@/app/hooks/usePostInfo";
 
-
-// Component to display User Posts
-const UserPosts: React.FC<Post> = ({ 
+// Component to display each User Post
+const Post: React.FC<PostProps> = ({ 
     id, 
     image, 
     video,
     likeIds,
     comments
 }) => {
+    const mediaRef = useRef<HTMLDivElement>(null);
+    const [ Height, setHeight ] = useState<number>(0);
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const { setIsOpen, setPostId } = usePostInfo();
+
     const isImage = useMemo(() => {
         // check if the media is an image
         if (image) return true;
     }, [image])
 
+    const changeHeight = () => {
+        // set the height to be equal to the width of the mediaRef
+        if (mediaRef.current) {
+            setHeight(mediaRef.current.clientWidth);
+        }
+    }
+
+    const handleOpenPost = useCallback((e: any) => {
+        // handle the open post event
+        e.preventDefault();
+        setIsOpen(true);
+        setPostId(id);
+    }, [id, setIsOpen, setPostId]);
+
+    useEffect(() => {
+        // set the height to be equal to the width of the mediaRef
+        changeHeight();
+    }, [])
+
+    // change the height when the window is resized
+    window.addEventListener("resize", changeHeight);
+
     return (
         <div className="flex justify-center items-center
-        md:h-[220px] h-[160px] cursor-pointer">
+        cursor-pointer" style={{height: Height}}
+        ref={mediaRef} onMouseEnter={(e) => setIsHovered(true)}
+        onMouseLeave={(e) => setIsHovered(false)}
+        data-testid="post" onClick={(e) => handleOpenPost(e)}>
             {
                 isImage ? (
                     <Image src={image} alt={"Image"} 
@@ -31,10 +61,14 @@ const UserPosts: React.FC<Post> = ({
                     <Video video={video} />
                 )
             }
-            <CenterIcons likeIds={likeIds} comments={comments} />
+            {isHovered && (
+                <CenterIcons likeIds={likeIds} comments={comments} />
+            )}
         </div>
     )
 };
 
 
-export default UserPosts;
+
+export default Post;
+

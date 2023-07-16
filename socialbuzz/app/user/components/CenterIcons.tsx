@@ -1,5 +1,6 @@
 import React from 'react';
-import { AiOutlineHeart, AiOutlineMessage } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
+import { FaComment } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 
 
@@ -24,8 +25,8 @@ const CenterIcons: React.FC<CenterIconsProps> = ({
     }) => (
         <div className="flex flex-row justify-center 
         items-center gap-1">
-            <Icon size={20} color='white'/>
-            <span className="text-sm font-semibold
+            <Icon size={27} color='white'/>
+            <span className="text-xl font-bold
             text-neutral-200">
                 {text}
             </span>
@@ -35,10 +36,10 @@ const CenterIcons: React.FC<CenterIconsProps> = ({
     return (
         <div className="absolute">
             <div className="flex flex-row
-            justify-center items-center gap-2">
-                <Icons Icon={AiOutlineHeart}
+            justify-center items-center gap-4">
+                <Icons Icon={AiFillHeart}
                 text={likeIds?.length || 0} />
-                <Icons Icon={AiOutlineMessage} 
+                <Icons Icon={FaComment} 
                 text={comments?.length || 0} />
             </div>
         </div>
