@@ -14,7 +14,8 @@ interface PostInfoContentProps {
     createdAt: string;
     comments: Comment[];
     isLoading: boolean;
-    user: User
+    user: User,
+    mutatePost: () => void;
 }
 
 
@@ -28,23 +29,28 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
     createdAt,
     comments,
     isLoading,
-    user
+    user,
+    mutatePost
 }) => {
     return (
-        <div className="flex sm:flex-row flex-col w-full h-full bg-black mt-3">
+        <div className="flex sm:flex-row flex-col w-full h-full bg-black mt-3 rounded-lg">
             <PostFrame 
-            profileImage={user?.profileImage}
-            username={user?.username}
-            display='flex sm:hidden' />
-            <PostMedia image={image} video={video} />
+                profileImage={user?.profileImage}
+                username={user?.username}
+                display='flex sm:hidden' 
+                userId={user?.id} />
+            <PostMedia 
+                image={image} 
+                video={video} />
             <PostInfo 
-            id={id}
-            likeIds={likeIds}
-            createdAt={createdAt}
-            comments={comments}
-            isLoading={isLoading}
-            caption={caption}
-            user={user} />
+                id={id}
+                likeIds={likeIds}
+                createdAt={createdAt}
+                comments={comments}
+                isLoading={isLoading}
+                caption={caption}
+                user={user}
+                mutatePost={mutatePost} />
         </div>
     )
 }

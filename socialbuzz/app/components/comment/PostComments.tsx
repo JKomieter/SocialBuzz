@@ -24,8 +24,8 @@ const PostComments: React.FC<CommentsProps> = ({
                                 profileImage={comment.user?.profileImage} 
                                 size="w-10 h-10" />
                                 <div className="flex flex-row gap-1">
-                                    <p className="text-neutral-300 font-bold text-xs">{comment.user?.username}</p>
-                                    <p className="text-neutral-300 text-xs ml-0.5">{comment?.body}</p>
+                                    <p className="text-neutral-300 font-bold text-sm">{comment.user?.username}</p>
+                                    <p className="text-neutral-300 text-sm ml-0.5">{comment?.body}</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-1 items-center">

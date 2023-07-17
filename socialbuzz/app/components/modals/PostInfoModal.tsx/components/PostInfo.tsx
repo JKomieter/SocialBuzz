@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import usePostInfo from '@/app/hooks/usePostInfo';
 import FeedButtons from '@/app/components/buttons/FeedButtons';
-import AvatarFrame from '@/app/components/avatar/AvatarFrame';
 import PostFrame from '@/app/components/avatar/PostFrame';
 import { useRouter } from 'next/navigation';
 import PostComments from '@/app/components/comment/PostComments';
-import PostLikers from '@/app/components/postLikers/PostLikers';
+import FriendsWhoLikedPost from '@/app/helpers/FriendsWhoLikedPost';
 import FeedComment from '@/app/components/comment/FeedComment';
+import axios from 'axios';
+import useCurrentUser from '@/app/actions/useCurrentUser';
 
 
 export interface User {
@@ -23,6 +24,7 @@ interface PostInfoProps {
     comments: Comment[];
     isLoading: boolean;
     user: User;
+    mutatePost: () => void;
 }
 
  export interface Comment {
@@ -39,10 +41,13 @@ const PostInfo: React.FC<PostInfoProps> = ({
     createdAt,
     comments,
     isLoading,
-    user
+    user,
+    mutatePost
 }) => {
     const router = useRouter()
     const { setIsOpen } = usePostInfo();
+    const [ comment, setComment ] = useState<string>("")
+    const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
 
     const handleOnClick = useCallback((userId: string) => {
         // take the user to the user profile
@@ -50,29 +55,62 @@ const PostInfo: React.FC<PostInfoProps> = ({
         router.push(`/user/${userId}`);
     }, [router, setIsOpen]);
 
+    const handleSubmit = useCallback(async () => {
+        // submit the comment
+        try {
+            await axios.post('/api/comment', {
+                feedId: id,
+                userId: currentUser?.id,
+                comment
+            })
+
+            setComment("");
+            mutatePost();
+            mutateCurrentUser();
+        } catch (error) {
+            console.log(error)
+        }
+    }, [comment, currentUser?.id, id, mutateCurrentUser, mutatePost]);
+
+
+    const handleLike = useCallback(async () => {
+        // handle like
+        try {
+            await axios.post('/api/like', {
+                feedId: id,
+                userId: currentUser?.id
+            })
+            mutatePost();
+            mutateCurrentUser();
+        } catch (error) {
+            console.log(error)
+        }
+    }, [currentUser?.id, id, mutateCurrentUser, mutatePost]);
+
     return (
         <div className="w-full h-full sm:basis-1/2 flex flex-col gap-3">
             <PostFrame 
-            profileImage={user?.profileImage}
-            username={user?.username}
-            display='hidden sm:flex'
-            userId={user?.id} />
+                profileImage={user?.profileImage}
+                username={user?.username}
+                display='hidden sm:flex'
+                userId={user?.id} />
             <PostComments 
-            comments={comments} 
-            handleOnClick={handleOnClick} />
+                comments={comments} 
+                handleOnClick={handleOnClick} />
             <div className='px-2 py-2'>
                 <FeedButtons 
-                isLiked={false} 
-                size={24}
-                handleLike={() => {}} />
+                    isLiked={false} 
+                    size={24}
+                    handleLike={handleLike} />
             </div>
-            <PostLikers
-            likeIds={likeIds} />
+            <FriendsWhoLikedPost
+                likeIds={likeIds}
+                followingIds={currentUser?.followingIds} />
             <div className="px-3 pb-3">
                 <FeedComment 
-                comment={'comment'} 
-                setComment={() => {}} 
-                handleSubmit={() => {}} />
+                    comment={comment} 
+                    setComment={(e) => setComment(e)} 
+                    handleSubmit={handleSubmit} />
             </div>
         </div>
     )

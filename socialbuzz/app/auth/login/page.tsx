@@ -1,9 +1,9 @@
 "use client"
 import Button from "@/app/components/buttons/Button";
 import Input from "@/app/components/inputs/Input";
-import { use, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { ImFacebook2 } from "react-icons/im";
-import { useRouter} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import BoxTwo from "../BoxTwo";
 import { signIn } from "next-auth/react";
 
@@ -11,8 +11,10 @@ const Login = () => {
     const [ username, setUsername ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
-
     const router = useRouter();
+    const searchParams = useSearchParams()
+    const callbackUrl = searchParams.get('callbackUrl') ?? '/';
+
 
     const handleLogin = useCallback(async () => {
         setIsLoading(true);
@@ -20,17 +22,23 @@ const Login = () => {
         try {
             //sign in user after login
             if (!(username && password)) return;
-            await signIn("credentials", {
+            const result = await signIn("credentials", {
                 username,
                 password,
-                callbackUrl: "http://localhost:3000"
+                redirect: false
             })
+
+            if (result?.error) {
+                console.log(result.error);
+            } else {
+                router.push(callbackUrl);
+            }
 
         } catch (error) {
             console.log(error)
         }
         setIsLoading(false)
-    }, [username, password]);
+    }, [username, password, router, callbackUrl]);
 
 
     return (
@@ -41,11 +49,22 @@ const Login = () => {
             border-neutral-300 p-5 flex items-center
             flex-col gap-5 border-[0px]">
                 <h1 className="text-3xl text-black font-semibold mb-7">Social Buzz</h1>
-                <Input value={username} onChange={(e) => setUsername(e.target.value)} 
-                type='text' placeholder='Username' disabled={isLoading}/>
-                <Input value={password} onChange={(e) => setPassword(e.target.value)}
-                 type='password' placeholder='Password' disabled={isLoading}/>
-                <Button onClick={handleLogin} text='Log In' disabled={isLoading}/>
+                <Input 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    type='text' 
+                    placeholder='Username' 
+                    disabled={isLoading}/>
+                <Input 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)}
+                    type='password' 
+                    placeholder='Password' 
+                    disabled={isLoading}/>
+                <Button 
+                    onClick={handleLogin} 
+                    text='Log In' 
+                    disabled={isLoading}/>
                 <div className="w-full
                 flex items-center justify-center gap-2 py-2">
                     <div className="w-full h-[0.7px] bg-neutral-300"></div>

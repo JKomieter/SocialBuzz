@@ -7,7 +7,11 @@ import PostInfoContent from "./PostInfoContent";
 // Modal that pops up when a user clicks on a post
 const PostInfoModal = () => {
     const { postId, setIsOpen, isOpen } = usePostInfo();
-    const { data: post, isLoading, error } = useGetPost(postId);
+    const { 
+        data: post, 
+        isLoading, 
+        error, 
+        mutate: mutatePost } = useGetPost(postId);
 
     if (!isOpen) {
         return false;
@@ -27,7 +31,8 @@ const PostInfoModal = () => {
                         createdAt={post?.createdAt}
                         comments={post?.comments}
                         isLoading={isLoading}
-                        user={post?.user} />;
+                        user={post?.user}
+                        mutatePost={mutatePost} />;
 
     return (
         <Modal bodyContent={bodyContent} onClose={() => setIsOpen(false)} />

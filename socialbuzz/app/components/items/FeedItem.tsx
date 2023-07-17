@@ -102,13 +102,18 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 <div className="flex flex-row gap-1 w-full items-center">
                     <span className="rounded-full h-12 w-12 p-[3px] border-[1px]"
                         style={{background: backGround}}>
-                        <Image src={fetchedUser?.profileImage || "/images/personplaceholder.png"} 
-                            alt="/images/personplaceholder.png" width={100}
+                        <Image 
+                            src={fetchedUser?.profileImage || "/images/personplaceholder.png"} 
+                            alt="/images/personplaceholder.png" 
+                            width={100}
                             className="rounded-full w-full h-full object-cover cursor-pointer"
-                            height={100} style={{objectFit: "cover"}} />
+                            height={100} 
+                            style={{objectFit: "cover"}} />
                     </span>
                     <p className="text-md font-medium lowercase cursor-pointer">{fetchedUser?.username}</p>
-                    <BsDot size={20} color="gray"/>
+                    <BsDot 
+                        size={20} 
+                        color="gray"/>
                     <p className="text-neutral-500 text-sm">
                         {createdAtFormat}
                     </p>
