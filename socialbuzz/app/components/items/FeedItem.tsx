@@ -113,10 +113,17 @@ const FeedItem: React.FC<FeedItemProps> = ({
                         {createdAtFormat}
                     </p>
                 </div>
-                <RiMoreFill size={25} color="#fff" />
+                <RiMoreFill 
+                    size={25} 
+                    color="#fff" />
             </div>
-            <FeedMedia image={image} video={video}/>
-            <FeedButtons handleLike={handleLike} isLiked={isLiked as boolean} />
+            <FeedMedia 
+                image={image} 
+                video={video}/>
+            <FeedButtons 
+                handleLike={handleLike} 
+                isLiked={isLiked as boolean} 
+                size={27} />
             <span className="text-white font-semibold text-sm w-full">
                 {likeIds.length || 0} likes
             </span>
@@ -131,7 +138,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 </p>
             )
            }
-            <FeedComment comment={comment} 
+            <FeedComment 
+            comment={comment} 
             handleSubmit={handleSubmit}
             setComment={(e) => setComment(e)} />
             <hr className="w-full md:flex hidden text-neutral-600 h-[0.1px] font-thin" />

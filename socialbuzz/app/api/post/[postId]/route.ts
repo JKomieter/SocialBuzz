@@ -16,7 +16,11 @@ export async function GET(req: NextApiRequest, { params }: {params: IParams}) {
                 id: postId as string,
             },
              include: {
-                comments: true,   
+                comments: {
+                    include: {
+                        user: true,
+                    }
+                },   
                 user: true,  
             }
         })

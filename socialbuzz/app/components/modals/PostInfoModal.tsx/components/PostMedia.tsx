@@ -11,7 +11,7 @@ const PostMedia: React.FC<PostMediaProps> = ({
     video
 }) => {
     return (
-        <div className="sm:basis-1/2 w-full sm:h-full h-14
+        <div className="sm:basis-1/2 w-full md:h-auto h-20 
         border-r-[0.3px] border-neutral-400 md:py-4">
             {
                 image !== null ? (

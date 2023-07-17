@@ -7,11 +7,13 @@ import { TbMessageCircle2 } from "react-icons/tb";
 interface FeedButtonsProps {
     handleLike: () => void;
     isLiked: boolean;
+    size: number
 }
 
 const FeedButtons: React.FC<FeedButtonsProps> = ({
     handleLike,
-    isLiked
+    isLiked,
+    size
 }) => {
     return (
         <div className="flex flex-row w-full items-center justify-between">
@@ -19,17 +21,17 @@ const FeedButtons: React.FC<FeedButtonsProps> = ({
                 items-center">
                 {
                     isLiked ? (
-                        <AiFillHeart size={28} color="red" className="cursor-pointer" 
-                        onClick={handleLike} />
+                        <AiFillHeart size={size} color="red" className="cursor-pointer" 
+                        onClick={handleLike} /> 
                         ) : (
-                        <AiOutlineHeart size={28} color="#fff" className="cursor-pointer" 
+                        <AiOutlineHeart size={size} color="#fff" className="cursor-pointer" 
                         onClick={handleLike} />
                     )
                 }
-                <TbMessageCircle2 size={28} color="#fff" className="cursor-pointer" />
-                <IoPaperPlaneOutline size={27} color="#fff" className="cursor-pointer" />
+                <TbMessageCircle2 size={size} color="#fff" className="cursor-pointer" />
+                <IoPaperPlaneOutline size={size} color="#fff" className="cursor-pointer" />
             </div>
-            <BsBookmark size={28} color="#fff" className="cursor-pointer" />
+            <BsBookmark size={size} color="#fff" className="cursor-pointer" />
         </div>
     );
 }

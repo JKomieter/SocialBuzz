@@ -15,7 +15,8 @@ const Suggestions = () => {
             key={currentUser?.id}
             firstName={currentUser?.firstName}
             lastName={currentUser?.lastName}
-            action="Switch" username={currentUser?.username} 
+            action="Switch" 
+            username={currentUser?.username} 
             userId={currentUser?.id} 
             profileImage={currentUser.profileImage}/>
         )

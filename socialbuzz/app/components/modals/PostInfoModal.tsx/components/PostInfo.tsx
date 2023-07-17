@@ -4,6 +4,9 @@ import FeedButtons from '@/app/components/buttons/FeedButtons';
 import AvatarFrame from '@/app/components/avatar/AvatarFrame';
 import PostFrame from '@/app/components/avatar/PostFrame';
 import { useRouter } from 'next/navigation';
+import PostComments from '@/app/components/comment/PostComments';
+import PostLikers from '@/app/components/postLikers/PostLikers';
+import FeedComment from '@/app/components/comment/FeedComment';
 
 
 export interface User {
@@ -41,10 +44,10 @@ const PostInfo: React.FC<PostInfoProps> = ({
     const router = useRouter()
     const { setIsOpen } = usePostInfo();
 
-    const handleOnClick = useCallback(() => {
+    const handleOnClick = useCallback((userId: string) => {
         // take the user to the user profile
         setIsOpen(false);
-        router.push("")
+        router.push(`/user/${userId}`);
     }, [router, setIsOpen]);
 
     return (
@@ -52,28 +55,25 @@ const PostInfo: React.FC<PostInfoProps> = ({
             <PostFrame 
             profileImage={user?.profileImage}
             username={user?.username}
-            display='hidden sm:flex' />
-            <div className='overflow-y-scroll px-3 py-2 flex flex-col
-            gap-3 items-center w-full h-full border-b-[0.3px] border-neutral-400'>
-                {
-                    comments?.map((comment) => (
-                        <div className="flex flex-row justify-between items-center w-full" key={comment.id}>
-                            <div className="flex flex-row items-center gap-3">
-                                <AvatarFrame 
-                                handleOnClick={handleOnClick}
-                                profileImage={comment.user?.profileImage} 
-                                size="w-10 h-10" />
-                                <p className="text-neutral-300 text-sm">{comment.user?.username}</p>
-                            </div>
-                            <p className="text-neutral-300 text-sm">{comment?.body}</p>
-                        </div>
-                    ))
-                }
+            display='hidden sm:flex'
+            userId={user?.id} />
+            <PostComments 
+            comments={comments} 
+            handleOnClick={handleOnClick} />
+            <div className='px-2 py-2'>
+                <FeedButtons 
+                isLiked={false} 
+                size={24}
+                handleLike={() => {}} />
             </div>
-            <div className='px-3 py-2'>
-                <FeedButtons isLiked={false} handleLike={() => {}} />
+            <PostLikers
+            likeIds={likeIds} />
+            <div className="px-3 pb-3">
+                <FeedComment 
+                comment={'comment'} 
+                setComment={() => {}} 
+                handleSubmit={() => {}} />
             </div>
-            
         </div>
     )
 };

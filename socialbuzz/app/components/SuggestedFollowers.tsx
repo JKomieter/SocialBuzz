@@ -23,7 +23,8 @@ const SuggestedFollowers = () => {
                     key={user.id}
                     firstName={user.firstName}
                     lastName={user.lastName}
-                    action="Follow" username={user?.username}
+                    action="Follow" 
+                    username={user?.username}
                     userId={user?.id}    
                     mutateFetchedUsers={mutateFetchedUsers} 
                     profileImage={user.profileImage}/>
