@@ -3,14 +3,14 @@ import Image from "next/image";
 
 
 interface SmallAvatarProps {
-    friend: string;
+    userId: string;
 }
 
 
 const SmallAvatar: React.FC<SmallAvatarProps> = ({
-    friend
+    userId
 }) => {
-    const { data: friendData } = getUser(friend);
+    const { data: friendData } = getUser(userId);
 
     return (
         <div className="h-7 w-7 rounded-full">

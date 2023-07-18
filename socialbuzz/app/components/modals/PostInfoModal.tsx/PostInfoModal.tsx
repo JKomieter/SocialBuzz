@@ -3,6 +3,7 @@ import useGetPost from "@/app/actions/useGetPost";
 import Modal from "../Modal";
 import usePostInfo from "@/app/hooks/usePostInfo";
 import PostInfoContent from "./PostInfoContent";
+import LodingPostInfoModal from "@/app/components/loading/LoadingPostInfoModal";
 
 // Modal that pops up when a user clicks on a post
 const PostInfoModal = () => {
@@ -17,12 +18,10 @@ const PostInfoModal = () => {
         return false;
     }
 
-    if (isLoading) return (
-        <h1 className="text-white font-bold">
-            Loading...
-        </h1>)
-
-    const bodyContent = <PostInfoContent
+    const bodyContent = isLoading ? 
+                    <LodingPostInfoModal /> 
+                    : 
+                    <PostInfoContent
                         id={post?.id}
                         image={post?.image}
                         video={post?.video}
@@ -32,10 +31,12 @@ const PostInfoModal = () => {
                         comments={post?.comments}
                         isLoading={isLoading}
                         user={post?.user}
-                        mutatePost={mutatePost} />;
+                        mutatePost={mutatePost} /> ;
 
     return (
-        <Modal bodyContent={bodyContent} onClose={() => setIsOpen(false)} />
+        <Modal 
+            bodyContent={bodyContent} 
+            onClose={() => setIsOpen(false)} />
     )
 }
 
