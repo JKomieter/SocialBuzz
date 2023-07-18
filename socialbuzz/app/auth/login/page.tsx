@@ -13,7 +13,7 @@ const Login = () => {
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const router = useRouter();
     const searchParams = useSearchParams()
-    const callbackUrl = searchParams.get('callbackUrl') ?? '/';
+    const callbackUrl = '/';
 
 
     const handleLogin = useCallback(async () => {
@@ -22,23 +22,16 @@ const Login = () => {
         try {
             //sign in user after login
             if (!(username && password)) return;
-            const result = await signIn("credentials", {
+            await signIn("credentials", {
                 username,
                 password,
-                redirect: false
+                callbackUrl: "/"
             })
-
-            if (result?.error) {
-                console.log(result.error);
-            } else {
-                router.push(callbackUrl);
-            }
-
         } catch (error) {
             console.log(error)
         }
         setIsLoading(false)
-    }, [username, password, router, callbackUrl]);
+    }, [username, password]);
 
 
     return (
@@ -79,7 +72,10 @@ const Login = () => {
                 <span className="text-neutral-500 
                 cursor-pointer text-sm font-normal">Forgot password?</span>
             </div>
-            <BoxTwo textOne="Don't have an account?" textTwo="Sign up" routerLink="/auth/register" disabled={isLoading}/>
+            <BoxTwo 
+                textOne="Don't have an account?" 
+                textTwo="Sign up" routerLink="/auth/register" 
+                disabled={isLoading}/>
         </div>
     )
 }
