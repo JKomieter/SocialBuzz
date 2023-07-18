@@ -6,12 +6,16 @@ import RelatedUsers from "./RelatedUsers";
 interface FriendsWhoLikedPostProps {
     likeIds: string[];
     followingIds: string[];
+    showRoundedImages: boolean;
+    padding: string;
 }
 
 
 const FriendsWhoLikedPost: React.FC<FriendsWhoLikedPostProps> = ({
     likeIds,
-    followingIds
+    followingIds,
+    showRoundedImages,
+    padding
 }) => {
     
     const filterFriends = useMemo(() => {
@@ -25,21 +29,23 @@ const FriendsWhoLikedPost: React.FC<FriendsWhoLikedPostProps> = ({
         return friends;
     }, [followingIds, likeIds]);
 
-    console.log(filterFriends);
-
 
     return (
-        <div className="text-neutral-400 text-sm px-3 flex flex-row gap-2 items-center">
+        <div className={`text-neutral-400 text-sm ${padding} flex flex-row gap-2 items-center w-full`}>
             <span className="flex flex-row">
                 {
-                    filterFriends?.map((friend) => (
+                    filterFriends?.map((friend, index) => (
                         <SmallAvatar 
                         key={friend} 
-                        userId={friend}/>
+                        userId={friend}
+                        index={index}/>
                     ))
                 }
             </span>
             <span className="flex flex-row items-center gap-1">
+                {
+                    showRoundedImages && <p>Liked by</p>
+                }
                 {
                     filterFriends?.map((friend) => (
                         <RelatedUsers 

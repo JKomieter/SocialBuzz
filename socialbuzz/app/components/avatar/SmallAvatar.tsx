@@ -4,16 +4,18 @@ import Image from "next/image";
 
 interface SmallAvatarProps {
     userId: string;
+    index: number;
 }
 
 
 const SmallAvatar: React.FC<SmallAvatarProps> = ({
-    userId
+    userId,
+    index
 }) => {
     const { data: friendData } = getUser(userId);
 
     return (
-        <div className="h-7 w-7 rounded-full">
+        <div className={`h-7 w-7 rounded-full overflow-hidden`}>
             <Image 
             src={friendData?.profileImage || "/images/personplaceholder.png"} 
             alt={"Image"} width={100} 

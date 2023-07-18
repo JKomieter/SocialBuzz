@@ -10,6 +10,8 @@ import FeedMedia from "../media/FeedMedia";
 import FeedButtons from "../buttons/FeedButtons";
 import { BsDot } from "react-icons/bs";
 import FeedComment from "../comment/FeedComment";
+import { useRouter } from "next/navigation";
+import FriendsWhoLikedPost from "@/app/helpers/FriendsWhoLikedPost";
 
 
 interface FeedItemProps {
@@ -23,6 +25,7 @@ interface FeedItemProps {
     likeIds: string[];
     comments: string[];
     location: string;
+    stories: string[];
     mutateFeed: any;
 }
 
@@ -38,11 +41,13 @@ const FeedItem: React.FC<FeedItemProps> = ({
     comments,
     location,
     mutateFeed,
-    video
+    video,
+    stories
 }) => {
 
     const { data: fetchedUser, mutate: mutateUser } = getUser(userId as string);
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
+    const router = useRouter();
 
     const [ comment, setComment ] = useState("")
 
@@ -91,15 +96,28 @@ const FeedItem: React.FC<FeedItemProps> = ({
         } catch (error) {
             console.log(error)
         }
-    }, [comment, currentUser?.id, id, mutateCurrentUser, mutateFeed])
+    }, [comment, currentUser?.id, id, mutateCurrentUser, mutateFeed]);
 
-    const backGround = 
+    const handleGoToUser = useCallback(() => {
+        // go to user profile
+        router.push(`/user/${userId}`)
+    }, [router, userId]);
+
+    const userHasStory = useMemo(() => {
+        //return true if user has story
+        if (stories.length > 0) return true;
+        return false;
+    }, [stories.length]);
+
+    const backGround = userHasStory ?
         'linear-gradient(to top right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #4f5bd5, #4f5bd5)'
+        : ""
 
     return (
         <div className="flex flex-col gap-3 w-full items-center">
             <div className="flex flex-row justify-between w-full items-center">
-                <div className="flex flex-row gap-1 w-full items-center">
+                <div className="flex flex-row gap-1 w-full items-center"
+                onClick={handleGoToUser}>
                     <span className="rounded-full h-12 w-12 p-[3px] border-[1px]"
                         style={{background: backGround}}>
                         <Image 
@@ -129,6 +147,11 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 handleLike={handleLike} 
                 isLiked={isLiked as boolean} 
                 size={27} />
+            <FriendsWhoLikedPost
+                padding="px-0"
+                showRoundedImages
+                likeIds={likeIds}
+                followingIds={currentUser?.followingIds} />
             <span className="text-white font-semibold text-sm w-full">
                 {likeIds.length || 0} likes
             </span>
@@ -136,13 +159,13 @@ const FeedItem: React.FC<FeedItemProps> = ({
                 <span className="lowercase font-semibold">{fetchedUser?.username}</span> 
                 <span className="font-normal"> {caption}</span>
             </div>
-           {
-            comments.length > 0 && (
-                <p className="text-sm text-neutral-600 w-full">
-                    View all {comments.length} comments
-                </p>
-            )
-           }
+            {
+                comments.length > 0 && (
+                    <p className="text-sm text-neutral-600 w-full">
+                        View all {comments.length} comments
+                    </p>
+                )
+            }
             <FeedComment 
             comment={comment} 
             handleSubmit={handleSubmit}

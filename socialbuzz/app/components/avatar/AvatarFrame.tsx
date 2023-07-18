@@ -23,7 +23,8 @@ const AvatarFrame: React.FC<AvatarFrameProps> = ({
             background: BackGround,
         }} onClick={handleOnClick}>
             <Image src={profileImage || "/images/personplaceholder.png"} 
-                alt="/images/personplaceholder.png" width={90}
+                alt="/images/personplaceholder.png" 
+                width={90}
                 className="rounded-full object-cover w-full h-full cursor-pointer"
                 height={90} style={{objectFit: "cover", borderRadius: "50%"}} />
         </div>
