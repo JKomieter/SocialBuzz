@@ -15,15 +15,16 @@ It provides a user-friendly inbterface and a wide range of features that foster 
 - [TypeScript](https://www.typescriptlang.org) - A typed superset of JavaScript.
 - [Zustand](https://github.com/pmndrs/zustand) - A small, fast state management library for React.
 - [NextAuth.js](https://next-auth.js.org/) - Authenticationlibrary for Next.js applications.
+- [SWR](https://swr.vercel.app) - React hooks library for remote data fetching.
 
 
 ## Setup
 1. Clone the repository:
 ```
-git clone
+git clone https://github.com/JKomieter/SocialBuzz.git
 ```
 
-2.To run this project, install it locally using npm:
+2. To run this project, install it locally using npm:
 ```
 $ cd socialbuzz
 $ npm install
