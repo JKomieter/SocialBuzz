@@ -18,7 +18,7 @@ export async function GET(req: Request) {
       
     // all users that currentUser follows
     const followingIds = following?.followingIds as Array<string>;
-
+              
     // posts from them
     const feed = await prisma.post.findMany({
       where: {
@@ -27,7 +27,11 @@ export async function GET(req: Request) {
         },
       },
       include: {
-        user: true,
+        user: {
+          include: {
+            stories: true,
+          },
+        },
         comments: {
           include: {
             user: true,
