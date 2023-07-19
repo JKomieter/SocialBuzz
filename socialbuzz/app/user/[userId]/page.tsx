@@ -24,8 +24,8 @@ const UserProfilePage = () => {
                 following={user.followingIds} bio={user.bio} posts={user.posts}
                 mutateFetchedUser={mutate} />
             <Highlights />
-            <UserProfileNav followers={user.followers?.length}
-                following={user.following?.length} posts={user.posts?.length} />
+            <UserProfileNav followers={user.followersIds?.length}
+                following={user.followingIds?.length} posts={user.posts?.length} />
             <Posts posts={user.posts} />
         </div>
     );

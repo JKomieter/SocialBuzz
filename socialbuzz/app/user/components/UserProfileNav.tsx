@@ -47,13 +47,13 @@ const UserProfileNav: React.FC<UserProfileNavProps> = ({
         <div style={{width: "100%"}} className="w-full flex flex-col">
             <div  
                 className='md:w-[80%] w-full md:hidden flex py-2 px-3 border-neutral-500 
-                border-t-[0.1px] flex-row justify-between '>
+                flex-row justify-between ' style={{borderBottomWidth: "0.3px", borderTopWidth: "0.2px"}}>
                     <p className='text-neutral-300 '>{followers || 0} Followers</p>
                     <p className='text-neutral-300 '>{following || 0} Following</p>
                     <p className='text-neutral-300 '>{posts || 0} Posts</p>
             </div>
             <div className="flex flex-row items-center w-full 
-            justify-center py-2 gap-12 border-t-[0.1px] border-neutral-400">
+            justify-center py-2 gap-12  border-neutral-400">
                 {
                     items.map((item) => (
                         <div key={item.name} className= {`flex flex-row 

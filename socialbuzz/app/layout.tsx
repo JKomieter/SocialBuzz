@@ -8,6 +8,7 @@ import Notifications from './components/modals/Notifications/Notifications'
 import StoryModal from './components/modals/StoryModal/StoryModal'
 import PostInfoModal from './components/modals/PostInfoModal.tsx/PostInfoModal'
 import TopLoading from './components/loading/TopLoading'
+import TopBar from './components/layout/TopBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,11 +27,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthContext>
           <TopLoading />
+          <TopBar />
           <Create />
           <Notifications />
           <PostInfoModal />
           <StoryModal />
-            <div className="flex flex-row">
+            <div className="flex flex-row md:mt-0 mt-16">
               <div className="h-screen fixed ">
                 <SideBar />
               </div>

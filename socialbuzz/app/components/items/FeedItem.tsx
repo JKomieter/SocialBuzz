@@ -123,6 +123,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
 
     return (
         <div className="flex flex-col gap-3 w-full items-center">
+            <span className="md:w-full w-screen border-b-neutral-600 " 
+            style={{borderBottomWidth: "0.2px"}}/>
             <div className="flex flex-row justify-between w-full items-center">
                 <div className="flex flex-row gap-1 w-full items-center"
                 onClick={handleGoToUser}>
@@ -179,7 +181,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
             comment={comment} 
             handleSubmit={handleSubmit}
             setComment={(e) => setComment(e)} />
-            <hr className="w-full md:flex hidden text-neutral-600 h-[0.1px] font-thin" />
+            <span className="md:w-full w-screen border-b-neutral-600 " 
+            style={{borderBottomWidth: "0.2px"}}/>
         </div>
     )
 }

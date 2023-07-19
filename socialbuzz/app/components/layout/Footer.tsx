@@ -41,9 +41,8 @@ const Footer = () => {
         z-[9999]
         bottom-0 gap-7 w-full 
         items-center px-3 py-5 h-12 
-        flex md:hidden border-t-neutral-500 
-        border-t-[1px] bg-black
-        ">
+        flex md:hidden border-t-neutral-500  bg-black
+        " style={{borderTopWidth: "0.2px"}}>
             {
                 items.map((item) => (
                     <SideBarItems href={item.href} 
