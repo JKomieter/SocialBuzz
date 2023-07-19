@@ -4,7 +4,7 @@ Socialbuzz is an innovative social media platform designed to connect people fro
 It provides a user-friendly inbterface and a wide range of features that foster meaningful connections and engaging interactions.
 It was inspired by Instagram.
 
-<img src="https://photos.google.com/photo/AF1QipOAbQZhPiDRD9k-EfkeokhIaG5o57kY8ttNYKl9" height="60" width="60" >
+<img src="socialbuzz/public/images/" height="60" width="60" >
 
 ## Technologies
 - [Next.js](https://nextjs.org/) - A React farmework for building server-rendered apllications.
