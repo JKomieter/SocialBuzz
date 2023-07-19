@@ -30,7 +30,8 @@ const Feed = () => {
             flex-col gap-11 items-center">
                 {
                     fetchedFeed?.map((feed: FeedProps) => (
-                        <FeedItem key={feed.id} id={feed.id} caption={feed.caption}
+                        <FeedItem 
+                        key={feed.id} id={feed.id} caption={feed.caption}
                         image={feed.image} isCommentable={feed.isCommentable}
                         createdAt={feed.createdAt} userId={feed.userId} video={feed.video}
                         likeIds={feed.likeIds} comments={feed.comments}

@@ -109,7 +109,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
         //return true if user has story
         if (stories.length > 0) return true;
         return false;
-    }, [stories.length]);
+    }, [stories?.length]);
 
     const handlePostInfo = useCallback(() => {
         // open post info

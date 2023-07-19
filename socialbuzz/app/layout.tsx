@@ -6,6 +6,7 @@ import Create from './components/modals/PostModal/Create'
 import SideBar from './components/layout/SideBar'
 import Notifications from './components/modals/Notifications/Notifications'
 import StoryModal from './components/modals/StoryModal/StoryModal'
+import PostInfoModal from './components/modals/PostInfoModal.tsx/PostInfoModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <AuthContext>
           <Create />
           <Notifications />
+          <PostInfoModal />
           <StoryModal />
             <div className="flex flex-row">
               <div className="h-screen fixed ">
