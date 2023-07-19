@@ -15,6 +15,10 @@ export interface FeedProps {
     likeIds: string[];
     comments: string[];
     location: string;
+    user: {
+        stories: string[];
+        id: string;
+    }
 }
 
 // Component to display Feed
@@ -31,12 +35,20 @@ const Feed = () => {
                 {
                     fetchedFeed?.map((feed: FeedProps) => (
                         <FeedItem 
-                        key={feed.id} id={feed.id} caption={feed.caption}
-                        image={feed.image} isCommentable={feed.isCommentable}
-                        createdAt={feed.createdAt} userId={feed.userId} video={feed.video}
-                        likeIds={feed.likeIds} comments={feed.comments}
-                        location={feed.location} mutateFeed={mutateFeed}
-                        />
+                            key={feed.id}
+                            id={feed.id}
+                            caption={feed.caption}
+                            image={feed.image}
+                            isCommentable={feed.isCommentable}
+                            createdAt={feed.createdAt}
+                            userId={feed.userId}
+                            video={feed.video}
+                            likeIds={feed.likeIds}
+                            comments={feed.comments}
+                            location={feed.location}
+                            mutateFeed={mutateFeed} 
+                            stories={feed.user.stories}  
+                            />
                     ))
                 }
             </div>

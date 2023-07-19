@@ -109,7 +109,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
         //return true if user has story
         if (stories.length > 0) return true;
         return false;
-    }, [stories?.length]);
+    }, [stories.length]);
 
     const handlePostInfo = useCallback(() => {
         // open post info
@@ -169,7 +169,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
             </div>
             {
                 comments.length > 0 && (
-                    <p className="text-sm text-neutral-600 w-full"
+                    <p className="text-sm text-neutral-600 w-full cursor-pointer"
                     onClick={handlePostInfo}>
                         View all {comments.length} comments
                     </p>

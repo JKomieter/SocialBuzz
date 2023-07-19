@@ -33,7 +33,8 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
     mutatePost
 }) => {
     return (
-        <div className="flex sm:flex-row flex-col w-full h-full bg-black mt-3 rounded-lg">
+        <div className="flex sm:flex-row overflow-y-scroll
+        flex-col w-full h-full bg-black mt-3 rounded-lg">
             <PostFrame 
                 profileImage={user?.profileImage}
                 username={user?.username}

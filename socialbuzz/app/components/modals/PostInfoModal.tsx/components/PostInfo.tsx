@@ -105,7 +105,9 @@ const PostInfo: React.FC<PostInfoProps> = ({
             </div>
             <FriendsWhoLikedPost
                 likeIds={likeIds}
-                followingIds={currentUser?.followingIds} />
+                followingIds={currentUser?.followingIds} 
+                showRoundedImages={true} 
+                padding="px-3" />
             <div className="px-3 pb-3">
                 <FeedComment 
                     comment={comment} 

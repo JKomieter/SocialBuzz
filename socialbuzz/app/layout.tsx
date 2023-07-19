@@ -7,6 +7,7 @@ import SideBar from './components/layout/SideBar'
 import Notifications from './components/modals/Notifications/Notifications'
 import StoryModal from './components/modals/StoryModal/StoryModal'
 import PostInfoModal from './components/modals/PostInfoModal.tsx/PostInfoModal'
+import TopLoading from './components/loading/TopLoading'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthContext>
+          <TopLoading />
           <Create />
           <Notifications />
           <PostInfoModal />
