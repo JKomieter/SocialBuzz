@@ -12,6 +12,7 @@ import { BsDot } from "react-icons/bs";
 import FeedComment from "../comment/FeedComment";
 import { useRouter } from "next/navigation";
 import FriendsWhoLikedPost from "@/app/helpers/FriendsWhoLikedPost";
+import usePostInfo from "@/app/hooks/usePostInfo";
 
 
 interface FeedItemProps {
@@ -47,6 +48,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
 
     const { data: fetchedUser, mutate: mutateUser } = getUser(userId as string);
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
+    const { setIsOpen, setPostId } = usePostInfo();
     const router = useRouter();
 
     const [ comment, setComment ] = useState("")
@@ -109,6 +111,12 @@ const FeedItem: React.FC<FeedItemProps> = ({
         return false;
     }, [stories.length]);
 
+    const handlePostInfo = useCallback(() => {
+        // open post info
+        setPostId(id);
+        setIsOpen(true);
+    }, [id, setIsOpen, setPostId]);
+
     const backGround = userHasStory ?
         'linear-gradient(to top right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #4f5bd5, #4f5bd5)'
         : ""
@@ -161,7 +169,8 @@ const FeedItem: React.FC<FeedItemProps> = ({
             </div>
             {
                 comments.length > 0 && (
-                    <p className="text-sm text-neutral-600 w-full">
+                    <p className="text-sm text-neutral-600 w-full"
+                    onClick={handlePostInfo}>
                         View all {comments.length} comments
                     </p>
                 )
