@@ -62,15 +62,15 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
 
     return (
         <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className="cursor-pointer rounded-lg p-3 hover:bg-slate-800 
-            flex items-center transition duration-500" 
+            className="cursor-pointer rounded-lg p-3 hover:bg-neutral-700
+            flex items-center transition duration-500 hover:scale-105" 
             onClick={openModal}
         >
             <Icon size={28} color="#fff" 
             onClick={handleClick} className="text-red-500" />
             {
                 name === "Notifications" && unRead && 
-                (<div className="absolute top-96.4 right-[27px] 
+                (<div className="absolute top-96.5 right-[27.5px] 
                     w-3 h-3 bg-red-600 rounded-full"></div>)
             }
         </div>

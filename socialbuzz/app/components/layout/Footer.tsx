@@ -40,7 +40,7 @@ const Footer = () => {
         justify-between flex-row 
         z-[9999]
         bottom-0 gap-7 w-full 
-        items-center px-3 py-5 h-12 
+        items-center px-3 py-2 h-13 
         flex md:hidden border-t-neutral-500  bg-black
         " style={{borderTopWidth: "0.2px"}}>
             {

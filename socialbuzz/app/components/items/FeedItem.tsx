@@ -123,7 +123,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
 
     return (
         <div className="flex flex-col gap-3 w-full items-center">
-            <span className="md:w-full w-screen border-b-neutral-600 " 
+            <span className="md:hidden w-screen border-b-neutral-600 " 
             style={{borderBottomWidth: "0.2px"}}/>
             <div className="flex flex-row justify-between w-full items-center">
                 <div className="flex flex-row gap-1 w-full items-center"
