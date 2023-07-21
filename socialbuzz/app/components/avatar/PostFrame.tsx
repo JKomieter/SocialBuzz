@@ -35,6 +35,7 @@ const PostFrame: React.FC<PostFrameProps> = ({
         items-center w-full px-3 py-2 border-b-[0.3px] border-neutral-400`}>
             <div className="flex-row flex items-center gap-1">
                 <AvatarFrame 
+                showBackground={true}
                 profileImage={profileImage || "/images/personplaceholder.png"} 
                 size="w-10 h-10"
                 handleOnClick={handleOnClick} />

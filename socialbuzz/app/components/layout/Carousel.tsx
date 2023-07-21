@@ -28,6 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({
     return (
         <div className="flex flex-col items-center justify-center gap-2">
             <AvatarFrame 
+            showBackground={true}
             profileImage={profileImage} 
             handleOnClick={showStoryView}
             size="w-14 h-14 md:w-16 md:mr-0 mr-4

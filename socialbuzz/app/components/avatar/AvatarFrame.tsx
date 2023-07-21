@@ -4,15 +4,18 @@ interface AvatarFrameProps {
     profileImage: string;
     size: string;
     handleOnClick: () => void;
+    showBackground: boolean;
 }
 
 
 const AvatarFrame: React.FC<AvatarFrameProps> = ({
     profileImage,
     size,
-    handleOnClick
+    handleOnClick,
+    showBackground
 }) => {
-    const BackGround = 'linear-gradient(to top right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #4f5bd5, #4f5bd5)'
+    const BackGround = showBackground ?
+     'linear-gradient(to top right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #4f5bd5, #4f5bd5)': "none"
 
 
     return (

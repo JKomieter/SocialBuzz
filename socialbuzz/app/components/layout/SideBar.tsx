@@ -100,9 +100,9 @@ export const items = [
             href: "/reels"
         },
         {
-            name: "Messages",
+            name: "Inbox",
             icon: TbMessageCircle,
-            href: "/messages"
+            href: "/inbox"
         },
         {
             name: "Notifications",

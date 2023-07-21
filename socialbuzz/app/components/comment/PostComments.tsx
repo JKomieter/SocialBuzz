@@ -20,6 +20,7 @@ const PostComments: React.FC<CommentsProps> = ({
                         <div key={comment.id} className="w-full flex flex-row items-center justify-between">
                             <div className="w-full flex flex-row items-center gap-2" >
                                 <AvatarFrame 
+                                showBackground={true}
                                 handleOnClick={() => handleOnClick(comment.user?.id)}
                                 profileImage={comment.user?.profileImage} 
                                 size="w-10 h-10" />
