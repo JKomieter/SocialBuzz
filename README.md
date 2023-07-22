@@ -17,6 +17,7 @@ It was inspired by Instagram.
 - [Zustand](https://github.com/pmndrs/zustand) - A small, fast state management library for React.
 - [NextAuth.js](https://next-auth.js.org/) - Authenticationlibrary for Next.js applications.
 - [SWR](https://swr.vercel.app) - React hooks library for remote data fetching.
+- [Talk.js](https://talkjs.com/)  - TalkJS is a powerful real-time messaging platform that enables seamless communication and chat functionality within your web or mobile applications
 
 
 
@@ -74,6 +75,9 @@ $ npm run dev
 
 #### 5. Notifications and Activity Feed
    - Notifies user about likes, follows and comments.
+
+#### 6. Real-Time Communication
+   - Supports real-time, instant messaging, enabling users to exchange messages with their friends as if they were having a live                 conversation.
 
 #### TODO
    - Provide features for password recovery and account management.
