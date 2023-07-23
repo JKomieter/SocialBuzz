@@ -1,6 +1,6 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import AvatarFrame from "../avatar/AvatarFrame";
-import { Comment } from "../modals/PostInfoModal.tsx/components/PostInfo";
+import { Comment } from "../modals/PostInfoModal.tsx/PostInfo";
 
 
 interface CommentsProps {
@@ -20,13 +20,14 @@ const PostComments: React.FC<CommentsProps> = ({
                         <div key={comment.id} className="w-full flex flex-row items-center justify-between">
                             <div className="w-full flex flex-row items-center gap-2" >
                                 <AvatarFrame 
-                                showBackground={true}
+                                showBackground={false}
                                 handleOnClick={() => handleOnClick(comment.user?.id)}
                                 profileImage={comment.user?.profileImage} 
-                                size="w-10 h-10" />
+                                size="w-8 h-8" />
                                 <div className="flex flex-row gap-1">
                                     <p className="text-neutral-300 font-bold text-sm">{comment.user?.username}</p>
-                                    <p className="text-neutral-300 text-sm ml-0.5">{comment?.body}</p>
+                                    <p className="text-neutral-300 whitespace-nowrap 
+                                    text-sm ml-0.5 text-ellipsis h-4.5">{comment?.body}</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-1 items-center">

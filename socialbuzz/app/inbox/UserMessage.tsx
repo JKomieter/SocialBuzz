@@ -33,7 +33,9 @@ const UserMessage: React.FC<UserMessageProps> = ({
     }, [email, id, profileImage, setOtherEmail, setOtherId, setOtherName, setOtherPhotoUrl, username])
 
     return (
-        <div className="flex flex-row items-center gap-3 cursor-pointer"
+        <div className="flex flex-row items-center gap-3 
+        cursor-pointer hover:bg-neutral-700 p-2 rounded-lg
+        duration-500 hover:scale-105"
         onClick={handleClick} data-testid="div">
             <AvatarFrame
                 showBackground={false}
@@ -42,7 +44,7 @@ const UserMessage: React.FC<UserMessageProps> = ({
                     throw new Error("Function not implemented.");
                 } }
                  />
-            <p className="hidden md:flex text-semibold">
+            <p className="font-semibold text-sm">
                 {username}
             </p>
         </div>

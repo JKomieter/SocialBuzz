@@ -15,7 +15,7 @@ const PostInfoModal = () => {
         mutate: mutatePost } = useGetPost(postId);
 
     if (!isOpen) {
-        return false;
+        return null;
     }
 
     const bodyContent = isLoading ? 

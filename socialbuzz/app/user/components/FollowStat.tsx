@@ -1,6 +1,6 @@
-import Button from "@/app/components/buttons/Button";
 import { IoIosSettings } from "react-icons/io";
 import { RiUserAddLine } from "react-icons/ri";
+import Button from "./Button";
 
 
 interface FollowStatProps {
@@ -19,38 +19,35 @@ const FollowStat: React.FC<FollowStatProps> = ({
         <>
             {
                 isCurrentUser ? (
-                    <div className='flex w-full flex-row md:flex-row gap-2'>
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                            Edit Profile 
+                    <div className='flex w-full flex-row md:flex-row gap-2 flex-wrap'>
+                        <Button text='Edit profile' />
+                        <Button text='View Archive' />
+                        <span><IoIosSettings size={34} color="white" /></span>
+                        <button className='text-neutral-100 font-semibold 
+                        text-sm flex-1 md:flex-initial rounded-lg bg-neutral-700 px-3 py-1'>
+                            Ad tools
                         </button>
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                            Ad Tools
-                        </button>
-                        <span className='hidden md:flex ml-1'><IoIosSettings size={34} /></span>
                     </div>
                 ) : (
-                    <div className='flex w-full flex-row md:flex-row gap-2'>
+                    <div className='flex w-full flex-row md:flex-row gap-2 flex-wrap'>
                         {
                             checkIfFollowing ? ( 
-                                <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                                    Following
-                                </button>
+                                <Button text='Following' />
                             ) : (
                                 // <Button text='Follow' bgColor="#405DE6" 
                                 //     textColor="#fff" padding="1px 7px" 
                                 //     onClick={handleFollow} width="100%"
                                 // />
-                                <button className='text-white rounded-md bg-[#405DE6] px-3 py-1'
-                                onClick={handleFollow} >
-                                    Follow
-                                </button>
+                                <Button text='Follow' onClick={handleFollow} />
                             )
                         }
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
-                            Message
-                        </button>
-                        <button className='text-black rounded-md bg-neutral-300 px-3 py-1'>
+                        <Button text='Message' />
+                        <button className='text-black rounded-lg bg-neutral-300 px-3 py-1'>
                             <RiUserAddLine size={23} color='#000' />
+                        </button>
+                        <button className='text-neutral-100 font-semibold 
+                        text-sm flex-1 md:flex-initial rounded-lg bg-neutral-700 px-3 py-1'>
+                            Ad tools
                         </button>
                     </div>
                 )
@@ -59,6 +56,7 @@ const FollowStat: React.FC<FollowStatProps> = ({
         </>
     )
 }
+
 
 export default FollowStat;
 

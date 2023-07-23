@@ -30,7 +30,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 }) => {
     const { data: sender, mutate: mutateSender } = getUser(senderId)
     const router = useRouter()
-    console.log(sender)
 
     const handleNotification = useMemo(() => {
         // control the notification message

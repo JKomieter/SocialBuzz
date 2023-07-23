@@ -19,7 +19,7 @@ const Posts: React.FC<PostsProps> = ({
 }) => {
 
     return (
-        <>
+        <div className="w-screen md:w-full">
         {
             posts?.length > 0 ? (
                 <div className="grid grid-cols-3 gap-2 w-full px-3">
@@ -43,7 +43,7 @@ const Posts: React.FC<PostsProps> = ({
                 </div>
             )
         }
-        </>
+        </div>
     )
 }
 

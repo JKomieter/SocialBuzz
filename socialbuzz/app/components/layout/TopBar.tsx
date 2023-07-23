@@ -9,14 +9,12 @@ const TopBar = () => {
     // show InboxNav when on /inbox
     // show TopBar when on /home
 
-    if (pathname === "/inbox") return <InboxNav />;
-
     return (
         <div className="z-40 top-0 fixed w-screen 
         bg-black border-b-neutral-500 md:hidden"
         style={{borderBottomWidth: "0.2px"}}>
             {
-                pathname === "/inbox" ? <InboxNav /> : <TopNav />
+                pathname === "/" ? <TopNav /> : <InboxNav />
             }
         </div>
     )

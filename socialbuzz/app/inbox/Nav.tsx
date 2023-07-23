@@ -4,6 +4,8 @@ import { HiOutlineArrowLeft } from "react-icons/hi"
 import { ImList2 } from "react-icons/im"
 import { IoIosArrowDown } from "react-icons/io"
 import useInbox from "../hooks/useInbox"
+import { usePathname } from "next/navigation"
+import { MdOutlinePersonAddAlt } from "react-icons/md"
 
 interface NavProps {
     username: string;
@@ -15,6 +17,7 @@ const Nav: React.FC<NavProps> = ({
 }) => {
 
     const { isOpen, setOpen } = useInbox();
+    const pathname = usePathname();
 
     return (
         <div className="px-6 flex flex-col items-center justify-between gap-4 w-full ">
@@ -30,14 +33,23 @@ const Nav: React.FC<NavProps> = ({
                     </p>
                     <IoIosArrowDown size={24} className="text-neutral-300" />
                 </div>
-                <FaRegEdit size={28} className="text-neutral-300" />
+                {
+                    pathname === "inbox" ? (
+                        <FaRegEdit size={28} className="text-neutral-300" />
+                    ) : (
+                        <MdOutlinePersonAddAlt size={28} className="text-neutral-300" />
+                    )
+                }
+                
             </div>
-            <div className="w-full py-2">
-                <ImList2 
-                size={28} 
-                className="text-neutral-300 cursor-pointer"
-                onClick={() => setOpen(!isOpen)} />
-            </div>
+            {
+                pathname === "/inbox" && <div className="w-full py-2">
+                    <ImList2 
+                    size={28} 
+                    className="text-neutral-300 cursor-pointer"
+                    onClick={() => setOpen(!isOpen)} />
+                </div>
+            }
         </div>
     )
 }

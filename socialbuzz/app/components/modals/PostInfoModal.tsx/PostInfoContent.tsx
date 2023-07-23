@@ -1,7 +1,7 @@
-import PostInfo from "./components/PostInfo";
-import PostMedia from "./components/PostMedia";
-import { Comment } from "./components/PostInfo";
-import { User } from "./components/PostInfo";
+import PostInfo from "./PostInfo";
+import PostMedia from "./PostMedia";
+import { Comment } from "./PostInfo";
+import { User } from "./PostInfo";
 import PostFrame from "../../avatar/PostFrame";
 
 

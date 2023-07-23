@@ -1,14 +1,9 @@
 import useCurrentUserFriends from "../actions/useCurrentUserFriends";
+import LoadUserMessage from "../components/loading/LoadUserMessage";
 import useInbox from "../hooks/useInbox";
 import Nav from "./Nav";
-import UserMessage from "./UserMessage";
+import Users from "./Users";
 
-interface User {
-    id: string;
-    profileImage: string;
-    username: string;
-    email: string;
-}
 
 interface InboxUsersProps {
     setOtherEmail: React.Dispatch<React.SetStateAction<string | null>>;
@@ -29,10 +24,8 @@ const InboxUsers: React.FC<InboxUsersProps> = ({
     const { data: users , isLoading, mutate: mutateUsers } = useCurrentUserFriends();
     const { isOpen } = useInbox()
 
-    if (isLoading) return <p>Loading...</p>
-
     return (
-        <div className={`h-screen bg-black md:min-w-[300px]
+        <div className={`h-screen bg-black md:min-w-[300px] bg-opacity-90
         border-r-neutral-600 border-l-neutral-600 ${isOpen ? "fixed" : "hidden fixed md:flex"}  duration-75`} 
         style={{borderRightWidth: "0.2px", borderLeftWidth: "0.2px"}}>
             <div className="overflow-y-scroll px-2 py-3 flex flex-col gap-4">
@@ -40,18 +33,16 @@ const InboxUsers: React.FC<InboxUsersProps> = ({
                     <Nav username={username} />
                 </div>
                 {
-                    !!users && users?.map((user: User) => (
-                        <UserMessage 
-                            setOtherEmail={setOtherEmail}
-                            setOtherId={setOtherId}
-                            setOtherName={setOtherName}
-                            setOtherPhotoUrl={setOtherPhotoUrl}
-                            key={user?.id}
-                            profileImage={user.profileImage}
-                            username={user.username} 
-                            id={user.id} 
-                            email={user.email} />
-                    ))
+                    isLoading ? 
+                    <LoadUserMessage /> 
+                    :
+                    <Users 
+                    users={users}
+                    setOtherEmail={setOtherEmail}
+                    setOtherId={setOtherId}
+                    setOtherName={setOtherName}
+                    setOtherPhotoUrl={setOtherPhotoUrl}
+                     />
                 }
             </div>
         </div>

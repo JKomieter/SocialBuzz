@@ -4,9 +4,9 @@ import { AiOutlineHeart, AiOutlineMenu } from "react-icons/ai";
 import { CgHome } from "react-icons/cg"
 import { FiSearch } from "react-icons/fi";
 import { MdOutlineExplore } from "react-icons/md";
-import { HiOutlineFilm } from "react-icons/hi";
 import { TbMessageCircle } from "react-icons/tb";
 import { CgAddR, CgLinear } from "react-icons/cg";
+import { BiMoviePlay } from "react-icons/bi";
 
 import SideBarItems from "../items/SideBarItems";
 import useMore from "@/app/hooks/useMore";
@@ -37,7 +37,6 @@ const SideBar = () => {
         // true is there is still unread notifications
         return count > 0
     }, [count])
-    console.log(`CurrentUser ${currentUser}`)
 
     useEffect(() => {
         if (currentUser?.error) {
@@ -49,27 +48,35 @@ const SideBar = () => {
 
     return (
         <div className="flex-col min-h-screen items-center
-        py-4 px-5 hidden md:flex gap-3 
+        py-4 px-5 hidden md:flex gap-3 bg-black
           border-r-stone-500 border-r-[0.2px] 
         ">
             <CgLinear size={30} color="white" style={{marginBottom: "20px"}} />
             <div className="flex w-full items-center flex-col gap-2 h-full">
                 {items.map((item) => (
-                    <SideBarItems href={item.href}
-                    key={item.name} name={item.name}
-                    icon={item.icon} showFooter={true} 
-                    unRead={unRead} mutateCount={mutateCount}/>
+                    <SideBarItems 
+                        href={item.href}
+                        key={item.name} 
+                        name={item.name}
+                        icon={item.icon} 
+                        showFooter={true} 
+                        unRead={unRead} 
+                        size={28}
+                        mutateCount={mutateCount}/>
                 ))}
                 <span className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1">
-                    <Image src={currentUser?.profileImage ||
-                    '/images/personplaceholder.png'} alt=""
-                    style={{objectFit: "cover"}} width={100} 
-                    height={100} />
+                    <Image 
+                        src={currentUser?.profileImage ||
+                        '/images/personplaceholder.png'} alt=""
+                        style={{objectFit: "cover"}} width={100} 
+                        height={100} />
                 </span>
                 <div className="cursor-pointer rounded-lg 
                 p-3 hover:bg-slate-800 mt-2 flex flex-row
                 items-center  ">
-                    <AiOutlineMenu size={28} onClick={handleMore} />
+                    <AiOutlineMenu 
+                        size={28} 
+                        onClick={handleMore} />
                     {/* <p className="capitalize text-md lg:flex hidden text-neutral-400">More</p> */}
                 </div>
                 <More />
@@ -96,7 +103,7 @@ export const items = [
         },
         {
             name: "Reels",
-            icon: HiOutlineFilm,
+            icon: BiMoviePlay,
             href: "/reels"
         },
         {

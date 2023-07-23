@@ -86,7 +86,7 @@ const UserHero: React.FC<UserHeroProps> = ({
             </div>
             <div className='flex w-full flex-col gap-5'>
                 <div className='flex md:flex-row items-center flex-col gap-3'>
-                    <span className='font-medium text-lg text-white'>
+                    <span className='font-medium text-left lowercase text-lg text-white'>
                         {username}
                     </span>
                     <FollowStat isCurrentUser={isCurrentUser}  
