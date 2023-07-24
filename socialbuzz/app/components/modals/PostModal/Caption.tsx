@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import useCurrentUser from "@/app/actions/useCurrentUser";
+import AvatarFrame from "../../avatar/AvatarFrame";
 
 interface CaptionProps {
     caption: string;
@@ -51,8 +52,11 @@ const Caption: React.FC<CaptionProps> = ({
             style={{borderBottomRightRadius: '8px'}}>
             <div className="flex-row flex gap-2 items-center w-full py-2">
                 {/* this will hold the avatar of the user */}
-                <span className="w-10 h-10 rounded-full  
-                bg-neutral-500" ></span>
+                <AvatarFrame 
+                    profileImage={currentUser?.profileImage} 
+                    size="w-10 h-10"
+                    handleOnClick={() => {} } 
+                    showBackground={false} />
                 <span className="text-sm font-semibold">
                     {currentUser?.username}
                 </span>

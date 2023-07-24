@@ -67,9 +67,10 @@ const UserProfileNav: React.FC<UserProfileNavProps> = ({
                         <div key={item.name} className= {`flex flex-row 
                         items-center gap-2 py-2 cursor-pointer hover:text-neutral-200
                          ${item.current && 'text-white md:border-t-[1px]'}`}>
-                            <item.Icon size={23} className={`text-neutral-500 
-                            font-bold ${item.current && 'text-blue-600'}`} />
-                            <span className="text-neutral-500 text-sm hidden md:block">
+                            <item.Icon size={23} className={`font-bold 
+                            ${item.current ? 'text-blue-600' : "text-neutral-500"}`} />
+                            <span className={` text-sm hidden md:block 
+                            ${item.current ? "text-neutral-200" : "text-neutral-500"}}`}>
                                 {item.name}
                             </span>
                         </div>

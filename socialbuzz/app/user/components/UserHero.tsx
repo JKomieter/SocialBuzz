@@ -93,7 +93,7 @@ const UserHero: React.FC<UserHeroProps> = ({
                         checkIfFollowing={checkIfFollowing} 
                         handleFollow={handleFollow} />
                 </div>
-                <div className='hidden md:flex'>
+                <div className='hidden md:flex w-[70%]'>
                     <Following followers={followers} following={following} posts={posts}
                     borderTop="0" borderBottom='0' />
                 </div>

@@ -1,10 +1,10 @@
 "use client";
 import SideBarItems from "../items/SideBarItems";
-import { FiSearch } from "react-icons/fi";
 import { CgAddR, CgHome } from "react-icons/cg";
 import { BiMessageRounded, BiMoviePlay } from "react-icons/bi";
 import Image from "next/image";
 import useCurrentUser from "@/app/actions/useCurrentUser";
+import { MdOutlineExplore } from "react-icons/md";
 
 
 //the sidebar on the footer
@@ -15,9 +15,9 @@ const items = [
             href: "/"
         },
         {
-            name: "Search",
-            icon: FiSearch,
-            href: "/search"
+            name: "Explore",
+            icon: MdOutlineExplore,
+            href: "/explore"
         },
         {
             name: "Reels",

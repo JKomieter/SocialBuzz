@@ -71,15 +71,15 @@ const SideBar = () => {
                         style={{objectFit: "cover"}} width={100} 
                         height={100} />
                 </span>
-                <div className="cursor-pointer rounded-lg 
-                p-3 hover:bg-slate-800 mt-2 flex flex-row
-                items-center  ">
-                    <AiOutlineMenu 
-                        size={28} 
-                        onClick={handleMore} />
-                    {/* <p className="capitalize text-md lg:flex hidden text-neutral-400">More</p> */}
-                </div>
                 <More />
+            </div>
+            <div className="cursor-pointer rounded-lg 
+            p-3 hover:bg-slate-800 mt-2 flex flex-row
+            items-center bottom-0 ">
+                <AiOutlineMenu 
+                    size={28} 
+                    onClick={handleMore} />
+                {/* <p className="capitalize text-md lg:flex hidden text-neutral-400">More</p> */}
             </div>
         </div>
     )

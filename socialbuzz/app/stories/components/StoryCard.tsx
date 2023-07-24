@@ -26,7 +26,7 @@ const StoryCard: React.FC<StoryCardProps> = ({
 
     return (
         <Slider {...settings} 
-        className={`rounded-2xl w-full h-full object-cover`}>
+        className={`rounded-2xl w-full h-20 object-cover`}>
             {
                 stories?.length > 0 && stories?.map((story: Story) => (
                     <StoryItem  key={story.id} createdAt={story.createdAt} 

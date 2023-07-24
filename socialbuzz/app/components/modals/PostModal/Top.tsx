@@ -17,9 +17,9 @@ const Top: React.FC<TopProps> = ({
     goBack
 }) => {
     return (
-        <div className="w-full text-center font-meduim border-b-[0.1px] basis-1/2
-        border-[#fff] py-2 flex flex-row justify-between items-center
-        bg-neutral-800 rounded-t-lg text-align px-2 ">
+        <div className="w-full text-center font-meduim basis-1/2
+        border-neutral-600 py-2 flex flex-row justify-between items-center
+        bg-neutral-800 rounded-t-lg text-align px-2" style={{borderBottomWidth: "0.2px"}}>
                 {
                     files.length > 0 &&
                     <span className="p-1 cursor-pointer rounded-full hover:bg-neutral-500">

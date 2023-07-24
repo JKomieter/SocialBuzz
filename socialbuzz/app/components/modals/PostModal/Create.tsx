@@ -97,8 +97,8 @@ const Create = () => {
     const bodyContent = (
         <>
         <Top files={files} handleSubmit={handleSubmit} step={step} goBack={goBack} />
-        <div className="w-full bg-neutral-800 rounded-lg h-full 
-            flex flex-row">
+        <div className="w-full bg-neutral-800 h-full 
+            flex flex-row rounded-b-xl">
             <div 
                     {...getRootProps()}
                     className="w-full h-full flex justify-center items-center

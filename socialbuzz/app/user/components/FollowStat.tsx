@@ -38,7 +38,10 @@ const FollowStat: React.FC<FollowStatProps> = ({
                                 //     textColor="#fff" padding="1px 7px" 
                                 //     onClick={handleFollow} width="100%"
                                 // />
-                                <Button text='Follow' onClick={handleFollow} />
+                                <button onClick={handleFollow}
+                                className='text-neutral-100 font-semibold text-sm rounded-lg bg-blue-700 px-3 py-1'>
+                                    Follow
+                                </button>
                             )
                         }
                         <Button text='Message' />
