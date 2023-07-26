@@ -43,10 +43,10 @@ const UserStory: React.FC<UserStoryProps> = ({
     },[currentUser?.stories?.length])
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center mr-3 md:mr-0">
             <div {...getRootProps()}
             className=' bg-neutral-700 flex items-end justify-center 
-            rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden md:mr-0 mr-4'
+            rounded-full w-14 h-14 md:w-16 md:h-16 overflow-hidden '
             style={{background: showBorder}}>
                 <input {...getInputProps()} />
                 <Image src={currentUser?.profileImage || "/images/personplaceholder.png"} 

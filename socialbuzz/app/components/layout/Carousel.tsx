@@ -26,16 +26,17 @@ const Carousel: React.FC<CarouselProps> = ({
 
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2">
-            <AvatarFrame 
-            showBackground={true}
-            profileImage={profileImage} 
-            handleOnClick={showStoryView}
-            size="w-14 h-14 md:w-16 md:mr-0 mr-4
-            md:h-16" />
-            <p className=" text-sm text-neutral-300">{username}</p>
-        </div>
-    )
+      <div className="flex flex-col items-center justify-center mr-3 md:mr-0">
+        <AvatarFrame
+          showBackground={true}
+          profileImage={profileImage}
+          handleOnClick={showStoryView}
+          size="w-14 h-14 md:w-16 
+            md:h-16"
+        />
+        <p className=" text-sm text-neutral-300">{username}</p>
+      </div>
+    );
 }
 
 export const BackGround = 'linear-gradient(to top right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #4f5bd5, #4f5bd5)'

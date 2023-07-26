@@ -2,13 +2,14 @@ import Head from 'next/head'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import AuthContext from './context/AuthContext'
-import Create from './components/modals/PostModal/Create'
+import Create from './components/modals/PopUpModals/PostModal/Create'
 import SideBar from './components/layout/SideBar'
-import Notifications from './components/modals/Notifications/Notifications'
 import StoryModal from './components/modals/StoryModal/StoryModal'
-import PostInfoModal from './components/modals/PostInfoModal.tsx/PostInfoModal'
+import PostInfoModal from './components/modals/PopUpModals/PostInfoModal.tsx/PostInfoModal'
 import TopLoading from './components/loading/TopLoading'
 import TopBar from './components/layout/TopBar'
+import NotificationModal from './components/modals/MotionModals/notifications/NotificationModal/NotificationsModal'
+import SearchModal from './components/modals/MotionModals/notifications/SearchModal/SearchModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,7 +30,8 @@ export default function RootLayout({
           <TopLoading />
           <TopBar />
           <Create />
-          <Notifications />
+          <NotificationModal />
+          <SearchModal />
           <PostInfoModal />
           <StoryModal />
             <div className="flex flex-row md:mt-0 mt-16">

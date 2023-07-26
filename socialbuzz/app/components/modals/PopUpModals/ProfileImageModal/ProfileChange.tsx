@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
-import Modal from "../../Modal";
+import Modal from "../Modal";
 import useChangeProfileImage from "@/app/hooks/useChangeProfileImage";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";

@@ -1,13 +1,13 @@
 "use client";
 import useStoryModal from "@/app/hooks/useStory";
 import Image from "next/image";
-import Modal from "../Modal";
+import Modal from "../PopUpModals/Modal";
 import useCurrentUser from "@/app/actions/useCurrentUser";
 import axios from "axios";
 import { useCallback } from "react";
 import { GiAlliedStar } from "react-icons/gi";
 import { IoMdArrowForward } from "react-icons/io";
-import StoryMedia from "../Media/StoryMedia";
+import StoryMedia from "../PopUpModals/Media/StoryMedia";
 
 
 const StoryModal = () => {

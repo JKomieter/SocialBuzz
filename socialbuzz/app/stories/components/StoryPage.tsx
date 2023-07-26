@@ -1,6 +1,6 @@
 "use client";
 import { useParams, useRouter } from 'next/navigation';
-import Modal from '@/app/components/modals/Modal';
+import Modal from '@/app/components/modals/PopUpModals/Modal';
 import getUser from '@/app/actions/getUser';
 import useStories from '@/app/actions/useStories';
 import { useState } from 'react';
@@ -10,9 +10,9 @@ import StoryView from './StoryView';
 const StoryPage = () => {
     const { userId  } = useParams();
     const router = useRouter();
-    const { data: fetchedUser, mutate: mutateFetchedUser } = getUser(userId);
+    // const { data: fetchedUser, mutate: mutateFetchedUser } = getUser(userId);
     const { data: fetchedUsers, mutate: mutateFetchedUsers } = useStories();
-    const [ currentStoryIndex, setCurrentStoryIndex ] = useState<Number>(0);
+    // const [ currentStoryIndex, setCurrentStoryIndex ] = useState<Number>(0);
     
     const bodyContent = (
         <StoryView users={fetchedUsers} 

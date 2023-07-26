@@ -11,7 +11,7 @@ import { BiMoviePlay } from "react-icons/bi";
 import SideBarItems from "../items/SideBarItems";
 import useMore from "@/app/hooks/useMore";
 import { useCallback, useEffect, useMemo } from "react";
-import More from "@/app/components/modals/MoreModal/More";
+import More from "@/app/components/modals/PopUpModals/MoreModal/More";
 import useCurrentUser from "@/app/actions/useCurrentUser";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

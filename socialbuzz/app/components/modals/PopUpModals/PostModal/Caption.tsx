@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import useCurrentUser from "@/app/actions/useCurrentUser";
-import AvatarFrame from "../../avatar/AvatarFrame";
+import AvatarFrame from "../../../avatar/AvatarFrame";
 
 interface CaptionProps {
     caption: string;

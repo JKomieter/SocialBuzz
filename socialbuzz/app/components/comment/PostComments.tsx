@@ -1,6 +1,6 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import AvatarFrame from "../avatar/AvatarFrame";
-import { Comment } from "../modals/PostInfoModal.tsx/PostInfo";
+import { Comment } from "../modals/PopUpModals/PostInfoModal.tsx/PostInfo";
 
 
 interface CommentsProps {

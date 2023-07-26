@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import InputPost from '../../../app/components/modals/PostModal/InputPost';
+import InputPost from '../../../app/components/modals/PopUpModals/PostModal/InputPost';
 import "@testing-library/jest-dom/extend-expect";
 
 

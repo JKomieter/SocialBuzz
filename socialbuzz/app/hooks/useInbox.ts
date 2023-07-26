@@ -8,7 +8,7 @@ interface InboxState {
 
 // state management for displaying inboxUsers
 const useInbox = create<InboxState>((set) => ({
-    isOpen: false,
+    isOpen: true,
     setOpen: (isOpen) => set({ isOpen }),
 }));
 

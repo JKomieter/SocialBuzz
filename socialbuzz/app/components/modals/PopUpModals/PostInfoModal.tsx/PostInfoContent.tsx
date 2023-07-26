@@ -2,7 +2,7 @@ import PostInfo from "./PostInfo";
 import PostMedia from "./PostMedia";
 import { Comment } from "./PostInfo";
 import { User } from "./PostInfo";
-import PostFrame from "../../avatar/PostFrame";
+import PostFrame from "../../../avatar/PostFrame";
 
 
 interface PostInfoContentProps {

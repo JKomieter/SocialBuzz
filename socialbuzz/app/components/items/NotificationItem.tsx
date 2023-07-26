@@ -72,7 +72,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 
     return (
         <div className="w-full flex flex-row justify-between items-center 
-        p-3 hover:bg-slate-800 cursor-pointer" onClick={handleClick}>
+        p-3 hover:bg-neutral-900 duration-500 cursor-pointer" onClick={handleClick}>
             <div className="w-full flex flex-row gap-2 items-center">
                 <span className="rounded-full h-10 w-10 overflow-hidden">
                     <Image src={
@@ -84,7 +84,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                         {sender?.username}
                     </span> 
                     <span className="text-white ">
-                        {handleNotification} . 
+                        {handleNotification} .
                     </span> 
                     <span className="text-neutral-500 text-xs">
                         {" " + createdAtFormat}

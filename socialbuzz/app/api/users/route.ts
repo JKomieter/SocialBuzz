@@ -9,7 +9,15 @@ export async function GET(request: Request) {
 
     // fetch users data from the database
     // exclude the current user from the list
-    const allUsers = await prisma.user.findMany({
+    const allUsersExceptCurrentUser = await prisma.user.findMany({
+      select: {
+        username: true,
+        profileImage: true,
+        id: true,
+        firstName: true,
+        lastName: true,
+        followersIds: true
+      },
         orderBy: {
             createdAt: 'desc'
         },
@@ -23,7 +31,7 @@ export async function GET(request: Request) {
     
 
     // Return the user data as the API response
-    return NextResponse.json(allUsers);
+    return NextResponse.json(allUsersExceptCurrentUser);
   } catch (error) {
     console.error(error);
     return NextResponse.json([]);

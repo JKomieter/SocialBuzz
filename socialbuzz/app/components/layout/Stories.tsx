@@ -52,7 +52,7 @@ const Stories = () => {
         <FaChevronLeft size={23} color='black' />
       </span>
       <Slider {...sliderSettings} ref={setSliderRef} 
-      className='w-full flex flex-row gap-2 items-center justify-start '>
+      className='w-full flex flex-row items-center justify-center gap-10'>
           <UserStory handleChange={handleChange} currentUser={currentUser} />
           {
             friendsWithStories?.map((friend: Friend) => (

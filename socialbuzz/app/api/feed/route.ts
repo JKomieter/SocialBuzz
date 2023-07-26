@@ -26,15 +26,29 @@ export async function GET(req: Request) {
           in: [...followingIds, currentUser.id],
         },
       },
-      include: {
-        user: {
-          include: {
-            stories: true,
+      select: {
+        id: true,
+        image: true,
+        caption: true,
+        video: true,
+        isCommentable: true,
+        createdAt: true,
+        userId: true,
+        likeIds: true,
+        comments: {
+          select: {
+            id: true,
           },
         },
-        comments: {
-          include: {
-            user: true,
+        location: true,
+        user: {
+          select: {
+            id: true,
+            stories: {
+              select: {
+                id: true,
+              },
+            },
           },
         },
       },
