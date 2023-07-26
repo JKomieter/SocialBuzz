@@ -15,14 +15,35 @@ export async function GET(req: NextApiRequest, { params }: {params: IParams}) {
             where: {
                 id: postId as string,
             },
-             include: {
+            select: {
+                id: true,
+                image: true,
+                caption: true,
+                likeIds: true,
+                createdAt: true,
                 comments: {
-                    include: {
-                        user: true,
+                    select: {
+                        id: true,
+                        body: true,
+                        createdAt: true,
+                        user: {
+                            select: {
+                                id: true,
+                                username: true,
+                                profileImage: true,
+                            }
+                        }
+                    },
+                    orderBy: { createdAt: 'desc' },
+                },
+                user: {
+                    select: {
+                        id: true,
+                        username: true,
+                        profileImage: true,
                     }
-                },   
-                user: true,  
-            }
+                }
+            },
         })
 
         if (!post) {

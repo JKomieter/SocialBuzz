@@ -182,7 +182,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
             handleSubmit={handleSubmit}
             setComment={(e) => setComment(e)} />
             <span className="md:w-full w-screen border-b-neutral-600 " 
-            style={{borderBottomWidth: "0.2px"}}/>
+            style={{borderBottomWidth: "0.2px"}} />
         </div>
     )
 }

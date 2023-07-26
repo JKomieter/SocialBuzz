@@ -13,6 +13,16 @@ export async function GET(req: Request) {
             where: {
                 receiverId: currentUser?.id
             },
+            select: {
+                id: true,
+                senderId: true,
+                receiverId: true,
+                postId: true,
+                type: true,
+                read: true,
+                createdAt: true,
+                commentBody: true,
+            },
             orderBy: { createdAt: 'desc' },
         })
         
