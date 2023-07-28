@@ -38,7 +38,7 @@ export default function RootLayout({
               <div className="h-screen fixed ">
                 <SideBar />
               </div>
-              <div className="md:ml-[90px] w-full">
+              <div className="md:ml-[120px] w-full">
                 {children}
               </div>
             </div>

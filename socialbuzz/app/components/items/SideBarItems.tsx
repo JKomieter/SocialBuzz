@@ -1,97 +1,89 @@
 "use client";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { IconType } from "react-icons";
 import { useRouter } from "next/navigation";
 import useCreate from "@/app/hooks/useCreate";
 import { useNotification } from "@/app/hooks/useNotification";
 import { useSearch } from "@/app/hooks/useSearch";
 
-
 interface SideBarItemsProps {
-    name: string;
-    icon: IconType;
-    href: string;
-    showFooter: boolean;
-    unRead?: boolean;
-    mutateCount?: any;
-    size: number;
+  name: string;
+  icon: IconType;
+  href: string;
+  showFooter: boolean;
+  unRead?: boolean;
+  mutateCount?: any;
+  size: number;
+  showName: boolean;
 }
-
 
 const SideBarItems: React.FC<SideBarItemsProps> = ({
-    name, 
-    icon: Icon, 
-    href,
-    showFooter,
-    unRead,
-    mutateCount,
-    size
+  name,
+  icon: Icon,
+  href,
+  showFooter,
+  unRead,
+  mutateCount,
+  size,
+  showName,
 }) => {
-    const [ show, setShow ] = useState(false);
-    const router = useRouter();
-    const create = useCreate();
-    const notification = useNotification();
-    const search = useSearch();
+  const [show, setShow] = useState(false);
+  const router = useRouter();
+  const create = useCreate();
+  const notification = useNotification();
+  const search = useSearch();
 
-    const handleClick = useCallback(() => {
-        // open the create modal
-        if (href === "/create") return;
+  const handleClick = useCallback(() => {
+    // open the create modal
+    if (href === "/create") return create.onOpen();
 
-        // open the notification modal
-        if (href === "/notifications") {
-            notification.isOpen ? 
-            notification.onClose() : notification.onOpen();
-            return;
-        };
+    // open the notification modal
+    if (href === "/notifications") {
+      search.onClose();
+      return notification.isOpen
+        ? notification.onClose()
+        : notification.onOpen();
+    }
 
-        if (href === "/search") {
-            search.isOpen ? 
-            search.onClose() : search.onOpen();
-            return;
-        }
-        
-        //navigate to href 
-        router.push(href as string)
-    }, [href, notification, router, search])
+    if (href === "/search") {
+      notification.onClose();
+      return search.isOpen ? search.onClose() : search.onOpen();
+    }
 
-    const handleHover = useCallback(() => {
-        if (show == true) {
-            setShow(false);
-            return;
-        }
-        setShow(true);
-    }, [show])
+    //navigate to href
+    router.push(href as string);
+  }, [create, href, notification, router, search]);
 
-    const openModal = useCallback(() => {
-        if (name !== "Create") {
-            return ;
-        }
-        create.onOpen();
-    }, [name, create])
+  const handleHover = useCallback(() => {
+    if (show == true) {
+      setShow(false);
+      return;
+    }
+    setShow(true);
+  }, [show]);
 
-
-    return (
-        <div onMouseEnter={handleHover} onMouseLeave={handleHover} 
-            className={`cursor-pointer rounded-lg p-3 hover:bg-neutral-700
-            flex items-center transition duration-500 hover:scale-105
-            ${
-                name === "Search" && search.isOpen === true && 'border-neutral-300 border-[0.5px]'
-            }
-            `} 
-            onClick={openModal}
-            style={{borderWidth: "0"}}
-        >
-            <Icon size={size} color="#fff" 
-            onClick={handleClick} className="text-red-500" />
-            {
-                name === "Notifications" && unRead && 
-                (<div className="absolute top-96.5 right-[27.5px] 
-                    w-3 h-3 bg-red-600 rounded-full"></div>)
-            }
-        </div>
-    )
-}
-
-
+  return (
+    <div
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
+      className={`cursor-pointer rounded-lg p-3 hover:bg-neutral-700
+            flex items-center transition duration-500 hover:scale-105 gap-2
+            ${showName && "w-full"}`}
+      onClick={handleClick}
+      style={{ borderWidth: "0" }}
+    >
+      <Icon size={size} color="#fff" className="text-red-500" />
+      {name === "Notifications" && unRead && (
+        <div
+          className="absolute top-96.6 right-[20.5px] 
+                    w-3 h-3 bg-red-600 rounded-full"
+        ></div>
+      )}
+      {showName && (
+        <p className="lg:flex text-sm hidden text-neutral-100">{name}</p>
+      )}
+    </div>
+  );
+};
 
 export default SideBarItems;
