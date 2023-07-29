@@ -18,7 +18,39 @@ export async function GET(req: Request) {
           not: null,
         },
       },
+      select: {
+        id: true,
+        video: true,
+        caption: true,
+        createdAt: true,
+        isCommentable: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
+            profileImage: true,
+            followersIds: true,
+          },
+        },
+        comments: {
+          select: {
+            id: true,
+            body: true,
+            createdAt: true,
+            postId: true,
+            user: {
+              select: {
+                id: true,
+                username: true,
+                profileImage: true,
+              }
+            }
+          },
+        },
+        likeIds: true,
+      }
     });
+
 
     return NextResponse.json(reels || []);
   } catch (error) {

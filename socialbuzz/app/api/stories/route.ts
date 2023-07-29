@@ -19,7 +19,7 @@ export async function GET(req: Request) {
         const friendsWithStories = await prisma.user.findMany({
             where: {
                 id: {
-                    in: followingIds
+                    in: [...followingIds, currentUser.id]
                 },
                 stories: {
                     some: {}

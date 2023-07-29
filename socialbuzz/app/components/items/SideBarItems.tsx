@@ -77,7 +77,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
         <div
           className="absolute top-96.6 right-[20.5px] 
                     w-3 h-3 bg-red-600 rounded-full"
-        ></div>
+        ></div> 
       )}
       {showName && (
         <p className="lg:flex text-sm hidden text-neutral-100">{name}</p>
