@@ -87,3 +87,14 @@ $ npm run dev
    - Display notifications on real-time.
    - Implement text-messaging, multimedia sharing and read receipts.
 
+
+## Architecture
+
+#### Frontend
+   * User interface:
+        - Components folder contains components that is used all over the app.
+             * Modal folder contains a set of reusable components that facilitate user interactions by displaying pop-up or slide-in modal                 dialogs on the screen. These modals are triggered when the user performs specific actions, such as creating a new post or                   performing other critical actions within the application.
+               For example:
+
+               
+
