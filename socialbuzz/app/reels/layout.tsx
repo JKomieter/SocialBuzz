@@ -1,3 +1,4 @@
+import ReelModal from "../components/modals/PopUpModals/ReelModal/ReelModal";
 
 export default function RegisterLayout({
   children,
@@ -5,8 +6,9 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   return (
-      <div className=" md:ml-[90px] md:w-[80%] flex justify-center">
+      <div className="md:ml-[150px] md:w-[80%] flex justify-center">
         {children}
+        <ReelModal />
       </div>
   );
 }

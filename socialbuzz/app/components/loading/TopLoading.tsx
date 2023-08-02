@@ -11,7 +11,7 @@ const TopLoading = () => {
     return (
         <div className='top-0 z-50 w-screen fixed'>
             
-            <LinearProgress color='secondary' />
+            {/* <LinearProgress color='secondary' /> */}
             
         </div>
     );
