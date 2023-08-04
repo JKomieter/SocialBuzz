@@ -87,3 +87,159 @@ $ npm run dev
    - Display notifications on real-time.
    - Implement text-messaging, multimedia sharing and read receipts.
 
+
+## Architecture
+
+#### Frontend
+   * User interface:
+        - Components folder contains components that is used all over the app.
+             * Modal folder contains a set of reusable components that facilitate user interactions by displaying pop-up or slide-in modal                 dialogs on the screen. These modals are triggered when the user performs specific actions, such as creating a new post or                   performing other critical actions within the application.
+                  For example:
+                  Modal.tsx for all pop up components
+               
+               ```
+               import { IoClose } from "react-icons/io5";
+               interface ModalProps{
+                   bodyContent: React.ReactElement;
+                   onClose: () => void;
+                   step?: number;
+                   isJustifyCenter?: boolean;
+               }
+               
+               //modal component for uploading profile image and creating posts
+               const Modal: React.FC<ModalProps> = ({
+                   bodyContent,
+                   onClose,
+                   step,
+                   isJustifyCenter
+               }) => {
+                   return (
+                        <div className="fixed z-50 flex outline-none 
+                           items-center bg-black bg-opacity-70 gap-5
+                           flex-col h-screen w-screen text-white p-8
+                           ">
+                               <div className="flex items-end w-full px-2 basis-1/9">
+                                   <span className="w-full text-right flex justify-end">
+                                       <IoClose color="#fff" className="cursor-pointer" 
+                                       onClick={onClose} size={34} />
+                                   </span>
+                               </div>
+                               <div className={`w-full max-h-[450px] min-h-[300px] md:h-full basis-8/9  
+                                   ${step === 1 ? 'md:w-[40%]' : 'md:w-[60%]'}
+                                   ${isJustifyCenter ? 'flex justify-center' : ''}
+                                   transition-width duration-700 transition-all ease-in-out
+                               `}>
+                                   {bodyContent}
+                               </div>
+                       </div>
+                   )
+               }
+               
+               export default Modal;
+               ```
+               
+            * Items folder houses a collection of reusable components that are specifically designed to display data presented in the form of             lists or arrays within the application. These components play a crucial role in rendering various content, such as posts, feeds,           stories, comments, or any other structured data that needs to be presented in a list-like format.
+               For example, NotificationItems.tsx display the list of user notifications
+              
+              ```
+              import getUser from "@/app/actions/getUser";
+               import { useCallback, useMemo } from "react";
+               import Image from "next/image";
+               import { formatDistanceToNowStrict } from "date-fns";
+               import { useRouter } from "next/navigation";
+               import axios from "axios";
+               
+               interface NotificationItemProps {
+                   id: string;
+                   senderId: string;
+                   receiverId: string;
+                   postId: string;
+                   type: string;
+                   read: boolean;
+                   createdAt: Date  
+                   commentBody: string;
+                   mutateNotifications: any;
+               }
+               
+               const NotificationItem: React.FC<NotificationItemProps> = ({
+                   id,
+                   senderId,
+                   receiverId,
+                   postId,
+                   type,
+                   read,
+                   createdAt,
+                   commentBody,
+                   mutateNotifications
+               }) => {
+                   const { data: sender, mutate: mutateSender } = getUser(senderId)
+                   const router = useRouter()
+               
+                   const handleNotification = useMemo(() => {
+                       // control the notification message
+                       if (type === "liked") {
+                           return ` liked your post`
+                       }
+               
+                       if (type === "commented") {
+                           return ` commented on your post`
+                       }
+               
+                       if (type === "followed") {
+                           return ` followed you`
+                       }
+                       
+                   }, [type])
+               
+                   const createdAtFormat = useMemo(() => {
+                       if (!createdAt) {
+                           return null;
+                       }
+               
+                       return formatDistanceToNowStrict(new Date(createdAt))
+                   }, [createdAt]);
+               
+                   const handleClick = useCallback(async () => {
+                       // handle when user clicks on notification
+                       if (type === "followed") {
+                           router.push(`/user/${senderId}`)
+                       }
+               
+                       if (type === "commented" || type === "liked") {
+                           router.push(`/post/${postId}`)
+                       }
+               
+                       await axios.post("/api/notification", {id})
+               
+                       mutateNotifications();
+                   }, [id, mutateNotifications, postId, router, senderId, type])
+               
+                   return (
+                       <div className="w-full flex flex-row justify-between items-center 
+                       p-3 hover:bg-neutral-900 duration-500 cursor-pointer" onClick={handleClick}>
+                           <div className="w-full flex flex-row gap-2 items-center">
+                               <span className="rounded-full h-10 w-10 overflow-hidden">
+                                   <Image src={
+                                   sender?.profileImage || "/images/personplaceholder.png"} 
+                                   alt="" height={100} width={100} style={{objectFit: "cover"}}/>
+                               </span>
+                               <div className="text-sm">
+                                   <span className="font-semibold text-white mr-1">
+                                       {sender?.username}
+                                   </span> 
+                                   <span className="text-white ">
+                                       {handleNotification} .
+                                   </span> 
+                                   <span className="text-neutral-500 text-xs">
+                                       {" " + createdAtFormat}
+                                   </span>
+                               </div>
+                           </div>
+                       </div>
+                   )
+               }
+               
+               export default NotificationItem;
+              ```
+                                
+                              
