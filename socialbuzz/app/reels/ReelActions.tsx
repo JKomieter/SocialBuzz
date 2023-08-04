@@ -7,11 +7,12 @@ import { FaRegComment } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { Comment } from "./Reels";
 import useCurrentUser from "../actions/useCurrentUser";
-import { useCallback, useMemo, useRef } from "react";
+import { use, useCallback, useEffect, useMemo, useRef } from "react";
 import axios from "axios";
 import AvatarFrame from "../components/avatar/AvatarFrame";
 import { useRouter } from "next/navigation";
 import { useReelComment } from "../hooks/useReelComment";
+import ReelModal from "../components/modals/PopUpModals/ReelModal/ReelModal";
 
 
 interface ReelActionsProps {
@@ -45,6 +46,15 @@ const ReelActions: React.FC<ReelActionsProps> = ({
     setComments(comments);
     setOpen(true);
   }, [comments, setComments, setOpen, setPos]);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setPos(
+        commentRef.current?.offsetLeft as number,
+        commentRef.current?.offsetTop as number
+      );
+    });
+  }, [setPos])
 
   const router = useRouter();
 

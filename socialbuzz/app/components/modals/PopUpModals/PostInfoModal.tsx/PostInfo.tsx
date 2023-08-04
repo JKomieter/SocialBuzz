@@ -14,6 +14,7 @@ export interface User {
     id: string;
     username: string;
     profileImage: string;
+    followerIds: string[];
 }
 
 interface PostInfoProps {
@@ -30,7 +31,7 @@ interface PostInfoProps {
  export interface Comment {
     id: string; 
     body: string;
-    createdAt: string;
+    createdAt: Date;
     user: User;
 }
 

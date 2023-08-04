@@ -49,11 +49,14 @@ const SideBar = () => {
     return (
       <div
         className="flex-col min-h-screen items-center
-        py-4 px-5 hidden md:flex gap-3 bg-black
+        py-6 px-5 hidden md:flex gap-3 bg-black
           border-r-stone-500 border-r-[0.2px] 
         "
       >
-        <CgLinear size={30} color="white" style={{ marginBottom: "20px" }} />
+        {/* <CgLinear size={30} color="white" style={{ marginBottom: "20px" }} /> */}
+        <h3 className=" w-full text-2xl font-semibold text-neutral-200">
+          SocialBuzz
+        </h3>
         <div className="flex w-full items-center flex-col gap-2 h-full">
           {items.map((item) => (
             <SideBarItems

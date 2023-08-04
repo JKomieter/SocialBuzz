@@ -2,7 +2,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ReelItem from "../components/items/ReelItems";
 import { FadeLoader } from "react-spinners";
 
-
 export interface User {
   id: string;
   username: string;
@@ -14,7 +13,6 @@ export interface Comment {
   id: string;
   body: string;
   createdAt: Date;
-  postId: string;
   user: User;
 }
 export interface Reel {
@@ -37,8 +35,7 @@ const Reels: React.FC<ReelsProps> = ({
   isLoading,
   mutateReels,
 }) => {
-
-  console.log(fetchedReels);
+  
 
   return (
     <div className="w-full flex justify-center items-center">
@@ -46,7 +43,7 @@ const Reels: React.FC<ReelsProps> = ({
         dataLength={fetchedReels?.length}
         next={mutateReels}
         hasMore={true}
-        loader={<FadeLoader color="white"  />}
+        loader={<FadeLoader color="white" />}
         className="w-full flex flex-col justify-center gap-5 items-center overflow-x-scroll"
       >
         {fetchedReels?.map((reel) => (

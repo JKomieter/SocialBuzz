@@ -1,10 +1,9 @@
-import router from "next/router"
 import { FaRegEdit } from "react-icons/fa"
 import { HiOutlineArrowLeft } from "react-icons/hi"
 import { ImList2 } from "react-icons/im"
 import { IoIosArrowDown } from "react-icons/io"
 import useInbox from "../hooks/useInbox"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { MdOutlinePersonAddAlt } from "react-icons/md"
 
 interface NavProps {
@@ -18,6 +17,9 @@ const Nav: React.FC<NavProps> = ({
 
     const { isOpen, setOpen } = useInbox();
     const pathname = usePathname();
+    const router = useRouter();
+
+    if (pathname.includes("/reels")) return null;
 
     return (
         <div className="px-6 flex flex-col items-center justify-between gap-4 w-full ">
