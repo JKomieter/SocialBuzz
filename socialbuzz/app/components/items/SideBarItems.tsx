@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import { IconType } from "react-icons";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import useCreate from "@/app/hooks/useCreate";
 import { useNotification } from "@/app/hooks/useNotification";
 import { useSearch } from "@/app/hooks/useSearch";
@@ -32,6 +32,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
   const create = useCreate();
   const notification = useNotification();
   const search = useSearch();
+  const pathname = usePathname();
 
   const handleClick = useCallback(() => {
     // open the create modal
@@ -67,17 +68,20 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
       className={`cursor-pointer rounded-lg p-3 hover:bg-neutral-700
-            flex items-center transition duration-500 hover:scale-105 gap-2
-            ${showName && "w-full"}`}
+            flex items-center transition duration-500  gap-2
+            ${showName && "w-full"}
+            ${pathname === href && "font-semibold"}`}
       onClick={handleClick}
       style={{ borderWidth: "0" }}
     >
       <Icon size={size} color="#fff" className="text-red-500" />
       {name === "Notifications" && unRead && (
         <div
-          className="absolute top-96.6 right-[20.5px] 
-                    w-3 h-3 bg-red-600 rounded-full"
-        ></div> 
+          className="absolute top-92 left-[48px] text-neutral-200 text-sm
+                    w-4 h-4 bg-red-600 rounded-full flex items-center justify-center"
+        >
+          4
+        </div>
       )}
       {showName && (
         <p className="lg:flex text-sm hidden text-neutral-100">{name}</p>

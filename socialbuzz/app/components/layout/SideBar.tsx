@@ -38,13 +38,15 @@ const SideBar = () => {
         return count > 0
     }, [count])
 
-    useEffect(() => {
-        if (currentUser?.error) {
-            return router.push("/auth/login")
-        }
-    }, [currentUser?.error, router])
+    // useEffect(() => {
+    //     if (currentUser?.error) {
+    //         return router.push("/auth/login")
+    //     }
+    // }, [currentUser?.error, router])
 
-    if(currentUser?.error) return false;
+    // if(currentUser?.error) return false;
+
+      if (currentUser?.error) return null;
 
     return (
       <div
@@ -53,11 +55,15 @@ const SideBar = () => {
           border-r-stone-500 border-r-[0.2px] 
         "
       >
-        {/* <CgLinear size={30} color="white" style={{ marginBottom: "20px" }} /> */}
-        <h3 className=" w-full text-2xl font-semibold text-neutral-200">
+        <span className="lg:hidden flex">
+          <CgLinear size={30} color="white" style={{ marginBottom: "20px" }} />
+        </span>
+        <h3 className="hidden font-sans lg:flex w-full text-2xl font-semibold text-neutral-200"
+          style={{fontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif"}}
+        >
           SocialBuzz
         </h3>
-        <div className="flex w-full items-center flex-col gap-2 h-full">
+        <div className="mt-10 flex w-full items-center flex-col gap-2 h-full">
           {items.map((item) => (
             <SideBarItems
               href={item.href}
@@ -71,8 +77,14 @@ const SideBar = () => {
               showName={true}
             />
           ))}
-          <div className="w-full flex flex-row gap-2 items-center p-3">
-            <span className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1">
+          <div
+            className="w-full  flex-row gap-2 rounded-lg p-3 hover:bg-neutral-700
+            flex items-center transition duration-500  cursor-pointer"
+          >
+            <span
+              onClick={() => router.push(`/user/${currentUser?.username}`)}
+              className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1 "
+            >
               <Image
                 src={
                   currentUser?.profileImage || "/images/personplaceholder.png"
@@ -88,10 +100,10 @@ const SideBar = () => {
           <More />
         </div>
         <div
-            className="cursor-pointer rounded-lg transition duration-500 hover:scale-105
+          className="cursor-pointer rounded-lg transition duration-500 hover:scale-105
             p-3 hover:bg-neutral-700 mt-5 flex flex-row
             items-center bottom-0 gap-2 w-full"
-            onClick={handleMore}
+          onClick={handleMore}
         >
           <AiOutlineMenu size={28} />
           <p className="lg:flex text-sm hidden text-neutral-100">More</p>

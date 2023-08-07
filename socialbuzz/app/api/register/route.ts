@@ -30,6 +30,9 @@ export async function POST(request: Request) {
                 hashedPassword
             }
         });
+
+        console.log(user)
+
         return NextResponse.json(user)
     }catch (error) {
         return NextResponse.redirect("/auth/register")

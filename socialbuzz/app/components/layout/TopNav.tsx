@@ -64,7 +64,7 @@ const TopNav = () => {
             isLoading={isLoading}
             handleSearchInputChange={handleSearchInputChange}
             />
-          <AiOutlineHeart size={33} color="white" />
+          <AiOutlineHeart size={33} color="white" onClick={() => router.push("/notifications")} />
         </div>
         <div className="w-screen h-auto z-50 fixed top-20 bg-neutral-900 px-5">
             {

@@ -13,17 +13,6 @@ const Video: React.FC<VideoProps> = ({ video, radius, showVidIcon }) => {
   const videoEl = document.querySelector("video");
 
 
-  //   const handlePlayPause = useCallback(() => {
-  //     const video = document.querySelector("video");
-  //     if (onPlay) {
-  //       video?.pause();
-  //       return setOnPlay(false);
-  //     } else {
-  //       video?.play();
-  //       return setOnPlay(true);
-  //     }
-  //   }, [onPlay]);
-
   if (videoIsVisible) {
     videoEl?.play();
   } else {
@@ -38,7 +27,6 @@ const Video: React.FC<VideoProps> = ({ video, radius, showVidIcon }) => {
     <div
       ref={videoRef}
       className="flex justify-center items-center h-full"
-    //   onClick={handlePlayPause}
     >
       <video
         src={video}

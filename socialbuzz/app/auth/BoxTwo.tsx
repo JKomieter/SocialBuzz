@@ -6,6 +6,7 @@ interface BoxTwoProps {
     textOne: string;
     textTwo: string;
     routerLink: string;
+    disabled?: boolean;
 }
 
 
@@ -13,7 +14,8 @@ interface BoxTwoProps {
 const BoxTwo: React.FC<BoxTwoProps> = ({
     textOne,
     textTwo,
-    routerLink
+    routerLink,
+    disabled 
 }) => {
 
     const router = useRouter();
