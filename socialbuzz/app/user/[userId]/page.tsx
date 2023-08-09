@@ -4,7 +4,7 @@ import UserHero from "../components/UserHero";
 import Highlights from "../components/Highlights";
 import UserProfileNav from "../components/UserProfileNav";
 import Posts from "../components/Posts";
-import getUser from "@/app/actions/getUser";
+import getUser from "@/actions/getUser";
 import FadeLoader from "react-spinners/FadeLoader";
 
 const UserProfilePage = () => {

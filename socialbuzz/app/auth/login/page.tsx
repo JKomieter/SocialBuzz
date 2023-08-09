@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/app/components/buttons/Button";
-import Input from "@/app/components/inputs/Input";
+import Button from "@/components/buttons/Button";
+import Input from "@/components/inputs/Input";
 import { useCallback, useState } from "react";
 import { ImFacebook2 } from "react-icons/im";
 import { useRouter, useSearchParams } from "next/navigation";

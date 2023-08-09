@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { getSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import useCurrentUser from '../actions/useCurrentUser';
+import useCurrentUser from '../../actions/useCurrentUser';
 
 const withAuth = <T extends Record<string, any>>(WrappedComponent: React.ComponentType<T>) => {
   return (props: T) => {

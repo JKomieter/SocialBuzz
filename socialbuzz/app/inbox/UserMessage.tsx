@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import AvatarFrame from "../components/avatar/AvatarFrame";
+import AvatarFrame from "../../components/avatar/AvatarFrame";
 
 interface UserMessageProps {
     id: string;

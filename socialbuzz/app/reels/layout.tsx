@@ -1,5 +1,5 @@
-import Footer from "../components/layout/Footer";
-import ReelModal from "../components/modals/PopUpModals/ReelModal/ReelModal";
+import Footer from "../../components/layout/Footer";
+import ReelModal from "../../components/modals/PopUpModals/ReelModal/ReelModal";
 
 export default function RegisterLayout({
   children,

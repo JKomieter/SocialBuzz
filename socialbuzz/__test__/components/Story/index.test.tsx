@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Carousel from '../../../app/components/layout/Carousel';
-import UserStory from '../../../app/components/layout/UserStory';
+import Carousel from '../../../components/layout/Carousel';
+import UserStory from '../../../components/layout/UserStory';
 import "@testing-library/jest-dom/extend-expect";
-import StoryItem from '../../../app/components/items/StoryItem';
+import StoryItem from '../../../components/items/StoryItem';
 import exp from 'constants';
 
 

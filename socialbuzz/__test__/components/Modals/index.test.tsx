@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import SearchModal from '../../../app/components/modals/MotionModals/notifications/SearchModal/SearchModal';
+import SearchModal from '../../../components/modals/MotionModals/notifications/SearchModal/SearchModal';
 
 describe('SearchModal', () => {
 

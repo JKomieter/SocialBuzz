@@ -1,5 +1,5 @@
-import Footer from "@/app/components/layout/Footer";
-import ProfileChange from "../components/modals/PopUpModals/ProfileImageModal/ProfileChange";
+import Footer from "@/components/layout/Footer";
+import ProfileChange from "../../components/modals/PopUpModals/ProfileImageModal/ProfileChange";
 
 export default function RegisterLayout({
   children, 

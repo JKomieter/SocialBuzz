@@ -1,5 +1,5 @@
 "use client";
-import getReels from "../actions/getReels";
+import getReels from "../../actions/getReels";
 import Reels from "./Reels";
 import { FadeLoader } from "react-spinners";
 

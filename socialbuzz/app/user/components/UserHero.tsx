@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Following from './Following';
 import { useCallback, useMemo } from 'react';
-import useCurrentUser from '@/app/actions/useCurrentUser';
+import useCurrentUser from '@/actions/useCurrentUser';
 import FollowStat from './FollowStat';
 import axios from 'axios';
-import useChangeProfileImage from '@/app/hooks/useChangeProfileImage';
+import useChangeProfileImage from '@/hooks/useChangeProfileImage';
 
 interface UserHeroProps {
   userProfileImage: string;

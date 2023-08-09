@@ -1,6 +1,6 @@
-import prisma from "@/app/libs/prismadb";
+import prisma from "@/libs/prismadb";
 import { NextRequest, NextResponse } from "next/server";
-import getCurrentUser from "@/app/libs/serverAuth";
+import getCurrentUser from "@/libs/serverAuth";
 
 interface IParams {
   userId: string;

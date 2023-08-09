@@ -1,6 +1,6 @@
-import getSession from "@/app/actions/getSession";
-import prisma from "@/app/libs/prismadb";
-import { createNotification } from "@/app/utils/createNotification";
+import getSession from "@/actions/getSession";
+import prisma from "@/libs/prismadb";
+import { createNotification } from "@/utils/createNotification";
 import { NextResponse } from "next/server";
 
 // request to like a post

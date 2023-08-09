@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import ReelItem from "../components/items/ReelItems";
+import ReelItem from "../../components/items/ReelItems";
 import { FadeLoader } from "react-spinners";
 
 export interface User {

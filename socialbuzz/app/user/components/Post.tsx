@@ -1,9 +1,9 @@
-import Video from "@/app/components/media/Video";
+import Video from "@/components/media/Video";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PostProps } from "./Posts";
 import CenterIcons from "./CenterIcons";
-import usePostInfo from "@/app/hooks/usePostInfo";
+import usePostInfo from "@/hooks/usePostInfo";
 
 // Component to display each User Post
 const Post: React.FC<PostProps> = ({ 

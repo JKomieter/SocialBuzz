@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import useCurrentUser from "../actions/useCurrentUser";
+import useCurrentUser from "../../actions/useCurrentUser";
 import Conversation from "./Conversation";
 import InboxUsers from "./InboxUsers";
 

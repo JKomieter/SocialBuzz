@@ -1,4 +1,4 @@
-import StoryItem from "@/app/components/items/StoryItem";
+import StoryItem from "@/components/items/StoryItem";
 import { Story } from "@/app/stories/components/StoryPage";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

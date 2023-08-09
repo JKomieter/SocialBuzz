@@ -1,7 +1,7 @@
 import { BsDot } from "react-icons/bs";
-import AvatarFrame from "../components/avatar/AvatarFrame";
+import AvatarFrame from "../../components/avatar/AvatarFrame";
 import { useRouter } from "next/navigation";
-import useCurrentUser from "../actions/useCurrentUser";
+import useCurrentUser from "../../actions/useCurrentUser";
 import { useMemo } from "react";
 
 

@@ -1,6 +1,6 @@
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/libs/serverAuth";
-import { createNotification } from "@/app/utils/createNotification";
+import prisma from "@/libs/prismadb";
+import getCurrentUser from "@/libs/serverAuth";
+import { createNotification } from "@/utils/createNotification";
 import { NextResponse } from "next/server";
 
 

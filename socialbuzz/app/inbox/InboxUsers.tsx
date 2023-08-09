@@ -1,6 +1,6 @@
-import useCurrentUserFriends from "../actions/useCurrentUserFriends";
-import LoadUserMessage from "../components/loading/LoadUserMessage";
-import useInbox from "../hooks/useInbox";
+import useCurrentUserFriends from "../../actions/useCurrentUserFriends";
+import LoadUserMessage from "../../components/loading/LoadUserMessage";
+import useInbox from "../../hooks/useInbox";
 import Nav from "./Nav";
 import Users from "./Users";
 

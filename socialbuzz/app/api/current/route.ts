@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import getCurrentUser from "@/app/libs/serverAuth";
+import getCurrentUser from "@/libs/serverAuth";
 
 //get currently logged in user
 export async function GET(req: Request) {

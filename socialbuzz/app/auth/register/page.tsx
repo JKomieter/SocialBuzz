@@ -1,11 +1,11 @@
 "use client";
-import Input from "@/app/components/inputs/Input";
+import Input from "@/components/inputs/Input";
 import { useCallback, useEffect, useState } from "react";
 import { ImFacebook2 } from "react-icons/im";
 import axios from "axios"
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Button from "@/app/components/buttons/Button";
+import Button from "@/components/buttons/Button";
 import BoxTwo from "../BoxTwo";
 
 const Register = () => {

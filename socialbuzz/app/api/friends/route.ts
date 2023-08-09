@@ -1,5 +1,5 @@
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/libs/serverAuth";
+import prisma from "@/libs/prismadb";
+import getCurrentUser from "@/libs/serverAuth";
 import { NextResponse } from "next/server";
 
 // fetch current user's friends to text them

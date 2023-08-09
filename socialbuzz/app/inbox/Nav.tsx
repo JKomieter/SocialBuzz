@@ -2,7 +2,7 @@ import { FaRegEdit } from "react-icons/fa"
 import { HiOutlineArrowLeft } from "react-icons/hi"
 import { ImList2 } from "react-icons/im"
 import { IoIosArrowDown } from "react-icons/io"
-import useInbox from "../hooks/useInbox"
+import useInbox from "../../hooks/useInbox"
 import { usePathname, useRouter } from "next/navigation"
 import { MdOutlinePersonAddAlt } from "react-icons/md"
 

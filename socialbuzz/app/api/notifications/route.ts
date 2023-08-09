@@ -1,5 +1,5 @@
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/libs/serverAuth";
+import prisma from "@/libs/prismadb";
+import getCurrentUser from "@/libs/serverAuth";
 import { NextResponse } from "next/server";
 
 // fetch all notifications for the current user
@@ -29,5 +29,6 @@ export async function GET(req: Request) {
         return NextResponse.json(notifications);
     } catch (error) {
         console.log(error);
+        
     }
 }

@@ -1,8 +1,8 @@
 "use client";
 import { useParams, useRouter } from 'next/navigation';
-import Modal from '@/app/components/modals/PopUpModals/Modal';
-import getUser from '@/app/actions/getUser';
-import useStories from '@/app/actions/useStories';
+import Modal from '@/components/modals/PopUpModals/Modal';
+import getUser from '@/actions/getUser';
+import useStories from '@/actions/useStories';
 import { useState } from 'react';
 import StoryView from './StoryView';
 

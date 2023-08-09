@@ -1,6 +1,6 @@
-import { deleteExpiredStories } from "@/app/utils/deleteExpiredStories";
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/libs/serverAuth";
+import { deleteExpiredStories } from "@/utils/deleteExpiredStories";
+import prisma from "@/libs/prismadb";
+import getCurrentUser from "@/libs/serverAuth";
 import { NextResponse } from "next/server";
 import { fr } from "date-fns/locale";
 

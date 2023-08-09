@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import SideBarItems from '../../../app/components/items/SideBarItems';
+import SideBarItems from '../../../components/items/SideBarItems';
 import "@testing-library/jest-dom/extend-expect";
 import { FiSearch } from 'react-icons/fi';
 

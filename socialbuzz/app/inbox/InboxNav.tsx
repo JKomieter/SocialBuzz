@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import useCurrentUser from "../actions/useCurrentUser";
+import useCurrentUser from "../../actions/useCurrentUser";
 import Nav from "./Nav";
 
 const InboxNav = () => {
