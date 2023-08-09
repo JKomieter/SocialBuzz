@@ -12,7 +12,7 @@ const PostInfoModal = () => {
         data: post, 
         isLoading, 
         error, 
-        mutate: mutatePost } = useGetPost(postId);
+        mutate: mutatePost } = useGetPost(postId || "fakeId");
 
     if (!isOpen) {
         return null;

@@ -16,7 +16,7 @@ const Create = () => {
     const [ post, setPost ] = useState<string>("");
     const [ caption, setCaption ] = useState<string>("");
     const [ step, setStep ] = useState<number>(1);
-    const { mutate: mutatePost } = usePosts();
+    const { mutate: mutatePost } = usePosts("fakeId");
 
     const handleChange = useCallback((base64: string) => {
         setPost(base64);
