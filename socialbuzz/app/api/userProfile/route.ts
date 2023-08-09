@@ -12,8 +12,8 @@ export async function POST(request: Request) {
             },
             include: {
                 posts: true,     
-                notifications: true, 
-                reels: true,         
+                reels: true,
+                sentNotifications: true,         
                 stories: true,       
                 comments: true,     
             }
