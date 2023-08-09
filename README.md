@@ -238,8 +238,36 @@ $ npm run dev
                        </div>
                    )
                }
-               
-               export default NotificationItem;
+                              export default NotificationItem;
               ```
                                 
-                              
+              * action folder serves as a central hub for encapsulating logic related to data fetching, manipulation, and interaction with external APIs. Within this folder, you'll find modules that contain functions designed to handle specific data-related tasks. These functions often utilize powerful tools like the useSWR hook and Axios to seamlessly retrieve and manage data from backend APIs.
+               For example the getAllUsers.ts file fetches all the users in the database
+               ```
+                  // actions/fetchUsers.js
+   
+                  import useSWR from 'swr';
+                  import axios from 'axios';
+                  
+                  /**
+                   * Fetches a list of users from the backend API using Axios and useSWR.
+                   * 
+                   * @returns {Object} An object with the fetched user data, a mutation function, and a loading indicator.
+                   */
+                  const fetchUsers = () => {
+                    // Fetch data using the useSWR hook and Axios
+                    const { data, mutate, error } = useSWR('/api/users', async () => {
+                      const response = await axios.get('/api/users');
+                      return response.data;
+                    });
+                  
+                    return {
+                      data,       // Fetched user data
+                      mutate,     // Mutation function to refresh the data
+                      error       // Error, if any
+                    }
+                  }
+                  
+                  export default fetchUsers;
+               ```
+
