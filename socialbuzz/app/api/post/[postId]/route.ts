@@ -1,13 +1,12 @@
 import prisma from "@/app/libs/prismadb";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface IParams {
     postId: string;
 }
 
 //get specific user
-export async function GET(req: NextApiRequest, { params }: {params: IParams}) {
+export async function GET(req: NextRequest, { params }: {params: IParams}) {
     try {
         const { postId } = params;       
 

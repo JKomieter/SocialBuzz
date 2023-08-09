@@ -38,13 +38,12 @@ const SideBar = () => {
         return count > 0
     }, [count])
 
-    // useEffect(() => {
-    //     if (currentUser?.error) {
-    //         return router.push("/auth/login")
-    //     }
-    // }, [currentUser?.error, router])
+    useEffect(() => {
+        if (currentUser?.error) {
+            return router.push("/auth/login")
+        }
+    }, [currentUser?.error, router])
 
-    // if(currentUser?.error) return false;
 
       if (currentUser?.error) return null;
 
@@ -82,7 +81,7 @@ const SideBar = () => {
             flex items-center transition duration-500  cursor-pointer"
           >
             <span
-              onClick={() => router.push(`/user/${currentUser?.username}`)}
+              onClick={() => router.push(`/user/${currentUser?.id}`)}
               className="rounded-full overflow-hidden h-8 w-8 mt-1 mb-1 "
             >
               <Image

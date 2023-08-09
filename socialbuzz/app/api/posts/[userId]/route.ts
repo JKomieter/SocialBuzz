@@ -1,9 +1,12 @@
 import prisma from "@/app/libs/prismadb";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/app/libs/serverAuth";
-import { NextApiRequest } from "next/types";
 
-export async function GET(req: NextApiRequest, { params }) {
+interface IParams {
+  userId: string;
+}
+
+export async function GET(req: NextRequest, { params }: { params: IParams }) {
   try {
     const { currentUser } = await getCurrentUser();
     const { userId } = params;
@@ -11,18 +14,17 @@ export async function GET(req: NextApiRequest, { params }) {
 
     if (userId && currentUser) {
       // Return posts for a specific user
-      return NextResponse.json({error: "User not found"})
+      return NextResponse.json({ error: "User not found" });
     }
 
     const posts = await prisma.post.findMany({
-        where: {
-          userId: userId as string,
-        },
-      });
+      where: {
+        userId: userId as string,
+      },
+    });
 
-      return NextResponse.json(posts);
+    return NextResponse.json(posts);
   } catch (error) {
-
     console.error(error);
     return NextResponse.json({ error: "Internal Server Error" });
   }

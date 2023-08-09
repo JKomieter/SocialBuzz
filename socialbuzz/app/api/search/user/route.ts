@@ -1,18 +1,18 @@
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/libs/serverAuth";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
 // fetch users that match the search query
-export async function GET(request: NextApiRequest) {
+export async function GET(request: NextRequest) {
     try {
         // get the username query from the request
         const currentUser = await getCurrentUser();
 
         if (!currentUser) return NextResponse.json({error: 'You are not logged in'})
 
-        const { username } = request.query;
+        // const { username } = request.query;
+        const username = "JKomieter"
 
         // get the current users or user
 

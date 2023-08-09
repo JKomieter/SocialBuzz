@@ -3,7 +3,7 @@ import prisma from "./prismadb";
 
 const getCurrentUser = async () => {
     const session = await getSession();
-    
+     
     if (!session?.user?.email) {
         throw new Error('Not signed in')
     }
