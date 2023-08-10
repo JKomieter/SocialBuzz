@@ -17,3 +17,5 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: 'Something went wrong' })
     }
 }
+
+export const dynamic = "force-dynamic";

@@ -33,3 +33,5 @@ export async function GET(req: NextRequest, { params }: {params: IParams}) {
         return NextResponse.json({ message: 'Could not get user' });
     }
 }
+
+export const dynamic = "force-dynamic";

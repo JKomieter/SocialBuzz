@@ -29,3 +29,5 @@ export async function GET(req: NextRequest, { params }: { params: IParams }) {
     return NextResponse.json({ error: "Internal Server Error" });
   }
 }
+
+export const dynamic = "force-dynamic";
