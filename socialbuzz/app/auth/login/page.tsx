@@ -1,9 +1,9 @@
 "use client";
 import Button from "@/components/buttons/Button";
 import Input from "@/components/inputs/Input";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { ImFacebook2 } from "react-icons/im";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import BoxTwo from "../BoxTwo";
 import { signIn } from "next-auth/react";
 
@@ -28,6 +28,7 @@ const Login = () => {
         password,
         callbackUrl: "/",
       });
+      
     } catch (error) {
       console.log(error);
       router.push("/auth/login");
