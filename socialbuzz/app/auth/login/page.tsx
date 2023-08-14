@@ -13,7 +13,7 @@ const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isErr, setIsErr] = useState<boolean>(false);
+  const [isErr, setIsErr] = useState<string>("");
 
   const router = useRouter();
 
@@ -32,7 +32,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       router.push("/auth/login");
-      setIsErr(true);
+      setIsErr("Something went wrong");
     }
     setIsLoading(false);
   };

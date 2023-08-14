@@ -1,6 +1,5 @@
 /* eslint-disable react/display-name */
 import { useRouter } from 'next/navigation';
-import { getSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import useCurrentUser from '../../actions/useCurrentUser';
 
